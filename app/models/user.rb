@@ -21,16 +21,16 @@ class User < ApplicationRecord
 
     after_initialize :ensure_session_token
 
-    has_many :spots
-        foreign_key: :host_id
+    has_many :spots,
+        foreign_key: :host_id,
         class_name: "User"
 
-    has_many :reviews
-        foreign_key: :user_id
+    has_many :reviews,
+        foreign_key: :user_id,
         class_name: "Review"
 
-    has_many :bookings
-        foreign_key: :user_id
+    has_many :bookings,
+        foreign_key: :user_id,
         class_name: "Booking"
 
     def self.find_by_credentials(email, password)
