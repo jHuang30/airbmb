@@ -5,7 +5,7 @@ class SignForm extends React.Component {
         super(props);
         this.state = { 
             email: '', 
-            fnamd: '',
+            fname: '',
             lname: '',
             password: '',
              },
@@ -18,6 +18,11 @@ class SignForm extends React.Component {
         }
     }
 
+    componentDidMount(){
+        this.props.deleteErrors();
+    }
+    
+
     handleSubmit(e) {
         e.preventDefault;
         this.props.action(this.state)
@@ -29,7 +34,7 @@ class SignForm extends React.Component {
                 {error}
             </li>
         ));
-
+            // debugger
         return (
             <ul>
                 {errors}
@@ -43,6 +48,7 @@ class SignForm extends React.Component {
             <div>
                 <form>
                     {errors}
+                    
 
                     <label>Email address:
                         <input type="text"

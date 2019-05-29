@@ -18,8 +18,12 @@ class LoginForm extends React.Component {
         this.props.action(this.state)
     }
 
+    componentDidMount(){
+        this.props.deleteErrors();
+    }
+
     renderErrors() {
-        debugger
+
         const errors = Object.values(this.props.errors).map(error => (
             <li>
                 {error}
