@@ -23,8 +23,7 @@ class User < ApplicationRecord
 
     has_many :spots,
         foreign_key: :host_id,
-        class_name: "User"  
-        ####
+        class_name: "User"
 
     has_many :reviews,
         foreign_key: :user_id,
