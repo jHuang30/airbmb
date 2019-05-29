@@ -16,21 +16,21 @@ class User < ApplicationRecord
     attr_reader :password
 
     validates :email, :session_token, presence: true, uniqueness: true
-    validates :fname, :lname, :password_digest, presence: true, 
+    validates :fname, :lname, :password_digest, presence: true
     validates :password, length: { minimum: 6 }, allow_nil: true
 
     after_initialize :ensure_session_token
 
-    has_many :spots
-        foreign_key: :host_id
+    has_many :spots,
+        foreign_key: :host_id,
         class_name: "User"
 
-    has_many :reviews
-        foreign_key: :user_id
+    has_many :reviews,
+        foreign_key: :user_id,
         class_name: "Review"
 
-    has_many :bookings
-        foreign_key: :user_id
+    has_many :bookings,
+        foreign_key: :user_id,
         class_name: "Booking"
 
     def self.find_by_credentials(email, password)

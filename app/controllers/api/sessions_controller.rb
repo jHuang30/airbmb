@@ -1,13 +1,14 @@
 class Api::SessionsController < ApplicationController
     def create
-        @user = User.self.find_by_credentials(
-            params[:user][:username],
+        @user = User.find_by_credentials(
+            params[:user][:email],
             params[:user][:password])
         if @user
             login!(@user)
             render 'api/users/show'
         else
-            render jason: ["Invalid info, pls try again."], status: 404
+            debugger
+            render json: ["Invalid info, pls try again."], status: 404
         end
     end
 
