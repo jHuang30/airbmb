@@ -20,12 +20,13 @@ class About extends React.Component{
                 <p className="close-button" onClick={this.props.closeModal}>X</p>
                     
                 <a href="mailto:jacihuang30@gmai.com">
-                    <button id="about-link" className="modal-form-button">Email</button>
+                    Email
                 </a>
 
                 <a href="https://github.com/jHuang30">
-                    <button id="about-link" className="modal-form-button">GitHub</button>
+                    GitHub
                 </a>
+
                
             </form>
         )
