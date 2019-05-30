@@ -11,8 +11,8 @@ const msp = (state) => ({
 const mdp = dispatch => ({
     action: user => dispatch(login(user)),
     deleteErrors: () => dispatch(deleteSessionErrors()),
-    openModal: () => dispatch(openModal()),
-    closeModal: () => dispatch(closeModal())
+    // openModal: () => dispatch(openModal()),
+    closeModal: () => dispatch(closeModal()),
 })
 
 export default connect(msp, mdp)(loginForm)

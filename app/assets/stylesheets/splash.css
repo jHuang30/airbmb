@@ -1,0 +1,40 @@
+.splash {
+    background-image: url("lighthouse-2372461_1920.jpg");
+    height: 100vh;
+    background-size: cover;
+}
+
+.navbar button{
+    float: right;
+    background: transparent;
+    color: white;
+    border: none;
+    padding: 25px 18px;
+    margin: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.navbar button:focus{
+    outline: none !important;
+}
+
+.navbar button.navbut:hover{
+    border-bottom: 1px solid white;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    padding: 25px 18px;
+    margin: 10px;
+    font-size: 45px;
+    font-family: 'Dancing Script', cursive;
+  background: linear-gradient(330deg, orange 0%, #e05252 30%, lightblue 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+}

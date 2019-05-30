@@ -5,12 +5,19 @@ class LoginForm extends React.Component {
         super(props);
         this.state = {email:'', password:''},
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleDemo = this.handleDemo.bind(this)
     }
 
     update(field){
         return(e) => {
             this.setState({[field]:e.target.value})
         }
+    }
+
+    handleDemo(e){
+        e.preventDefault;
+        const demo = { email: 'demoUser@gmail.com', password: "aaaaaa" }
+        this.props.action(demo).then(this.props.closeModal)
     }
 
     handleSubmit(e){
@@ -39,30 +46,50 @@ class LoginForm extends React.Component {
 
     render(){
         const errors = this.renderErrors();
+
         return(
             <div>
-                <form>
-                    {errors}
+                
+                <form className="modal-form">
+                    
 
-                    <label>Email Address
+                    <p className="close-button" onClick={this.props.closeModal}>X</p>
+
+                    <h1 className="welcome-message">
+                        Please Log In to Continue
+                    </h1>
+
+                    {errors}
+                    <br/>
+                    <label>
                         <input type="text" 
+                               placeholder="Email Address"
                                value={this.state.email} 
-                               onChange={this.update('email')}/>
+                               onChange={this.update('email')}
+                               />
+                        <i className="far fa-envelope"></i>
                     </label>
 
                     <br />
 
-                    <label>Password
-                        <input type="text" 
+                    <label>
+                        <input type="password" 
+                               placeholder="Password"
                                value={this.state.password} 
                                onChange={this.update('password')}/>
+                        <i class="fas fa-lock"></i>
                     </label>
 
-                <br />
+                    <br />
 
-                    <button onClick={this.handleSubmit}>
-                        Log In
+                    <button className="modal-form-button" onClick={this.handleSubmit}>
+                        Log in
                     </button>
+
+                    <button className="login-demo" onClick={this.handleDemo}>
+                        Log In as Demo User
+                    </button>
+
                 </form>
             </div>
         )

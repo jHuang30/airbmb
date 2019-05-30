@@ -1,20 +1,20 @@
 import React from 'react';
-import NavbarContainer from './navbar/navbar_container';
+import Splash from './splash';
 import { Route } from 'react-router-dom';
-import LoginContainer from './session/login_form_container';
-import SignupContainer from './session/signup_form_container';
+// import LoginContainer from './session/login_form_container';
+// import SignupContainer from './session/signup_form_container';
 import {AuthRoute, protectedRoute} from '../util/route_util';
-import Modal from '../component/modal/modal'
+import Modal from '../component/modal/modal';
 
 const App = () => (
     <div>
         <Modal />
-        <header>
-            <NavbarContainer />
-        </header>
 
-        <AuthRoute exact path="/login" component={LoginContainer} />
-        <AuthRoute exact path="/signup" component={SignupContainer} />
+        <Route exact path="/" component={Splash} />
+        {/* <AuthRoute exact path="/login" component={LoginContainer} />
+        <AuthRoute exact path="/signup" component={SignupContainer} /> */}
+        {/* <AuthRoute exact path="/spots" component={xxx} /> */}
+
     </div>
 );
 
