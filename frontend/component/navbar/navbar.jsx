@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar = ({currentUser, logout}) => {
+const Navbar = ({currentUser, logout, openModal}) => {
     const display = currentUser ? (
         <div>
             <p>Hello, {currentUser.lname}</p>
@@ -9,8 +9,8 @@ const Navbar = ({currentUser, logout}) => {
         </div>
     ) : (
         <div>
-            <Link to='/signup'>Sign up</Link>
-            <Link to='/login'>Log In</Link>
+            <button onClick={() => openModal('login')}>Login</button>
+            <button onClick={() => openModal('signup')}>Signup</button>
         </div>
     );
 

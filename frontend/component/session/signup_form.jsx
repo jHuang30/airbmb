@@ -25,7 +25,7 @@ class SignForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault;
-        this.props.action(this.state)
+        this.props.action(this.state).then(this.props.closeModal)
     }
 
     renderErrors() {
@@ -34,7 +34,6 @@ class SignForm extends React.Component {
                 {error}
             </li>
         ));
-            // debugger
         return (
             <ul>
                 {errors}

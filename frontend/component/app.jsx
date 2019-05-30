@@ -4,9 +4,11 @@ import { Route } from 'react-router-dom';
 import LoginContainer from './session/login_form_container';
 import SignupContainer from './session/signup_form_container';
 import {AuthRoute, protectedRoute} from '../util/route_util';
+import Modal from '../component/modal/modal'
 
 const App = () => (
     <div>
+        <Modal />
         <header>
             <NavbarContainer />
         </header>
