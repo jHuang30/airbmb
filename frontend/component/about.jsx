@@ -26,7 +26,7 @@ class About extends React.Component{
                 <a href="https://github.com/jHuang30">
                     <button id="about-link" className="modal-form-button">GitHub</button>
                 </a>
-
+               
             </form>
         )
     }   

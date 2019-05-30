@@ -45,7 +45,7 @@
     padding: 10px 22px;
     color: white;
     cursor: pointer;
-    margin-top: 15px;
+    /* margin-top: 15px; */
     border-radius: 4px;
     border-color: rgba(0, 0, 0, 0);
     font-size: 16px;
@@ -79,5 +79,5 @@ input:focus{
 }
 
 #about-link {
-    padding: 10px;
+    padding: 50px;
 }
