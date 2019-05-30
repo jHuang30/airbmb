@@ -17,7 +17,7 @@ class LoginForm extends React.Component {
     handleDemo(e){
         e.preventDefault;
         const demo = { email: 'demoUser@gmail.com', password: "aaaaaa" }
-        this.props.action(demo).then(this.props.closeModal).then(this.props.history.push('/'))
+        this.props.action(demo).then(this.props.closeModal)
     }
 
 
