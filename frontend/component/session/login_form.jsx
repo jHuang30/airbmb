@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 class LoginForm extends React.Component {
     constructor(props){
@@ -17,7 +18,10 @@ class LoginForm extends React.Component {
     handleDemo(e){
         e.preventDefault;
         const demo = { email: 'demoUser@gmail.com', password: "aaaaaa" }
-        this.props.action(demo).then(this.props.closeModal)
+        this.props.action(demo).then(() => {
+            this.props.closeModal();
+            this.props.history.push('/spots');
+        });
     }
 
 
@@ -99,4 +103,4 @@ class LoginForm extends React.Component {
     }
 }
 
-export default LoginForm;
+export default withRouter(LoginForm);
