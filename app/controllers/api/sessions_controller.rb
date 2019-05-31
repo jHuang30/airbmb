@@ -8,7 +8,7 @@ class Api::SessionsController < ApplicationController
             render 'api/users/show'
         else
 
-            render json: ["Invalid info, pls try again."], status: 401
+            render json: ["Invalid info, please try again."], status: 401
         end
     end
 

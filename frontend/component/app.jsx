@@ -11,9 +11,10 @@ const App = () => (
         <Modal />
 
         <Route exact path="/" component={Splash} />
+        {/* <AuthRoute exact path="/spots" component={SpotsIndex} /> */}
+
         {/* <AuthRoute exact path="/login" component={LoginContainer} />
         <AuthRoute exact path="/signup" component={SignupContainer} /> */}
-        {/* <AuthRoute exact path="/spots" component={xxx} /> */}
 
     </div>
 );

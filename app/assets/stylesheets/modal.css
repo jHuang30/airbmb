@@ -94,3 +94,7 @@ input:focus{
     justify-content: center;
 }
 
+.form-errors {
+    padding:10px;
+    color: red;
+}

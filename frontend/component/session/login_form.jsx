@@ -26,6 +26,8 @@ class LoginForm extends React.Component {
 
 
 
+
+
     handleSubmit(e){
         e.preventDefault;
         this.props.action(this.state).then(this.props.closeModal)
@@ -49,6 +51,22 @@ class LoginForm extends React.Component {
             </ul>
         );
     }
+    
+    // renderErrors(part) {
+
+    //     const errors = Object.values(this.props.errors);
+    //     const allErrors = [];
+    //     errors.forEach(error => 
+    //         errors.includes(part) ? allErrors.push(error) : null);
+    //     const partErrors = allErrors.map(error => {
+    //         <li>error</li>
+    //     });
+
+    //     return (
+    //         <ul>{partErrors}</ul>
+    //     )
+    // }
+
 
     render(){
         const errors = this.renderErrors();
@@ -65,7 +83,7 @@ class LoginForm extends React.Component {
                         Please Log In to Continue
                     </h1>
 
-                    {errors}
+                    <div className="form-errors">{errors}</div>
                     <br/>
                     <label>
                         <input type="text" 
@@ -74,6 +92,7 @@ class LoginForm extends React.Component {
                                onChange={this.update('email')}
                                />
                         <i className="far fa-envelope"></i>
+                        {/* <p>{this.renderErrors("Email")}</p> */}
                     </label>
 
                     <br />
@@ -84,6 +103,7 @@ class LoginForm extends React.Component {
                                value={this.state.password} 
                                onChange={this.update('password')}/>
                         <i class="fas fa-lock"></i>
+                        {/* <p>{this.renderErrors("Password")}</p> */}
                     </label>
 
                     <br />

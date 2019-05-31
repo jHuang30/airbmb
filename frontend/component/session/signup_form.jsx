@@ -9,7 +9,8 @@ class SignForm extends React.Component {
             lname: '',
             password: '',
              },
-            this.handleSubmit = this.handleSubmit.bind(this)
+            this.handleSubmit = this.handleSubmit.bind(this),
+            this.renderErrors = this.renderErrors.bind(this)
     }
 
     update(field) {
@@ -28,31 +29,57 @@ class SignForm extends React.Component {
         this.props.action(this.state).then(this.props.closeModal)
     }
 
-    renderErrors(){
-        let errors = Object.values(this.props.errors);
+    // renderErrors(){
+    //     let errors = Object.values(this.props.errors);
 
-        errors = errors.map(error => {
-            if (error == "Fname can't be blank"){
+    //     errors = errors.map(error => {
+    //         if (error == "Fname can't be blank"){
+    //             error = "First name can't be blank";
+    //         } else if (error == "Lname can't be blank"){
+    //             error = "Last name can't be blank"
+    //         }
+    //         return <li>{error}</li>
+    //     })
+
+    //     return (
+
+    //         <ul>
+    //             {errors}
+    //         </ul>
+    //     )
+
+    // }
+
+
+    renderErrors(part) {
+        //get errrors as an array
+        const errors = Object.values(this.props.errors);
+        let allErrors = [];
+
+        //get specific errors for input field
+        errors.forEach(error =>
+            error.includes(part) ? allErrors.push(error) : null);
+
+        //change lname, fname to last name and first name
+        allErrors = allErrors.map((error,idx) => {
+            if (error == "Fname can't be blank") {
                 error = "First name can't be blank";
-            } else if (error == "Lname can't be blank"){
+            } else if (error == "Lname can't be blank") {
                 error = "Last name can't be blank"
             }
-            return <li>{error}</li>
+            return <li key={idx}>{error}</li>
         })
 
+
         return (
-
-            <ul>
-                {errors}
-            </ul>
+            <ul>{allErrors}</ul>
         )
-
     }
 
 
 
     render() {
-        const errors = this.renderErrors();
+        // const errors = this.renderErrors();
         return (
                 <form className="modal-form">
 
@@ -62,7 +89,7 @@ class SignForm extends React.Component {
                         Please Sign Up
                     </h1>
 
-                    {errors}
+                    {/* {errors} */}
 
                     <br/>
                     
@@ -72,6 +99,7 @@ class SignForm extends React.Component {
                             value={this.state.email}
                             onChange={this.update('email')} />
                         <i className="far fa-envelope"></i>
+                        <div className="form-errors">{this.renderErrors('Email')}</div>
                     </label>
 
                     <br />
@@ -81,7 +109,8 @@ class SignForm extends React.Component {
                             placeholder="First name"
                             value={this.state.fname}
                             onChange={this.update('fname')} />
-                        <i class="far fa-user"></i>
+                        <i className="far fa-user"></i>
+                        <div className="form-errors">{this.renderErrors('Fname')}</div>
                     </label>
 
                     <br/>
@@ -91,7 +120,8 @@ class SignForm extends React.Component {
                             placeholder="Last name"
                             value={this.state.lname}
                             onChange={this.update('lname')} />
-                        <i class="far fa-user"></i>
+                        <i className="far fa-user"></i>
+                        <div className="form-errors">{this.renderErrors('Lname')}</div>
                     </label>
 
                     <br/>
@@ -101,7 +131,8 @@ class SignForm extends React.Component {
                             placeholder="Create a Password:"
                             value={this.state.password}
                             onChange={this.update('password')} />
-                        <i class="fas fa-lock"></i>
+                        <i className="fas fa-lock"></i>
+                        <div className="form-errors">{this.renderErrors('Password')}</div>
                     </label>
 
                     <br />
