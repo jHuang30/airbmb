@@ -1,12 +1,14 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class LoginForm extends React.Component {
     constructor(props){
         super(props);
         this.state = {email:'', password:''},
-        this.handleSubmit = this.handleSubmit.bind(this)
-        this.handleDemo = this.handleDemo.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this),
+        this.handleDemo = this.handleDemo.bind(this),
+        this.altForm = this.altForm.bind(this)
     }
 
     update(field){
@@ -25,7 +27,9 @@ class LoginForm extends React.Component {
     }
 
 
-
+    altForm() {
+        this.props.openModal('signup')
+    }
 
 
     handleSubmit(e){
@@ -102,7 +106,7 @@ class LoginForm extends React.Component {
                                placeholder="Password"
                                value={this.state.password} 
                                onChange={this.update('password')}/>
-                        <i class="fas fa-lock"></i>
+                        <i className="fas fa-lock"></i>
                         {/* <p>{this.renderErrors("Password")}</p> */}
                     </label>
 
@@ -115,6 +119,9 @@ class LoginForm extends React.Component {
                     <button className="login-demo" onClick={this.handleDemo}>
                         Log In as Demo User
                     </button>
+                    <br/>
+                    <p className='alter'>Don’t have an account?
+                    <button className='alter-button' onClick={this.altForm}>Sign up</button></p>
 
                 </form>
             </div>

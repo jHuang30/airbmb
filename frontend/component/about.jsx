@@ -16,7 +16,7 @@ class About extends React.Component{
     }
     render(){
         return (
-            <form className="modal-form">
+            <form className="about-form">
                 <p className="close-button" onClick={this.props.closeModal}>X</p>
                     
                 <a href="mailto:jacihuang30@gmai.com">

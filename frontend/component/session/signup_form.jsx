@@ -10,7 +10,8 @@ class SignForm extends React.Component {
             password: '',
              },
             this.handleSubmit = this.handleSubmit.bind(this),
-            this.renderErrors = this.renderErrors.bind(this)
+            this.renderErrors = this.renderErrors.bind(this),
+            this.altForm = this.altForm.bind(this)
     }
 
     update(field) {
@@ -23,6 +24,9 @@ class SignForm extends React.Component {
         this.props.deleteErrors();
     }
     
+    altForm (){
+        this.props.openModal('login')
+    }
 
     handleSubmit(e) {
         e.preventDefault;
@@ -79,9 +83,9 @@ class SignForm extends React.Component {
 
 
     render() {
-        // const errors = this.renderErrors();
+  
         return (
-                <form className="modal-form">
+                <form className="modal-form signup-form">
 
                 <p className="close-button" onClick={this.props.closeModal}>X</p>
 
@@ -90,8 +94,6 @@ class SignForm extends React.Component {
                     </h1>
 
                     {/* {errors} */}
-
-                    <br/>
                     
                     <label>
                         <input type="text"
@@ -137,9 +139,14 @@ class SignForm extends React.Component {
 
                     <br />
 
-                <button className="modal-form-button" onClick={this.handleSubmit}>
+                    <button className="modal-form-button" onClick={this.handleSubmit}>
                         Sign Up
                     </button>
+
+                    <br/>
+                    <p className='alter'>Already have an Airbmb account? 
+                        <button className='alter-button' onClick={this.altForm}>Log in</button></p>
+
                 </form>
         )
 

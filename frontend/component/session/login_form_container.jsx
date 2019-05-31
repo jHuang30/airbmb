@@ -11,7 +11,7 @@ const msp = (state) => ({
 const mdp = dispatch => ({
     action: user => dispatch(login(user)),
     deleteErrors: () => dispatch(deleteSessionErrors()),
-    // openModal: () => dispatch(openModal()),
+    openModal: (modal) => dispatch(openModal(modal)),
     closeModal: () => dispatch(closeModal()),
 })
 

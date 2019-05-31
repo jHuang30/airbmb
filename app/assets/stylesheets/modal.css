@@ -19,6 +19,10 @@
     
 }
 
+.modal-form.signup-form {
+    height: 600px;
+}
+
 
 .modal-form input {
     box-sizing: border-box;
@@ -78,7 +82,7 @@ input:focus{
     -moz-outline-radius: 5px;
 }
 
-.modal-form a{
+.about-form a{
     background-color: rgb(255, 90, 95);
     color: white;
     padding: 14px 25px;
@@ -97,4 +101,32 @@ input:focus{
 .form-errors {
     padding:10px;
     color: red;
+}
+
+.alter {
+    width: 95%;
+    padding-top: 30px;
+    padding-left: 30px;
+    border-top: 1px solid lightgrey;
+    text-align: left;
+    color: #585858;
+}
+
+.alter-button {
+    border: none;
+    margin: 5px;
+    padding-left: 10px;
+    width: auto;
+    overflow: visible;
+    color: #008489;
+    font: inherit; 
+}
+
+.alter-button:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.alter-button:focus {
+    outline: none;
 }

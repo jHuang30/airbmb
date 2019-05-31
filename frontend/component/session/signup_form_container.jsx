@@ -8,12 +8,14 @@ const msp = state => ({
     formType: 'Sign Up'
 })
 
-const mdp = dispatch => ({
+const mdp = dispatch => {
+    return {
     action: user => dispatch(signup(user)),
     deleteErrors: () => dispatch(deleteSessionErrors()),
-    openModal: () => dispatch(openModal()),
+    openModal: (modal) => dispatch(openModal(modal)),
     closeModal: () => dispatch(closeModal())
-})
+    }
+}
 
 export default connect(msp, mdp)(SignForm)
 
