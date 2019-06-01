@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 class SignForm extends React.Component {
     constructor(props) {
@@ -29,30 +30,15 @@ class SignForm extends React.Component {
     }
 
     handleSubmit(e) {
-        e.preventDefault;
-        this.props.action(this.state).then(this.props.closeModal)
+        return (
+        e.preventDefault,
+        this.props.action(this.state).then(() => {
+            this.props.closeModal();
+            this.props.history.push('/spots');
+        })
+        )
     }
 
-    // renderErrors(){
-    //     let errors = Object.values(this.props.errors);
-
-    //     errors = errors.map(error => {
-    //         if (error == "Fname can't be blank"){
-    //             error = "First name can't be blank";
-    //         } else if (error == "Lname can't be blank"){
-    //             error = "Last name can't be blank"
-    //         }
-    //         return <li>{error}</li>
-    //     })
-
-    //     return (
-
-    //         <ul>
-    //             {errors}
-    //         </ul>
-    //     )
-
-    // }
 
 
     renderErrors(part) {
@@ -83,7 +69,9 @@ class SignForm extends React.Component {
 
 
     render() {
-  
+        const errors = this.props.errors ? Object.values(this.props.errors) : null;
+        const redBorder = errors.length > 0  ? 'red-border' : ''; 
+
         return (
                 <form className="modal-form signup-form">
 
@@ -97,6 +85,7 @@ class SignForm extends React.Component {
                     
                     <label>
                         <input type="text"
+                            className={`modal-form-input ${redBorder}`}
                             placeholder="Email Address"
                             value={this.state.email}
                             onChange={this.update('email')} />
@@ -108,6 +97,7 @@ class SignForm extends React.Component {
 
                     <label>
                         <input type="text"
+                            className={`modal-form-input ${redBorder}`}
                             placeholder="First name"
                             value={this.state.fname}
                             onChange={this.update('fname')} />
@@ -119,6 +109,7 @@ class SignForm extends React.Component {
 
                     <label>
                         <input type="text"
+                        className={`modal-form-input ${redBorder}`}
                             placeholder="Last name"
                             value={this.state.lname}
                             onChange={this.update('lname')} />
@@ -130,6 +121,7 @@ class SignForm extends React.Component {
 
                     <label>
                         <input type="password"
+                        className={`modal-form-input ${redBorder}`}
                             placeholder="Create a Password:"
                             value={this.state.password}
                             onChange={this.update('password')} />
@@ -139,7 +131,7 @@ class SignForm extends React.Component {
 
                     <br />
 
-                    <button className="modal-form-button" onClick={this.handleSubmit}>
+                    <button type='button' className="modal-form-button" onClick={this.handleSubmit}>
                         Sign Up
                     </button>
 
@@ -153,4 +145,4 @@ class SignForm extends React.Component {
     }
 }
 
-export default SignForm;
+export default withRouter(SignForm);

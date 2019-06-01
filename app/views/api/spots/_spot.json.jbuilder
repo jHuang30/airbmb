@@ -1,0 +1,1 @@
+json.extract! spot, :title, :description, :address, :price, :num_bedrooms, :lat, :long, :num_beds, :num_guests                         

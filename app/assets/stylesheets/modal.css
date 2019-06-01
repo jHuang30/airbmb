@@ -24,7 +24,7 @@
 }
 
 
-.modal-form input {
+.modal-form-input {
     box-sizing: border-box;
     width:300px;
     width: 504px;
@@ -129,4 +129,11 @@ input:focus{
 
 .alter-button:focus {
     outline: none;
+}
+
+.red-border {
+    border: 1px solid red;
+}
+.idxnavbut button{
+    color: black
 }

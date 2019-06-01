@@ -29,12 +29,62 @@
     align-items: center;
 }
 
+
+.idxnav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e2dddd;
+}
+
+.idxnav-container .search {
+    display: flex;
+}
+
 .logo {
-    padding: 25px 18px;
-    margin: 10px;
-    font-size: 45px;
+    padding: 10px 18px;
+    margin: 0;
+    font-size: 50px;
     font-family: 'Dancing Script', cursive;
     background: linear-gradient(330deg, orange 0%, #e05252 30%, lightblue 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent; 
+}
+
+.idxLogo{
+    padding: 18px 10px;
+    margin: 0;
+    font-size: 20px;
+    font-family: 'Dancing Script', cursive;
+    background: linear-gradient(330deg, orange 0%, #e05252 30%, lightblue 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+}
+
+.idxnav-container .logout-button {
+    color: black;
+    cursor: pointer;
+}
+
+.idxnav-container input {
+    box-sizing: border-box;
+    width: 458px;
+    height: 47px;
+    padding-left: 54px;
+    margin-top: 4px;
+    margin-left: 10px;
+    font-size: 15px;
+    border: 1px solid #EBEBEB;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-weight: 600;
+}
+
+
+.fa-search:before {
+    position: absolute;
+    left: 100px;
+    content: "\f002";
+    top: 37px;
+    font-size: 18px;
 }

@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 const Navbar = ({currentUser, logout, openModal}) => {
     const display = currentUser ? (
         <div>
-
-            <button className="logout-button" onClick={()=>logout().then()}> Log Out</button>
+            <button className="logout-button" onClick={()=>logout()}> Log Out</button>
         </div>
     ) : (
         <div className="navbar">
@@ -20,7 +19,7 @@ const Navbar = ({currentUser, logout, openModal}) => {
     return (
 
         <div className="nav-container">
-            <h1 className="logo"><a href="/">Airbmb</a></h1>
+            <h1 className="logo"><Link to="/">Airbmb</Link></h1>
             {display}
         </div>
     );

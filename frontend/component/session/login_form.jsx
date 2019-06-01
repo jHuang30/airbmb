@@ -33,8 +33,13 @@ class LoginForm extends React.Component {
 
 
     handleSubmit(e){
-        e.preventDefault;
-        this.props.action(this.state).then(this.props.closeModal)
+        return (
+        e.preventDefault,
+        this.props.action(this.state).then(() => {
+            this.props.closeModal();
+            this.props.history.push('/spots');
+        })
+        )
     }
 
     componentDidMount(){
@@ -55,25 +60,13 @@ class LoginForm extends React.Component {
             </ul>
         );
     }
-    
-    // renderErrors(part) {
 
-    //     const errors = Object.values(this.props.errors);
-    //     const allErrors = [];
-    //     errors.forEach(error => 
-    //         errors.includes(part) ? allErrors.push(error) : null);
-    //     const partErrors = allErrors.map(error => {
-    //         <li>error</li>
-    //     });
-
-    //     return (
-    //         <ul>{partErrors}</ul>
-    //     )
-    // }
 
 
     render(){
         const errors = this.renderErrors();
+        const redErrors = this.props.errors ? Object.values(this.props.errors) : null;
+        const redBorder = redErrors.length > 0 ? "red-border" : ""
 
         return(
             <div>
@@ -91,6 +84,7 @@ class LoginForm extends React.Component {
                     <br/>
                     <label>
                         <input type="text" 
+                            className={`modal-form-input ${redBorder}`}
                                placeholder="Email Address"
                                value={this.state.email} 
                                onChange={this.update('email')}
@@ -103,6 +97,7 @@ class LoginForm extends React.Component {
 
                     <label>
                         <input type="password" 
+                            className={`modal-form-input ${redBorder}`}
                                placeholder="Password"
                                value={this.state.password} 
                                onChange={this.update('password')}/>
@@ -112,11 +107,11 @@ class LoginForm extends React.Component {
 
                     <br />
 
-                    <button className="modal-form-button" onClick={this.handleSubmit}>
+                    <button type='button' className="modal-form-button" onClick={this.handleSubmit}>
                         Log in
                     </button>
 
-                    <button className="login-demo" onClick={this.handleDemo}>
+                    <button type='button' className="login-demo" onClick={this.handleDemo}>
                         Log In as Demo User
                     </button>
                     <br/>
