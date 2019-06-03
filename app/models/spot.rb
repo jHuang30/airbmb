@@ -19,7 +19,8 @@
 
 class Spot < ApplicationRecord 
     validates :title, :description, :address, :lat, :long, :price, :host_id,
-              :num_bedrooms, :num_beds, :num_guests, presence: true;
+              :num_bedrooms, :num_beds, :num_guests, :spotType, :num_bathrooms, 
+              :location, presence: true;
     
     belongs_to :host,
         foreign_key: :host_id,
@@ -27,7 +28,7 @@ class Spot < ApplicationRecord
      
     has_many :amenities_spots,
         foreign_key: :spot_id,
-        class_name: 'AmentitiesSpots'
+        class_name: 'AmenitiesSpot'
 
     has_many :bookings,
         foreign_key: :spot_id,
@@ -35,12 +36,13 @@ class Spot < ApplicationRecord
 
     has_many :reviews,
         foreign_key: :spot_id,
-        class_name: 'Reviews'
+        class_name: 'Review'
 
-    has_many :amenitites,
-        through: 'AmentitiesSpots'
+    has_many :amenities,
+        through: :amenities_spots,
+        source: :amenity
 
-    has_one_attached :photo
+    has_many_attached :photos
 
     
 

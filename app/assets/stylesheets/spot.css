@@ -1,0 +1,238 @@
+.spot-detail{
+    height: 595px;
+}
+
+img {
+    width:100%;
+}
+
+.row {
+    max-height: 100%;
+    display:flex;
+}
+
+.columna{
+    overflow: hidden;
+    flex:2;
+}
+
+.columnb{
+    overflow: hidden;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+}
+
+.column1 {
+    overflow: hidden;
+    flex:1;
+}
+
+.column2{
+    overflow: hidden;
+    flex:1;
+}
+
+.column2 img{
+    height:100%;
+}
+.column1 img{
+    height:100%;
+}
+
+.columna img{
+    height:100%;
+    cursor: pointer;
+}
+
+.spot-detail img:hover {
+    cursor: pointer;
+    transition: transform .45s;
+    transform: scale(1.05); 
+}
+
+.des-form-container {
+    width: 1100px;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 25px;
+    justify-content: space-between;
+}
+
+.des-container {
+    width:60%;
+    padding: 20px 60px 20px 5px;
+}
+
+.form-container {
+    width:35%;
+    box-sizing: border-box;
+    height: 460px;
+    position: sticky;
+    z-index: 0;
+    padding: 25px;
+    border: 1px solid #e2dddd;
+    top: 70px;
+}
+
+.des-container .spot-title {
+    margin: 0px;
+    word-wrap: break-word ;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 28px;
+    font-weight: 800 ;
+    color: #484848;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+.des-container .spot-location {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px ;
+    font-weight: 400;;
+    color: #484848;
+}
+
+.des-container .spot-type {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    padding-top: 20px;
+    font-size: 16px;
+}
+
+.des-container .spot-type i{
+    padding-right: 20px;
+    font-size: 10px;
+    color: #484848;
+    font-weight: 600;
+}
+
+.des-container .spot-info {
+    padding: 3px 0 20px 0;
+    padding-left: 30px;
+    border-bottom: 1px solid #e2dddd;
+}
+
+.des-container .spot-info span {
+    padding-right: 20px;
+    color: #484848;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.des-container .spot-des {
+    padding-top: 30px;
+    padding-bottom: 20px;
+    color: #484848;
+    font-size:15px;
+    line-height: 1.375em;
+    font-weight: 300;
+    font-family: 'Montserrat', sans-serif;
+    border-bottom: 1px solid #e2dddd;
+}
+
+.des-container .spot-ame {
+    padding-top: 20px;
+    color: #484848;
+    font-size:16px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    border-bottom: 1px solid #e2dddd;
+    padding-bottom: 20px;
+}
+
+.des-container .ame-container {
+    display: flex;
+}
+.des-container .each-ame{
+    /* padding-right: 150px;
+    padding-left: 3px; */
+    font-weight: 200;
+    padding-right: 120px;
+    margin-top: 20px;
+    padding-top: 1px;
+    /* border:solid 1px red; */
+}
+
+.des-container .avail {
+    padding-top: 20px;
+    color: #484848;
+    font-size:16px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    border-bottom: 1px solid #e2dddd;
+    padding-bottom: 20px;
+}
+
+.form-container div.order-form-price{
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e2dddd;
+}
+
+.form-price {
+    padding-left: 2px;
+    font-size: 20px;
+    color: inherit;
+    font-weight: 600;
+}
+
+.per-night {
+    font-size: 12px;
+    color: inherit;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.form-container .form-date {
+    padding-top: 20px;
+    color:red;
+    font-size: 12px;
+    color: inherit;
+}
+
+.form-container .date-range {
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    color: #585858;
+    line-height: 24px;
+    padding: 10px 8px;
+    border-style: none;
+    border: 1px solid #e2dddd;
+    border-radius: 5px;
+}
+
+
+.form-container .date-range input{
+    border: none;
+    line-height: 24px;
+    text-align: center;
+    font-size: 14px;
+    padding:0;
+    margin:0
+}
+
+.form-container .date-range input:focus {
+    background: #9BEDE9;
+}
+
+
+.guest-num .form-button {
+    box-sizing: border-box;
+    background-color: rgb(255, 90, 95);
+    padding: 5px;
+    width: 340px;
+    height:48px;
+    justify-content: center;
+    padding: 10px 22px;
+    color: white;
+    cursor: pointer;
+    margin-top: 15px;
+    border-radius: 4px;
+    border-color: rgba(0, 0, 0, 0);
+    font-size: 16px;
+}
+
+.won-charge {
+    padding-top:10px;
+    text-align: center;
+}

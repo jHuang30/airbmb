@@ -75,21 +75,20 @@ class SignForm extends React.Component {
         return (
                 <form className="modal-form signup-form">
 
-                <p className="close-button" onClick={this.props.closeModal}>X</p>
+                    <p className="close-button" onClick={this.props.closeModal}>&times;</p>
 
                     <h1 className="welcome-message">
                         Please Sign Up
                     </h1>
 
-                    {/* {errors} */}
-                    
+                        
                     <label>
                         <input type="text"
                             className={`modal-form-input ${redBorder}`}
                             placeholder="Email Address"
                             value={this.state.email}
                             onChange={this.update('email')} />
-                        <i className="far fa-envelope"></i>
+                        <i id='far' className="far fa-envelope"></i>
                         <div className="form-errors">{this.renderErrors('Email')}</div>
                     </label>
 
@@ -101,7 +100,7 @@ class SignForm extends React.Component {
                             placeholder="First name"
                             value={this.state.fname}
                             onChange={this.update('fname')} />
-                        <i className="far fa-user"></i>
+                            <i id='far'className="far fa-user"></i>
                         <div className="form-errors">{this.renderErrors('Fname')}</div>
                     </label>
 
@@ -113,7 +112,7 @@ class SignForm extends React.Component {
                             placeholder="Last name"
                             value={this.state.lname}
                             onChange={this.update('lname')} />
-                        <i className="far fa-user"></i>
+                            <i id='far' className="far fa-user"></i>
                         <div className="form-errors">{this.renderErrors('Lname')}</div>
                     </label>
 
@@ -125,7 +124,7 @@ class SignForm extends React.Component {
                             placeholder="Create a Password:"
                             value={this.state.password}
                             onChange={this.update('password')} />
-                        <i className="fas fa-lock"></i>
+                            <i id='far' className="fas fa-lock"></i>
                         <div className="form-errors">{this.renderErrors('Password')}</div>
                     </label>
 
@@ -137,7 +136,8 @@ class SignForm extends React.Component {
 
                     <br/>
                     <p className='alter'>Already have an Airbmb account? 
-                        <button className='alter-button' onClick={this.altForm}>Log in</button></p>
+                        <button className='alter-button' onClick={this.altForm}>Log in</button>
+                    </p>
 
                 </form>
         )

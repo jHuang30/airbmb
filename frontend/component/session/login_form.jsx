@@ -74,7 +74,7 @@ class LoginForm extends React.Component {
                 <form className="modal-form">
                     
 
-                    <p className="close-button" onClick={this.props.closeModal}>X</p>
+                    <p className="close-button" onClick={this.props.closeModal}>&times;</p>
 
                     <h1 className="welcome-message">
                         Please Log In to Continue
@@ -89,7 +89,7 @@ class LoginForm extends React.Component {
                                value={this.state.email} 
                                onChange={this.update('email')}
                                />
-                        <i className="far fa-envelope"></i>
+                        <i id='far' className="far fa-envelope"></i>
                         {/* <p>{this.renderErrors("Email")}</p> */}
                     </label>
 
@@ -101,7 +101,7 @@ class LoginForm extends React.Component {
                                placeholder="Password"
                                value={this.state.password} 
                                onChange={this.update('password')}/>
-                        <i className="fas fa-lock"></i>
+                        <i id='far' className="fas fa-lock"></i>
                         {/* <p>{this.renderErrors("Password")}</p> */}
                     </label>
 
