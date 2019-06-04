@@ -6,7 +6,16 @@ import SignupFormContainer from '../session/signup_form_container';
 import About from '../../component/about';
 import Amenities from '../spot_show/amenities';
 
-function Modal({modal, closeModal}){
+function Modal(props){
+    const { closeModal} = props;
+    let amenities;
+    let modal;
+    if (props.modal && typeof props.modal === 'object'){
+       modal = props.modal.modal;
+       amenities = props.modal.amenities;
+    }else{
+        modal = props.modal
+    }
     if (!modal){
         return null;
     }
@@ -23,7 +32,7 @@ function Modal({modal, closeModal}){
             component = <About />;
             break;
         case 'amenities':
-            component = <Amenities />;
+            component = <Amenities amenities={amenities}/>;
             break;
         default:
             return null;

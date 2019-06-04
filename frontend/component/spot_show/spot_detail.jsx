@@ -43,6 +43,7 @@ const SpotDetail = (props) => {
         allAmenities.push(<span className='each-ame' key={idx}>{symbol(spot.amenities[num].sym)} &nbsp; &nbsp; {spot.amenities[num].name}</span>)
     })
 
+
     const bedrooms = spot.num_bedrooms + ((spot.num_bedrooms) > 1 ? ' bedrooms' : ' bedroom');
     const guests = spot.num_guests + ((spot.num_guests) > 1 ? ' guests' : ' guest');
     const beds = spot.num_beds + ((spot.num_beds) > 1 ? ' beds' : ' bed');
@@ -136,7 +137,7 @@ const SpotDetail = (props) => {
                             </div>
                         </div>
 
-                        <button className='showall' onClick={() => openModal('amenities')}>
+                        <button className='showall' onClick={() => dispatch(openModal('amenities', spot))}>
                             Show all {allAmenities.length} amenities
                         </button>
 
