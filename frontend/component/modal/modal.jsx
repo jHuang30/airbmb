@@ -4,12 +4,13 @@ import { connect } from 'react-redux';
 import LoginFormContainer from '../session/login_form_container';
 import SignupFormContainer from '../session/signup_form_container';
 import About from '../../component/about';
+import Amenities from '../spot_show/amenities';
 
 function Modal({modal, closeModal}){
     if (!modal){
         return null;
     }
-
+    debugger
     let component;
     switch(modal) {
         case 'login' :
@@ -20,6 +21,9 @@ function Modal({modal, closeModal}){
             break;
         case 'about':
             component = <About />;
+            break;
+        case 'amenities':
+            component = <Amenities />;
             break;
         default:
             return null;

@@ -4,8 +4,8 @@ import { closeModal } from '../action/modal_actions';
 
 const mdp = dispatch => {
     return {
-    closeModal: () => dispatch(closeModal()),
-    about: () => dispatch(openModal('about')),
+        closeModal: () => dispatch(closeModal()),
+        about: () => dispatch(openModal('about')),
     }
 };
 

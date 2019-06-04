@@ -1,6 +1,7 @@
 import React from 'react';
 import SpotShow from './spot_show';
 import IndexNavbar from '../navbar/index_nav'
+import { openModal } from'../../action/modal_actions'
 
 const SpotDetail = (props) => {
     const {spot} = props
@@ -14,6 +15,7 @@ const SpotDetail = (props) => {
 
 
     }
+
 
     const symbol = sym => {
         switch(sym){
@@ -36,8 +38,9 @@ const SpotDetail = (props) => {
         }
     }
 
-    const allAmenities = amenitiesNums.map((num,idx) => {
-        return <span className='each-ame' key={idx}>{symbol(spot.amenities[num].sym)}{spot.amenities[num].name}</span>
+    const allAmenities = [];
+    amenitiesNums.map((num,idx) => {
+        allAmenities.push(<span className='each-ame' key={idx}>{symbol(spot.amenities[num].sym)} &nbsp; &nbsp; {spot.amenities[num].name}</span>)
     })
 
     const bedrooms = spot.num_bedrooms + ((spot.num_bedrooms) > 1 ? ' bedrooms' : ' bedroom');
@@ -60,7 +63,6 @@ const SpotDetail = (props) => {
         <div>
             <IndexNavbar />
             <div className='spot-detail'>
-                {/* photos */}
                 <div className="row">
                     <div className="columna">
                         <img src={spot.photoUrls[0]}  />
@@ -71,7 +73,7 @@ const SpotDetail = (props) => {
                             <img src={spot.photoUrls[1]}  />
                         </div>
 
-                        <div className="column2">
+                        <div className="column1">
                             <img src={spot.photoUrls[2]}  />
                         </div>
                     </div>
@@ -81,14 +83,12 @@ const SpotDetail = (props) => {
                             <img src={spot.photoUrls[3]}  />
                         </div>
 
-                        <div className="column2">
+                        <div className="column1">
                             <img src={spot.photoUrls[4]}  />
                         </div>
                     </div>
 
                 </div>
-
-
             </div>
 
 
@@ -125,8 +125,21 @@ const SpotDetail = (props) => {
                     <div className='spot-ame'>
                         Amenities:
                         <div className='ame-container'>
-                            {allAmenities}
+                            <div className='ame2'>
+                                {allAmenities[0]}
+                                {allAmenities[1]}
+                            </div>
+
+                            <div className='ame2'>
+                                {allAmenities[2]}
+                                {allAmenities[3]}
+                            </div>
                         </div>
+
+                        <button className='showall' onClick={() => openModal('amenities')}>
+                            Show all {allAmenities.length} amenities
+                        </button>
+
                     </div>
 
                     <div className='avail'> 
@@ -163,16 +176,11 @@ const SpotDetail = (props) => {
                             
                         </label>
                         
-                        
                         <button type='button' className='form-button'>Book</button>
                         <p className='per-night won-charge'>You won’t be charged yet</p>
                     </form>
                 </div>
-
-                
-                    
             </div>
-
 
         </div>
         )

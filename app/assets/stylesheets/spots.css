@@ -4,7 +4,7 @@
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
     grid-gap: 20px 8px;
-    padding: 10px 200px;
+    padding: 10px 5%;
     align-content: start;
     justify-items: center;
     grid-auto-rows: 1fr;
@@ -31,10 +31,11 @@
     display: flex;
     justify-content: center;
     cursor: pointer;
-    height: 250px;
+    height: 100%;
 }
 
 .spot-image img {
+    height:200px;
     cursor: pointer;
 }
 
