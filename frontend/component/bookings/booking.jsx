@@ -12,9 +12,9 @@ class BookingForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.calculateDays = this.calculateDays.bind(this);
         this.handleClear = this.handleClear.bind(this);
-        this.blockedDates = this.blockedDates.bind(this);
-        this.isBlocked = this.isBlocked.bind(this);
-        this.blocked = [];
+        // this.blockedDates = this.blockedDates.bind(this);
+        // this.isBlocked = this.isBlocked.bind(this);
+        // this.blocked = [];
     }
 
 
@@ -32,24 +32,24 @@ class BookingForm extends React.Component {
     }
 
 
-    blockedDates(){
-        this.props.spot.bookings.forEach(booking => {
-            const sDate = new Date(booking.start_date);
-            const eDate = new Date(booking.end_date);
-            while (sDate <= eDate){
-                this.blocked.push(sDate)
-                sDate = new Date(sDate.setTime(sDate.getTime() + 86400000))
-            }
-        });
-    }
+    // blockedDates(){
+    //     this.props.spot.bookings.forEach(booking => {
+    //         const sDate = new Date(booking.start_date);
+    //         const eDate = new Date(booking.end_date);
+    //         while (sDate <= eDate){
+    //             this.blocked.push(sDate)
+    //             sDate = new Date(sDate.setTime(sDate.getTime() + 86400000))
+    //         }
+    //     });
+    // }
 
     
     
-    isBlocked(day1){
-        return this.blocked.some(day2 => {
-            return isSameDay(day1, day2)
-        })
-    }
+    // isBlocked(day1){
+    //     return this.blocked.some(day2 => {
+    //         return isSameDay(day1, day2)
+    //     })
+    // }
     
     
     update(field){
