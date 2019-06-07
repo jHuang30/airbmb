@@ -1,24 +1,45 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Airbmb
 
-Things you may want to cover:
+Airbmb is a full stack Airbnb clone application built up in 10 days. 
 
-* Ruby version
 
-* System dependencies
+## Technologies
 
-* Configuration
+### Backend:
 
-* Database creation
+* ruby 
+* rails
+* Postgresql
+* AWS
 
-* Database initialization
+### Frontend
 
-* How to run the test suite
+* React
+* Redux
 
-* Services (job queues, cache servers, search engines, etc.)
+### APIs
 
-* Deployment instructions
+* React Dates
 
-* ...
+
+## Key features:
+
+* User authentication with BCrypt - including signin, login, signout. User will be able to swap between sign up and sign modal. Search form for desired dates and location. 
+
+![](/Users/lin/Desktop/airbmb/app/assets/images/auth.gif)
+
+***
+
+* Show pages shows the listings of the pages with brief information.
+* User will be able to search from this page too. 
+
+![](//Users/lin/Desktop/airbmb/app/assets/images/index.png)
+
+***
+
+* Show page shows the detailed information on a specific spot.
+* React-date implemented - user will be able to pick a date on calendar, this updates the backend. 
+* Picutre stands out when hover over.
+
+![](/Users/lin/Desktop/airbmb/app/assets/images/show.gif)

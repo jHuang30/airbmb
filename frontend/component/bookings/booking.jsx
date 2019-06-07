@@ -139,12 +139,14 @@ class BookingForm extends React.Component {
             stars.push(<i key={stars.length} className="far fa-star"></i>);
         }
         
-        // const options = [];
-        // if (this.props.spot.num_guests){
-        // const maxGuests = this.props.spot.num_guests;
-        // for (let i = 0; i < maxGuests; i++) {
-        //     options.push(<option key={i} value={i+1}>{i+1}</option>)
-        // }};
+        const options = [];
+        debugger
+        if (this.props.spot.num_guests){
+        const maxGuests = this.props.spot.num_guests;
+        debugger
+        for (let i = 0; i < maxGuests; i++) {
+            options.push(<option key={i} value={i+1}>{i+1}</option>)
+        }};
 
 
         return (
@@ -180,11 +182,11 @@ class BookingForm extends React.Component {
 
                 <form className='guest-num'>
                     <select onChange={this.update('numGuest')}>
-                        <option value="1">1</option>
+                        {/* <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
-                        <option value="4">4</option>
-                        {/* {options} */}
+                        <option value="4">4</option> */}
+                        {options}
                     </select>
                     
                 </form>
