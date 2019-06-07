@@ -19,3 +19,11 @@ json.amenities do
   end 
 end
 
+json.bookings do 
+  @spot.bookings.each do |booking|
+    json.set! booking.id do 
+      json.extract! booking, :start_date, :end_date, :num_guests
+    end
+  end
+end
+

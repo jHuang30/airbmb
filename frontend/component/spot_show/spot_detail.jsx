@@ -1,7 +1,10 @@
 import React from 'react';
 import SpotShow from './spot_show';
-import IndexNavbar from '../navbar/index_nav'
-import { openModal } from'../../action/modal_actions'
+import IndexNavbar from '../navbar/index_nav';
+import { openModal } from'../../action/modal_actions';
+
+import DatePicker from '../calendar/show_calendar';
+import BookingContainer from '../bookings/create_booking_container'
 
 const SpotDetail = (props) => {
     const {spot} = props
@@ -49,16 +52,7 @@ const SpotDetail = (props) => {
     const beds = spot.num_beds + ((spot.num_beds) > 1 ? ' beds' : ' bed');
     const bathrooms = spot.num_bathrooms + ((spot.num_bathrooms) > 1 ? ' bathrooms' : ' bathroom');
     
-    const rating = 4;
-    const stars = [];
-    let i = 0
-    while (i < rating) {
-        stars.push(<i key={i} className="fas fa-star"></i>);
-        i++;
-    }
-    while (stars.length < 5) {
-        stars.push(<i key={stars.length} className="far fa-star"></i>);
-    }
+
 
     return (
         <div>
@@ -146,41 +140,11 @@ const SpotDetail = (props) => {
                     <div className='avail'> 
                         Availability:
                     </div> 
+
+                        <DatePicker />
                 </div>
 
-                <div className='form-container'>
-                    {/* bookingfromgohere */}
-                    <div className='order-form-price'>
-                        <span className='form-price'>$ {spot.price} </span>
-                        <span className='per-night'>per night</span>
-                        <p className='rating-star'>{stars}</p>
-                    </div>
-
-                    <div className='form-date'>
-                        Dates
-                    </div>
-
-                    <form className='date-range'>
-                        <label className='arrow'>
-                            <input type="text" placeholder='Check-in'/>
-                            <i className="fas fa-long-arrow-alt-right"></i>
-                            <input type="text" placeholder='Checkout'/>
-                        </label>
-                    </form>
-
-                    <div className='form-date'>
-                        Guest
-                    </div>
-
-                    <form className='guest-num'>
-                        <label>
-                            
-                        </label>
-                        
-                        <button type='button' className='form-button'>Book</button>
-                        <p className='per-night won-charge'>You won’t be charged yet</p>
-                    </form>
-                </div>
+                    <BookingContainer spot={spot}/>
             </div>
 
         </div>

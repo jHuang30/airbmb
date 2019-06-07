@@ -2,6 +2,7 @@
     background-image: image-url("lighthouse-2372461_1920.jpg");
     height: 100vh;
     background-size: cover;
+    position: relative;
 }
 
 .navbar button{
@@ -87,4 +88,84 @@
     content: "\f002";
     top: 37px;
     font-size: 18px;
+}
+
+
+.front-page-form{
+    position: relative;
+    background: #ffffff;
+    border-radius: 4px;
+    padding: 30px;
+    padding-bottom: 24px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+    font-size: 14px;
+    line-height: 1.43;
+    color: #484848;
+    top: 6%;
+    left: 6%;
+    height: 55%;
+    width: 30%;
+}
+
+.hearder-text{
+    font-size: 2em;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.where-guests{
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+}
+
+.where-guests input {
+    margin-top: 10px;
+    border: 1px solid #EBEBEB;
+    border-radius: 3px;
+    inset: none;
+    height:40%;
+    padding-left: 10px;
+    font-size: 15px
+}
+
+.where-guests, .checkin, .checkout{
+    margin: 5px 0;
+}
+
+.front-submit{
+    color: white;
+    background: #FF5A5F;
+    position: absolute;
+    right: 7%;
+    bottom: 5%;
+    height: 10%;
+    width: 23%;
+    border-radius: 5px;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.checkin-out{
+    display: flex;
+    justify-content: flex-start;
+    height: 100%;;
+
+}
+
+.checkin-out label {
+    width: 50%;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.checkin-out input {
+    width: 50%;
+    height: 30px;
+    font-size: 15px;
+    margin: 10px 0 18px 0;
+    border: 1px solid #EBEBEB;
+    
 }

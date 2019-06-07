@@ -78,7 +78,7 @@
     color: grey;
 }
 
-input:focus{
+.modal-form input:focus{
     outline: none;
     border: 0.8px solid #008489;
     -moz-outline-radius: 5px;

@@ -1,10 +1,9 @@
 import { connect } from 'react-redux';
-import { fetchSpots, fetchSpot } from '../../action/spot_action';
+import { fetchSpot } from '../../action/spot_action';
 import SpotShow from './spot_show';
 import { selectSpot } from '../../reducers/selectors'
 
 const msp = (state, ownProps) => {
-
     const spotId = parseInt(ownProps.match.params.spotId);
     const spot = selectSpot(state.entities, spotId)
     return {

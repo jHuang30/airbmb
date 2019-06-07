@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { closeModal } from '../../action/modal_actions'
+import { duration } from '../../../../../Library/Caches/typescript/3.4.5/node_modules/moment/moment';
 
 const msp = state => {
     return {
@@ -54,7 +55,10 @@ class Amenities extends React.Component {
         }
         return (
             <div>
-                <p className='show-ame-container'>{allAmenities}</p>
+                <p className="close-button" onClick={this.props.closeModal}>&times;</p>
+                <div className='whole-ame-con'>
+                    <p className='show-ame-container'>{allAmenities}</p>
+                </div>
             </div>
         )
     }

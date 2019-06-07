@@ -14,6 +14,7 @@ img {
 .columna{
     overflow: hidden;
     flex:2;
+    border: 1px solid black;
 }
 
 .columnb{
@@ -21,6 +22,7 @@ img {
     flex:1;
     display:flex;
     flex-direction:column;
+    border: 1px solid black;
 }
 
 .column1 {
@@ -38,7 +40,7 @@ img {
 }
 
 .spot-detail img:hover {    
-    cursor: pointer;
+    cursor: pointer;    
 }
 .spot-detail .row:hover img{
     filter:brightness(70%);
@@ -46,8 +48,8 @@ img {
 
 .spot-detail .row img:hover{
     filter:brightness(100%);
-    transition: transform .45s;
-    transform: scale(1.05);   
+    transition: transform 1.2s;
+    transform: scale(1.15);   
 }
 
 .des-form-container {
@@ -66,7 +68,29 @@ img {
 .form-container {
     width:35%;
     box-sizing: border-box;
-    height: 460px;
+    height: 500px;
+    position: sticky;
+    z-index: 0;
+    padding: 25px;
+    border: 1px solid #e2dddd;
+    top: 70px;
+}
+
+.shorter-form{
+    width:35%;
+    box-sizing: border-box;
+    height: 350px;
+    position: sticky;
+    z-index: 0;
+    padding: 25px;
+    border: 1px solid #e2dddd;
+    top: 70px;
+}
+
+.longer-form{
+    width:35%;
+    box-sizing: border-box;
+    height: 500px;
     position: sticky;
     z-index: 0;
     padding: 25px;
@@ -172,7 +196,8 @@ img {
     padding-bottom: 20px;
 }
 
-.form-container div.order-form-price{
+/* .form-container div.order-form-price{ */
+.div.order-form-price {
     padding-bottom: 12px;
     border-bottom: 1px solid #e2dddd;
 }
@@ -191,42 +216,29 @@ img {
 }
 
 
-.form-container .form-date {
+/* .form-container .form-date { */
+.form-date{
     padding-top: 20px;
     color:red;
     font-size: 12px;
     color: inherit;
 }
 
-.form-container .date-range {
-    position: relative;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
-    color: #585858;
-    line-height: 24px;
-    padding: 10px 8px;
-    border-style: none;
-    border: 1px solid #e2dddd;
-    border-radius: 5px;
+/* .form-container .guest-num{ */
+ .guest-num{
+    margin-bottom: 10px;
+}
+
+/* .form-container .guest-num select{ */
+.guest-num select{
+    width: 100%;
+    height: 40px;
+    font-size: 20px;
+
 }
 
 
-.form-container .date-range input{
-    border: none;
-    line-height: 24px;
-    text-align: center;
-    font-size: 14px;
-    padding:0;
-    margin:0
-}
-
-.form-container .date-range input:focus {
-    background: #9BEDE9;
-}
-
-
-.guest-num .form-button {
+.form-button {
     box-sizing: border-box;
     background-color: rgb(255, 90, 95);
     padding: 5px;
@@ -263,3 +275,19 @@ img {
 .spot-ame .showall:focus {
     outline: none;
 }
+
+.fees .fee {
+    display: flex;
+    justify-content: space-between;
+    color: #484848;
+    padding: 10px;
+    font-size: 12px;
+    border-bottom: 1px solid #e2dddd;
+
+}
+
+.fees .no-under-border {
+    border:none;
+    font-weight: 600;
+}
+

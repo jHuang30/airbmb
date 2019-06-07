@@ -1,7 +1,7 @@
 class Api::SpotsController < ApplicationController
 
     def create
-        @spot = Spot.new(spots_params)
+        @spot = Spot.new(spot_params)
         if @spot.save
             render :create
         else
@@ -9,9 +9,12 @@ class Api::SpotsController < ApplicationController
         end
     end
 
+
+
     def show
-        @spot = Spot.includes(:amenities).find(params[:id])
+        @spot = Spot.includes(:amenities, :bookings).find(params[:id])
         @amenities = @spot.amenities
+        @bookings = @spot.bookings
 
         render :show
     end
@@ -36,7 +39,7 @@ class Api::SpotsController < ApplicationController
         
     end
 
-    def spots_params
+    def spot_params
         params.require(:spot).permit(:title, :description, :address, :price, :num_bedrooms, :lat, :long, :num_beds, :num_guests, :num_bathrooms, :spotType, :location, photos:[])
     end
 end

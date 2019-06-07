@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store/store'
 import Root from './component/root'
+import 'react-dates/initialize';
 
 
 document.addEventListener('DOMContentLoaded', () => {

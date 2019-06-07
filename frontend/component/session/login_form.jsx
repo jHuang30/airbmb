@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+
 
 class LoginForm extends React.Component {
     constructor(props){
@@ -18,6 +18,7 @@ class LoginForm extends React.Component {
     }
 
     handleDemo(e){
+
         e.preventDefault;
         const demo = { email: 'demouser@gmail.com', password: "aaaaaa" }
         this.props.action(demo).then(() => {
@@ -34,7 +35,7 @@ class LoginForm extends React.Component {
 
     handleSubmit(e){
         return (
-        e.preventDefault,
+        e.preventDefault(),
         this.props.action(this.state).then(() => {
             this.props.closeModal();
             this.props.history.push('/spots');

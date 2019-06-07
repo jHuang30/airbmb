@@ -297,3 +297,6 @@ spot8.photos.attach(io: eight3, filename: 'eight3.jpg')
 spot8.photos.attach(io: eight4, filename: 'eight4.jpg')
 spot8.photos.attach(io: eight5, filename: 'eight5.jpg')
 
+
+
+booking1 = Booking.create!(num_guest: 2, start_date:)

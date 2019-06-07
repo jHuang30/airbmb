@@ -3,6 +3,7 @@ import SpotDetail from './spot_detail'
 
 
 
+
 class SpotShow extends React.Component {
     constructor(props){
         super(props);
@@ -25,7 +26,9 @@ class SpotShow extends React.Component {
         }
 
         return (
-            <SpotDetail spot={spot}/>
+            <div>
+                <SpotDetail spot={spot}/>
+            </div>
         )
     }
 }

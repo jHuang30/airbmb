@@ -4,7 +4,10 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :spots, only: [:index, :show, :create, :update, :destroy] do
       resources :amenities, only: [:create, :destroy]
+      resources :bookings, only:[:create]
     end
+
+    resources :bookings, only: [ :show, :update, :destroy]
   end
   root 'static_pages#root'
 end
