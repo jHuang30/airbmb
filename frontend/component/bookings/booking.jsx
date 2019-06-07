@@ -30,7 +30,7 @@ class BookingForm extends React.Component {
             )
         }
     }
-    
+
 
     blockedDates(){
         this.props.spot.bookings.forEach(booking => {
@@ -138,13 +138,13 @@ class BookingForm extends React.Component {
         while (stars.length < 5) {
             stars.push(<i key={stars.length} className="far fa-star"></i>);
         }
-
-
-        const options = []
+        
+        const options = [];
+        if (this.props.spot.num_guests){
         const maxGuests = this.props.spot.num_guests;
         for (let i = 0; i < maxGuests; i++) {
-            options.push(<option key={i} value={i=1}>{i+1}</option>)
-        }
+            options.push(<option key={i} value={i+1}>{i+1}</option>)
+        }};
 
 
         return (
@@ -157,7 +157,7 @@ class BookingForm extends React.Component {
 
                 <div className='form-date'>
                     Dates
-                        </div>
+                 </div>
 
                 <DateRangePicker
                     startDate={this.state.startDate} // momentPropTypes.momentObj or null,

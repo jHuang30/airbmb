@@ -5,7 +5,6 @@ import { createBooking } from '../../action/booking_action';
 const msp = state => {
 
     return {
-
         current_user: state.session.id,
         booking: { startDate: null, endDate: null, numGuest: 1 },
         formType: 'Create Booking',
