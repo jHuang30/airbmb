@@ -43,3 +43,12 @@ Airbmb is a full stack Airbnb clone application built up in 10 days.
 * Picutre stands out when hover over.
 
 ![](/Users/lin/Desktop/airbmb/app/assets/images/show.gif)
+
+
+***
+
+* Review pages show all the detailed booking information.
+
+
+***
+

@@ -20,6 +20,7 @@ class SpotIndex extends React.Component{
                     <SpotIndexItem key={idx} spot={spot} />
             )
         })
+        debugger
         return (
             <div>
                 <IndexNavbar />
