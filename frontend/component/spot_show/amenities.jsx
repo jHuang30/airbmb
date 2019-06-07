@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { closeModal } from '../../action/modal_actions'
-import { duration } from '../../../../../Library/Caches/typescript/3.4.5/node_modules/moment/moment';
+
 
 const msp = state => {
     return {
