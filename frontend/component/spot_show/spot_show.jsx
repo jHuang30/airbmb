@@ -25,7 +25,7 @@ class SpotShow extends React.Component {
             return <div>Loading...</div>
         }
 
-        debugger
+
         return (
             <div>
                 <SpotDetail spot={spot}/>

@@ -82,9 +82,7 @@ class BookingForm extends React.Component {
         const otherFee = 17*nights;
         const totalFee = roomFee + serviceFee + otherFee;
         
-        // if (this.props.spots.bookings){
-        //     console.log(this.blockedDates());
-        // }
+
         
         const displayFees = (this.state.startDate && this.state.endDate) ? (
             <div className='fees'>
@@ -140,10 +138,10 @@ class BookingForm extends React.Component {
         }
         
         const options = [];
-        debugger
+
         if (this.props.spot.num_guests){
         const maxGuests = this.props.spot.num_guests;
-        debugger
+
         for (let i = 0; i < maxGuests; i++) {
             options.push(<option key={i} value={i+1}>{i+1}</option>)
         }};

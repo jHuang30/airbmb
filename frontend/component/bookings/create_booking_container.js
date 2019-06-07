@@ -3,7 +3,7 @@ import BookingForm from './booking'
 import { createBooking } from '../../action/booking_action';
 
 const msp = (state) => {
-    // debugger
+
     return {
         current_user: state.session.id,
         booking: { startDate: null, endDate: null, numGuest: 1 },
