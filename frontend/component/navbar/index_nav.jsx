@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { logout } from '../../action/session_actions';
 import { openModal } from '../../action/modal_actions';
 
+const msp = ({ entities: { users }, session }) => ({
+    currentUser: users[session.id]
+});
 
 const mdp = dispatch => ({
     logout: () => dispatch(logout()),
@@ -17,15 +20,27 @@ class IndexNavbar extends React.Component {
 
     }
 
+    
     handleLogout(){
-        this.props.logout().then(() =>{
-            this.props.history.push('/');
-        })
+        debugger
+        this.props.logout()
     }
 
 
 
         render(){
+
+            const display = this.props.currentUser ? (
+                <div className='idx-navbar'>
+                    <button className="idx-navbut" onClick={() => this.props.logout()}> Log Out</button>
+                </div>
+            ) : (
+                    <div className="idx-navbar">
+
+                        <button className="idx-navbut" onClick={() => this.props.openModal('login')}>Login</button>
+                        <button className="idx-navbut" onClick={() => this.props.openModal('signup')}>Signup</button>
+                    </div>
+                );
 
         return (
 
@@ -37,11 +52,11 @@ class IndexNavbar extends React.Component {
                         <input type="text" placeholder='Try Manhattan'/>
                     </form>
                 </div>
-                <button className="logout-button" onClick={this.handleLogout}> Log Out</button>
+                {display}
             </div>
 
         );
     };
 }
 
-export default connect(null,mdp)(IndexNavbar)
+export default connect(msp,mdp)(IndexNavbar)

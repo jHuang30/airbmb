@@ -18,12 +18,14 @@ class LoginForm extends React.Component {
     }
 
     handleDemo(e){
-
+        debugger
         e.preventDefault;
         const demo = { email: 'demouser@gmail.com', password: "aaaaaa" }
         this.props.action(demo).then(() => {
             this.props.closeModal();
-            this.props.history.push('/spots');
+            if (this.props.location.pathname === '/'){
+                this.props.history.push('/spots')
+            };
         });
     }
 
@@ -38,7 +40,9 @@ class LoginForm extends React.Component {
         e.preventDefault(),
         this.props.action(this.state).then(() => {
             this.props.closeModal();
-            this.props.history.push('/spots');
+            if (this.props.location.pathname === '/') {
+                this.props.history.push('/spots')
+            };
         })
         )
     }
@@ -49,8 +53,8 @@ class LoginForm extends React.Component {
 
     renderErrors() {
 
-        const errors = Object.values(this.props.errors).map(error => (
-            <li>
+        const errors = Object.values(this.props.errors).map((error,idx) => (
+            <li key={idx}>
                 {error}
             </li>
         ));

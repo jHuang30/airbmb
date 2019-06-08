@@ -6,9 +6,9 @@ import { fetchSpot } from '../../action/spot_action'
 import IndexNavbar from '../navbar/index_nav'
 import moment from 'moment';
 import 'react-dates/initialize';
-import { DateRangePicker } from 'react-dates';
 
 const msp = (state, ownProps) => {
+    debugger
 
     const bookingId = parseInt(ownProps.match.params.bookingId);
     const booking = state.entities.bookings[bookingId];
@@ -36,6 +36,7 @@ class Confirmation extends React.Component{
     constructor(props){
         super(props);
         this.calculateDays = this.calculateDays.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     calculateDays(start, end) {
@@ -44,11 +45,18 @@ class Confirmation extends React.Component{
         }
     }
 
+
+    handleSubmit(e) {
+        e.preventDefault();
+        this.props.history.push('/spots')
+    }
+
     componentDidMount(){
         const spotId = parseInt(this.props.match.params.spotId);
         const bookingId = parseInt(this.props.match.params.bookingId);
-        this.props.fetchBooking(bookingId)
-        this.props.fetchSpot(spotId)
+        this.props.fetchBooking(bookingId);
+        this.props.fetchSpot(spotId);
+        
     }
 
     render(){
@@ -91,7 +99,7 @@ class Confirmation extends React.Component{
 
                     <div className='left-container'>
                         <div className='review-text'>
-                            Review your booking
+                            Booking Confirmed!
                         </div>
                         
                         <div className='rare-find'>
@@ -151,7 +159,8 @@ class Confirmation extends React.Component{
 
                         </div>
 
-                        <button type='button' className='confirm-button'>Looks good, let's go! </button>
+                        <button type='button' className='confirm-button' onClick={this.handleSubmit}>
+                            Looking for more awesome places?</button>
                     </div>
 
                     <div className='right-container'>

@@ -14,18 +14,18 @@ const App = () => {
     return (
     <div>
         <Modal />
-{/* 
-        <Route path='/signup' component={Modal}/>
-        <Route path='/login' component={Modal} /> */}
+
+{/*         <Route path='/signup' component={Modal}/> */}
+        {/* <Route path='/login' component={Modal} /> */}
 
         <Switch>
             <Route exact path='/spots' component={SpotIndexContainer} />
             {/* <ProtectedRoute exact path='/spots' component={SpotIndexContainer}/> */}
-            <ProtectedRoute exact path='/spots/:spotId' component={SpotContainer} />
-            <ProtectedRoute exact path='/spots/:spotId/:bookingId' component={Confirmation} />
+            <Route exact path='/spots/:spotId' component={SpotContainer} />
+            <Route exact path='/spots/:spotId/:bookingId' component={Confirmation} />
             <Route exact path='/' component={Splash} />
         </Switch>
-            {/* <Route path='/login' component={LoginContainer} /> */}
+            <Route path='/login' component={LoginContainer} />
 
     </div>
     )

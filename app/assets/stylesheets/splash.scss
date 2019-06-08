@@ -17,7 +17,7 @@
 }
 
 .navbar button:focus{
-    outline: none !important;
+    outline: none;
 }
 
 .navbar button.navbut:hover{
@@ -86,7 +86,7 @@
     position: absolute;
     left: 100px;
     content: "\f002";
-    top: 37px;
+    top: 25px;
     font-size: 18px;
 }
 
@@ -168,4 +168,17 @@
     margin: 10px 0 18px 0;
     border: 1px solid #EBEBEB;
     
+}
+
+.idx-navbar button{
+    color: black;
+    border: none;
+    padding: 15px 18px;
+    margin: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.idx-navbar button:focus{
+    outline: none;
 }
