@@ -2,9 +2,9 @@ import React from 'react';
 import SpotShow from './spot_show';
 import IndexNavbar from '../navbar/index_nav';
 import { openModal } from'../../action/modal_actions';
-
 import DatePicker from '../calendar/show_calendar';
 import BookingContainer from '../bookings/create_booking_container'
+import SpotMap from '../spot_map/spot_map'
 
 const SpotDetail = (props) => {
     const {spot} = props
@@ -15,8 +15,6 @@ const SpotDetail = (props) => {
         Object.keys(spot.amenities).map(num => {
             amenitiesNums.push(parseInt(num))
         });
-
-
     }
 
 
@@ -100,10 +98,8 @@ const SpotDetail = (props) => {
                     </div>
 
                     <div className='spot-type'>
-                        {/* <div> */}
                         <i className="fas fa-house-damage"></i>
                         {spot.spotType}
-                        {/* </div> */}
                     </div>
 
                     <div className='spot-info'>
@@ -142,6 +138,7 @@ const SpotDetail = (props) => {
                     </div> 
 
                         <DatePicker />
+                        <SpotMap spot={spot}/>
                 </div>
 
                     <BookingContainer spot={spot}/>

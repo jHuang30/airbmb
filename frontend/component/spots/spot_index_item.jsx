@@ -24,7 +24,6 @@ const SpotIndexItem = ({spot}) => {
     // }
     
     
-    
 
     return (
         <div>

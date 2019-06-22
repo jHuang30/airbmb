@@ -1,0 +1,22 @@
+.blocked-modal{
+    height: 300px;
+    width: 300px;
+    color: black;
+    font-size: 24px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background: lightgrey;
+}
+
+.blocked-modal button{
+    margin-top: 20px;
+    width: 33%;
+    height: 20%;
+    border-radius: 5px;
+    font-size: 20px;
+    background: rgb(255, 90, 95);
+    color: white;
+}

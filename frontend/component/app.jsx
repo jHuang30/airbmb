@@ -7,23 +7,19 @@ import SpotIndexContainer from './spots/spot_index_container'
 import SpotContainer from './spot_show/spot_show_container'
 import LoginContainer from '../component/session/login_form_container';
 import Confirmation from '../component/bookings/confirmation';
-
+import Account from '../component/account/account'
 
 
 const App = () => {
     return (
     <div>
         <Modal />
-
-{/*         <Route path='/signup' component={Modal}/> */}
-        {/* <Route path='/login' component={Modal} /> */}
-
         <Switch>
             <Route exact path='/spots' component={SpotIndexContainer} />
-            {/* <ProtectedRoute exact path='/spots' component={SpotIndexContainer}/> */}
             <Route exact path='/spots/:spotId' component={SpotContainer} />
-            <Route exact path='/spots/:spotId/:bookingId' component={Confirmation} />
+            <Route exact path='/spots/:spotId/confirmation' component={Confirmation} />
             <Route exact path='/' component={Splash} />
+            <Route exact path='/myAccount' component={Account} />
         </Switch>
             <Route path='/login' component={LoginContainer} />
 

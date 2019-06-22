@@ -1,22 +1,20 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { updateBooking, deleteBooking, fetchBooking}  from '../../action/booking_action';
+import { createBooking } from '../../action/booking_action'
 import { fetchSpot } from '../../action/spot_action'
 import IndexNavbar from '../navbar/index_nav'
 import moment from 'moment';
 import 'react-dates/initialize';
+import {openModal, closeModal} from '../../action/modal_actions'
 
 const msp = (state, ownProps) => {
-    debugger
+    const spotId = parseInt(ownProps.match.params.spotId);
+    const bookingInfo = state.ui.createBooking;
 
-    const bookingId = parseInt(ownProps.match.params.bookingId);
-    const booking = state.entities.bookings[bookingId];
-    const spot = state.entities.spots[parseInt(ownProps.match.params.spotId)];
+    const spot = state.entities.spots[spotId];
     return {
-        bookingId,
-        booking,
         spot,
+        bookingInfo,
     }
 };
 
@@ -24,8 +22,9 @@ const mdp = dispatch => {
     return {
         // updateBooking: booking => dispatch(updateBooking(booking)),
         // deleteBooking: bookingId => dispatch(deleteBooking(bookingId)),
-        fetchBooking: id => dispatch(fetchBooking(id)),
-        fetchSpot: (id) => dispatch(fetchSpot(id))
+        fetchSpot: (id) => dispatch(fetchSpot(id)),
+        createBooking: (booking,spotId) => dispatch(createBooking(booking, spotId)),
+        openModal: (modal) => dispatch(openModal(modal)),
     }
 
 }
@@ -48,29 +47,32 @@ class Confirmation extends React.Component{
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.history.push('/spots')
+        this.props.createBooking(this.props.bookingInfo, this.props.spot.id).then(() => {
+            this.props.openModal('confirmation')
+        });
     }
 
     componentDidMount(){
         const spotId = parseInt(this.props.match.params.spotId);
-        const bookingId = parseInt(this.props.match.params.bookingId);
-        this.props.fetchBooking(bookingId);
+        // const bookingId = parseInt(this.props.match.params.bookingId);
+        // this.props.fetchBooking(bookingId);
+        
         this.props.fetchSpot(spotId);
         
     }
 
     render(){
-        if(!(this.props.booking && this.props.spot)){
+        if (!this.props.spot){
             return null;
         }
 
-        const {booking} = this.props
-        const {spot} = this.props
-        const guestText = booking.num_guests > 1 ? 'guests' : 'guest'
+        const booking = this.props.bookingInfo;
+        const {spot} = this.props;
+        const guestText = booking.num_guests > 1 ? 'guests' : 'guest';
         const startD = moment(booking.start_date);
         const endD = moment(booking.end_date);
         const nights = this.calculateDays(startD, endD);
-        const text_night = nights > 1 ? "nights" : "night"
+        const text_night = nights > 1 ? "nights" : "night";
         const price = spot.price;
         const roomFee = nights * price;
         const serviceFee = 16 * nights;
@@ -99,7 +101,7 @@ class Confirmation extends React.Component{
 
                     <div className='left-container'>
                         <div className='review-text'>
-                            Booking Confirmed!
+                            Review your booking!
                         </div>
                         
                         <div className='rare-find'>
@@ -160,7 +162,7 @@ class Confirmation extends React.Component{
                         </div>
 
                         <button type='button' className='confirm-button' onClick={this.handleSubmit}>
-                            Looking for more awesome places?</button>
+                            Looks good, let's go!</button>
                     </div>
 
                     <div className='right-container'>

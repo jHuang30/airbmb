@@ -2,7 +2,7 @@ import React from 'react';
 import 'react-dates/initialize';
 import { DateRangePicker, isSameDay } from 'react-dates';
 import moment from 'moment';
-import { Redirect, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class BookingForm extends React.Component {
     constructor(props){
@@ -12,21 +12,26 @@ class BookingForm extends React.Component {
         this.calculateDays = this.calculateDays.bind(this);
         this.handleClear = this.handleClear.bind(this);
         this.isBlocked = this.isBlocked.bind(this);
+        this.isInvalid = this.isInvalid.bind(this);
     }
 
 
     handleSubmit(e){
-        debugger
+
         const start = moment(this.state.startDate).format('L')
         const end = moment(this.state.endDate).format('L')
-        const spotId = this.props.spot.id
+
         e.preventDefault();
-        if (this.props.user){
+        if (this.isInvalid(start, end, this.props.blockedDates)){
+            this.props.openModal('blocked')
+        }else if (this.props.user){
             if (this.state.startDate && this.state.endDate){
-                this.props.action({start_date: start, end_date: end, num_guests: this.state.numGuest}, spotId).then(
-                    (action) => {
-                    this.props.history.push(`${this.props.history.location.pathname}/${action.booking.id}`)}
-                )
+                // this.props.action({start_date: start, end_date: end, num_guests: this.state.numGuest}, spotId).then(
+                //     (action) => {
+                //     this.props.history.push(`${this.props.history.location.pathname}/${action.booking.id}`)}
+                // )
+                this.props.storeBooking({ start_date: start, end_date: end, num_guests: this.state.numGuest})
+                this.props.history.push(`${this.props.history.location.pathname}/confirmation`)
             }
         }else {
             this.props.openModal('login')
@@ -34,16 +39,47 @@ class BookingForm extends React.Component {
 
     }
 
+    isInvalid(start, end, dates){
+
+        if (start && end){
+            start = moment(start);
+            end = moment(end);
+            while(start <= end){
+                for (let i = 0; i < dates.length; i++) {
+            
+                    if ((dates[i]._i) === start.format('YYYY-MM-DD')){
+                
+                        return true
+                    }
+                }
+                start = start.add(1, 'days');
+            }
+        }
+        return false;
+    }
     
     isBlocked(day1){
         return this.props.blockedDates.some(day2 => {
             return isSameDay(day1, day2)
         })
     }
+
     
     update(field){
         return(e) => {
-            this.setState({[field]: e.target.value})    
+            this.setState({[field]: e.target.value})
+            // let start = this.props.startDate
+            // const end = this.props.endDate
+            // if (end && start){
+            //     while(start <= end){
+            //      
+            //         if (this.props.blockedDates.includes(start)){
+            //             this.props.openModal('blocked')
+            //             this.setState({startDate: null, endDate: null})
+            //         }
+            //         start = start.add(1, 'days')
+            //     }
+            // }
         }
     }
     
@@ -54,7 +90,6 @@ class BookingForm extends React.Component {
     }
     
     handleClear() {
-        debugger
         this.setState({startDate: null, endDate: null})
     }
     
@@ -136,12 +171,6 @@ class BookingForm extends React.Component {
             options.push(<option key={i} value={i+1}>{i+1}</option>)
         }};
 
-
-        // this.blocked.push(moment('2019-06-12'));
-        // console.log(this.blocked);
-        // console.log(moment());
-        
-        // console.log(this.isBlocked(moment()));
 
         return (
             <div className={formClass}>

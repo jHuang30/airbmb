@@ -5,6 +5,8 @@ import LoginFormContainer from '../session/login_form_container';
 import SignupFormContainer from '../session/signup_form_container';
 import About from '../../component/about';
 import Amenities from '../spot_show/amenities';
+import ConfirmedBooking from '../bookings/confirmed_booking';
+import Blocked from '../bookings/blocked'
 
 function Modal(props){
     const { closeModal} = props;
@@ -20,8 +22,8 @@ function Modal(props){
         return null;
     }
     let component;
-
     switch(modal) {
+       
         case 'login' :
             component = <LoginFormContainer />;
             break;
@@ -33,6 +35,12 @@ function Modal(props){
             break;
         case 'amenities':
             component = <Amenities amenities={amenities}/>;
+            break;
+        case 'confirmation':
+            component = <ConfirmedBooking />;
+            break;
+        case 'blocked':
+            component = <Blocked />;
             break;
         default:
             return null;

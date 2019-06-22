@@ -1,8 +1,10 @@
 
 .allSpotContainer{
+    top: 10%;
+    width: 53%;
     height: 85vh;
     display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-columns: 50% 50%;
     grid-gap: 20px 8px;
     padding: 10px 5%;
     align-content: start;

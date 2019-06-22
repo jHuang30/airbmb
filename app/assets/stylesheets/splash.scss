@@ -103,7 +103,7 @@
     color: #484848;
     top: 6%;
     left: 6%;
-    height: 55%;
+    height: 58%;
     width: 30%;
 }
 
@@ -181,4 +181,13 @@
 
 .idx-navbar button:focus{
     outline: none;
+}
+
+div.DateInput {
+    width: 100%
+}
+input.DateInput_input_1 {
+    width: 100%;
+    border: none;
+    font-size: 17px;
 }

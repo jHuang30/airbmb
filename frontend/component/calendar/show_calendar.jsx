@@ -17,7 +17,6 @@ class DatePicker extends React.Component {
     render() {
         return (
             <div>
-
                 <DayPickerRangeController
                     startDate={this.state.startDate}
                     endDate={this.state.endDate}

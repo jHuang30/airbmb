@@ -22,12 +22,3 @@ export const closeModal = () => ({
 })
 
 
-
-// export const openModal = (modal, props) => {
-//     const ames = props.amenities
-//     return {
-//         type: OPEN_MODAL,
-//         modal,
-//         ames
-//     }
-// };

@@ -15634,7 +15634,7 @@
         "edit",
         "pen",
         "pencil",
-        "update",
+        "",
         "write"
       ]
     },
@@ -25379,7 +25379,7 @@
         "edit",
         "marker",
         "sharpie",
-        "update",
+        "",
         "write"
       ]
     },
@@ -30988,7 +30988,7 @@
         "design",
         "edit",
         "sharpie",
-        "update",
+        "",
         "write"
       ]
     },
@@ -35214,7 +35214,7 @@
       "terms": [
         "design",
         "edit",
-        "update",
+        "",
         "write"
       ]
     },
@@ -35253,7 +35253,7 @@
       "terms": [
         "design",
         "edit",
-        "update",
+        "",
         "write"
       ]
     },
@@ -35292,7 +35292,7 @@
         "design",
         "edit",
         "fountain pen",
-        "update",
+        "",
         "write"
       ]
     },
@@ -35331,7 +35331,7 @@
         "design",
         "edit",
         "fountain pen",
-        "update",
+        "",
         "write"
       ]
     },
@@ -35370,7 +35370,7 @@
       "terms": [
         "edit",
         "pencil-square",
-        "update",
+        "",
         "write"
       ]
     },
@@ -35409,7 +35409,7 @@
         "design",
         "edit",
         "pencil",
-        "update",
+        "",
         "write"
       ]
     },
@@ -50569,7 +50569,7 @@
         "pen",
         "pencil",
         "person",
-        "update",
+        "",
         "write"
       ]
     },
@@ -53874,7 +53874,7 @@
         "settings",
         "spanner",
         "tool",
-        "update"
+        ""
       ]
     },
     "styles": [

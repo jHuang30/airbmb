@@ -1,8 +1,9 @@
-import * as BookingAPIUtil from '../util/booking_api.util'
+import * as BookingAPIUtil from '../util/booking_api.util';
 
 export const RECEIVE_ALL_BOOKINGS = 'RECEIVE_ALL_BOOKINGS';
 export const RECEIVE_BOOKING = 'RECEIVE_BOOKING';
 export const REMOVE_BOOKING = 'REMOVE_BOOKING';
+export const CREATE_BOOKING = 'CREATE_BOOKING';
 
 const receiveAllBookings = bookings => ({
     type: RECEIVE_ALL_BOOKINGS,
@@ -19,6 +20,11 @@ const removeBooking = bookingId => ({
     bookingId
 })
 
+export const storeBooking = (booking) => ({
+    type: CREATE_BOOKING,
+    booking
+})
+
 
 export const fetchBookings = () => dispatch => (
     BookingAPIUtil.fetchBookings().then(bookings => dispatch(receiveAllBookings(bookings)))
@@ -28,9 +34,11 @@ export const fetchBooking = id => dispatch => (
     BookingAPIUtil.fetchBooking(id).then(booking => dispatch(receiveBooking(booking)))
 );
 
-export const createBooking = (booking, spotId) => dispatch => (
+export const createBooking = (booking, spotId) => dispatch => {
+    return (
     BookingAPIUtil.createBooking(booking, spotId).then(booking => dispatch(receiveBooking(booking)))
-);
+    )
+};
 
 export const updateBooking = booking => dispatch => (
     BookingAPIUtil.updateBooking(booking).then(booking =>dispatch(receiveBooking(booking)))

@@ -6,7 +6,7 @@ export default () => {
   return (
       <div className="splash">
         <NavbarContainer />  
-        <FrontForm/>
+        <FrontForm />
       </div>
   )
 }

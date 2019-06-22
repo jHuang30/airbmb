@@ -18,7 +18,6 @@ class LoginForm extends React.Component {
     }
 
     handleDemo(e){
-        debugger
         e.preventDefault;
         const demo = { email: 'demouser@gmail.com', password: "aaaaaa" }
         this.props.action(demo).then(() => {
