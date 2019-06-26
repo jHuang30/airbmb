@@ -1,29 +1,33 @@
-import * as SpotAPIUtil from '../util/spots_api_util';
+import * as SpotAPIUtil from "../util/spots_api_util";
 
-export const RECEIVE_ALL_SPOTS = 'RECEIVE_ALL_SPOTS';
-export const RECEIVE_SPOT = 'RECEIVE_SPOT';
+export const RECEIVE_ALL_SPOTS = "RECEIVE_ALL_SPOTS";
+export const RECEIVE_SPOT = "RECEIVE_SPOT";
 
 const receiveAllSpots = spots => {
-    return{
+  return {
     type: RECEIVE_ALL_SPOTS,
     spots
-    }}
+  };
+};
 
-const receiveSpot = spot => {
-    return {
+const receiveSpot = payload => {
+  return {
     type: RECEIVE_SPOT,
-    spot
-}
-}
+    spot: payload.spot,
+    bookings: payload.bookings,
+    amenity: payload.amenity,
+    reviews: payload.reviews
+  };
+};
 
 export const fetchSpots = filters => dispatch => {
-    return (
-    SpotAPIUtil.fetchSpots(filters).then(spots => dispatch(receiveAllSpots(spots)))
-    )
-}
+  return SpotAPIUtil.fetchSpots(filters).then(spots =>
+    dispatch(receiveAllSpots(spots))
+  );
+};
 
-export const fetchSpot = (id) => dispatch => {
-    return (
-    SpotAPIUtil.fetchSpot(id).then(spot => dispatch(receiveSpot(spot)))
-    )
-}
+export const fetchSpot = id => dispatch => {
+  return SpotAPIUtil.fetchSpot(id).then(payload =>
+    dispatch(receiveSpot(payload))
+  );
+};

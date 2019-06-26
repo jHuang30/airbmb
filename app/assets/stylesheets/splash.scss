@@ -161,14 +161,14 @@
     font-weight: 600;
 }
 
-.checkin-out input {
-    width: 50%;
-    height: 30px;
-    font-size: 15px;
-    margin: 10px 0 18px 0;
-    border: 1px solid #EBEBEB;
+// .checkin-out input {
+//     width: 50%;
+//     height: 30px;
+//     font-size: 15px;
+//     margin: 10px 0 18px 0;
+//     border: 1px solid #EBEBEB;
     
-}
+// }
 
 .idx-navbar button{
     color: black;
@@ -183,10 +183,11 @@
     outline: none;
 }
 
-div.DateInput {
+.checkin-out div.DateInput {
     width: 100%
 }
-input.DateInput_input_1 {
+
+.checkin-out input.DateInput_input_1 {
     width: 100%;
     border: none;
     font-size: 17px;

@@ -5,7 +5,7 @@ class Api::ReviewsController < ApplicationController
     def create
         @review = Review.new(review_params)
         @review.user_id = current_user.id
-        @booking.spot_id = params[:spot_id]
+        @review.spot_id = params[:spot_id]
 
         if @review.save
             render :index
@@ -33,7 +33,7 @@ class Api::ReviewsController < ApplicationController
     end
 
     def review_params
-        params.require(:review).permit(:body, :rating)
+        params.require(:review).permit(:body, :rating, :spot_id)
     end
 
 end

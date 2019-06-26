@@ -1,167 +1,212 @@
-
 * {
-    font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .welcome-message {
-    height: 70px;
-    font-size: 20px;
+  height: 70px;
+  font-size: 20px;
 }
 
-.modal-form, .about-form{
-    background: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 563px;
-    width: 568px;
-    
+.modal-form,
+.about-form {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 563px;
+  width: 568px;
 }
 
 .modal-form.signup-form {
-    height: 600px;
+  height: 600px;
 }
-
 
 .modal-form-input {
-    box-sizing: border-box;
-    width:300px;
-    width: 504px;
-    height:46px;
-    border: 1px, solid rgb(72, 72, 72);
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-    padding: 11px;
-    border-style: none;
-    border: 1px solid #eae8e8;
-    border-radius: 5px;
+  box-sizing: border-box;
+  width: 300px;
+  width: 504px;
+  height: 46px;
+  border: 1px, solid rgb(72, 72, 72);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  padding: 11px;
+  border-style: none;
+  border: 1px solid #eae8e8;
+  border-radius: 5px;
 }
 
-.modal-form-button, .login-demo {
-    box-sizing: border-box;
-    background-color: rgb(255, 90, 95);
-    padding: 5px;
-    width: 504px;
-    height:48px;
-    justify-content: center;
-    padding: 10px 22px;
-    color: white;
-    cursor: pointer;
-    margin-top: 15px;
-    border-radius: 4px;
-    border-color: rgba(0, 0, 0, 0);
-    font-size: 16px;
+.modal-form-button,
+.login-demo {
+  box-sizing: border-box;
+  background-color: rgb(255, 90, 95);
+  padding: 5px;
+  width: 504px;
+  height: 48px;
+  justify-content: center;
+  padding: 10px 22px;
+  color: white;
+  cursor: pointer;
+  margin-top: 15px;
+  border-radius: 4px;
+  border-color: rgba(0, 0, 0, 0);
+  font-size: 16px;
 }
-
-
 
 .close-button {
-    position: absolute;
-    top:10px;
-    left: 10px;
-    font-size: 50px;
-    color: grey;
-    cursor: pointer;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 50px;
+  color: grey;
+  cursor: pointer;
 }
 
 .modal-form label {
-    position: relative;
+  position: relative;
 }
-
 
 #far {
-    position: absolute;
-    right:20px;
-    top: 15px;
-    color: grey;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  color: grey;
 }
 
-.modal-form input:focus{
-    outline: none;
-    border: 0.8px solid #008489;
-    -moz-outline-radius: 5px;
+.modal-form input:focus {
+  outline: none;
+  border: 0.8px solid #008489;
+  -moz-outline-radius: 5px;
 }
 
-.about-form a{
-    background-color: rgb(255, 90, 95);
-    color: white;
-    padding: 14px 25px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    width: 300px;
-    height: 48px;
-    margin: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.about-form a {
+  background-color: rgb(255, 90, 95);
+  color: white;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  width: 300px;
+  height: 48px;
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .form-errors {
-    padding:10px;
-    color: red;
+  padding: 10px;
+  color: red;
 }
 
 .alter {
-    width: 95%;
-    padding-top: 30px;
-    padding-left: 30px;
-    border-top: 1px solid lightgrey;
-    text-align: left;
-    color: #585858;
+  width: 95%;
+  padding-top: 30px;
+  padding-left: 30px;
+  border-top: 1px solid lightgrey;
+  text-align: left;
+  color: #585858;
 }
 
 .alter-button {
-    border: none;
-    margin: 5px;
-    padding-left: 10px;
-    width: auto;
-    overflow: visible;
-    color: #008489;
-    font: inherit; 
+  border: none;
+  margin: 5px;
+  padding-left: 10px;
+  width: auto;
+  overflow: visible;
+  color: #008489;
+  font: inherit;
 }
 
 .alter-button:hover {
-    text-decoration: underline;
-    cursor: pointer;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .alter-button:focus {
-    outline: none;
+  outline: none;
 }
 
 .red-border {
-    border: 1px solid red;
+  border: 1px solid red;
 }
-.idxnavbut button{
-    color: black
+.idxnavbut button {
+  color: black;
 }
 
 .confirmed-modal {
-    width: 300px;
-    height: 300px;
-    background: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
+  width: 300px;
+  height: 300px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
 }
 
 .confirmed-modal button {
-     margin-top: 20px;
-    background: rgb(255, 90, 95);
-    padding: 20px;
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
+  margin-top: 20px;
+  background: rgb(255, 90, 95);
+  padding: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .confirmed-modal p {
-    font-size: 25px;
+  font-size: 25px;
 }
 
+.no-review-form {
+  width: 230px;
+  height: 200px;
+  background: white;
+  position: relative;
+  border-radius: 5px;
+}
+.no-review-text {
+  position: absolute;
+  top: 33%;
+  font-size: 24px;
+  width: 80%;
+  left: 10%;
+  color: #008489;
+}
 
+.review-form {
+  width: 500px;
+  height: 550px;
+  background: white;
+  position: relative;
+}
+
+.review-form-stars {
+  position: absolute;
+  top: 10%;
+  left: 20%;
+  font-size: 48px;
+  color: lightgrey;
+}
+
+.review-body {
+  position: absolute;
+  top: 23%;
+  left: 14%;
+  font-size: 20px;
+  border-radius: 5px;
+}
+
+.submit-review {
+  position: absolute;
+  top: 86%;
+  left: 37%;
+  font-size: 20px;
+  border-radius: 5px;
+  padding: 10px;
+  background: #008489;
+  color: white;
+  cursor: pointer;
+}

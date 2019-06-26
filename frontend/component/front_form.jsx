@@ -1,99 +1,135 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import 'react-dates/initialize';
-import { SingleDatePicker, DayPickerInput } from 'react-dates';
-import moment from 'moment';
+import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import "react-dates/initialize";
+import { SingleDatePicker, DayPickerInput } from "react-dates";
+import moment from "moment";
+import { updateFilter, clearFilter } from "../action/filter_actions";
 
-
-class FrontForm extends React.Component {
-    constructor(props){
-        super(props);
-        debugger
-        this.state = {startDate: null,
-                      endDate: null,
-                      num_guests: 1,
-                      location: null,
-                      focused1: false,
-                      focused2 : false};
-        this.handleSubmit = this.handleSubmit.bind(this);
-    };
-
-    handleSubmit(e){
-        e.preventDefault();
-        debugger
-        this.props.history.push('/spots')
-    }
-
-    update(field){
-        return(e) => {
-            this.setState({[field] : event.target.value})
-        }
-    }
-
-    render(){
-        debugger
-        return (
-            <div className='front-page-form'>
-                <div className='hearder-text'>
-                    Book unique places to stay and things to do.
-                </div>
-
-                <div>
-                    <label className='where-guests'>
-                        WHERE
-                        <input type="text" placeholder="Anywhere" onChange={this.update('location')}/>
-                    </label>
-
-                    <div className='checkin-out'>
-                        <label>
-                            CHECK-IN
-                        </label>
-
-                        <label>
-                            CHECK-OUT
-                        </label>
-                    </div>
-                    
-                    <div className="checkin-out"> 
-
-                        <SingleDatePicker
-                            date={this.state.startDate} // momentPropTypes.momentObj or null
-                            onDateChange={startDate => this.setState({ startDate })} // PropTypes.func.isRequired
-                            focused={this.state.focused1} // PropTypes.bool
-                            onFocusChange={({ focused: focused1 }) => this.setState({ focused1 })} // PropTypes.func.isRequired
-                            id="sDate" // PropTypes.string.isRequired,
-                            numberOfMonths={1}
-                            placeholder={'mm/dd/yyyy'}
-                            readOnly={true}
-                        />
-
-                        <SingleDatePicker
-                            date={this.state.endDate} // momentPropTypes.momentObj or null
-                            onDateChange={endDate => this.setState({ endDate })} // PropTypes.func.isRequired
-                            focused={this.state.focused2} // PropTypes.bool
-                            onFocusChange={({ focused: focused2 }) => this.setState({ focused2 })} // PropTypes.func.isRequired
-                            id="eDate" // PropTypes.string.isRequired,
-                            numberOfMonths={1}
-                            placeholder={'mm/dd/yyyy'}
-                            readOnly={true}
-                        />
-                    </div>
-                    
-
-                    <label className='where-guests'>
-                        GUESTS
-                        <input type="text" placeholder='Guests' onChange={this.update('num_guests')}/>
-                    </label>
-
-                    <button className='front-submit' type='button' onClick={this.handleSubmit}>Search</button>
-                </div>
-
-            </div>
-        )
-    }
+const mdp = dispatch => {
+  return {
+    updateFilter: (filter, value) => dispatch(updateFilter(filter, value)),
+    clearFilter: () => dispatch(clearFilter())
+  };
 };
 
-export default withRouter(connect(null, null)(FrontForm));
+class FrontForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      startDate: null,
+      endDate: null,
+      num_guests: null,
+      location: null,
+      focused1: false,
+      focused2: false
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    if (this.state.num_guests !== null) {
+      this.props
+        .updateFilter("num_guests", this.state.num_guests)
+        .then(this.props.history.push("/spots"));
+    }
 
+    if (this.state.location !== null) {
+      this.props
+        .updateFilter("location", this.state.location)
+        .then(this.props.history.push("/spots"));
+    }
+    this.props.history.push("/spots");
+  }
+
+  componentWillMount() {
+    this.props.clearFilter();
+  }
+
+  update(field) {
+    return e => {
+      this.setState({ [field]: e.target.value });
+    };
+  }
+
+  render() {
+    return (
+      <div className="front-page-form">
+        <div className="hearder-text">
+          Book unique places to stay and things to do.
+        </div>
+
+        <div>
+          <label className="where-guests">
+            WHERE
+            <input
+              type="text"
+              placeholder="Anywhere"
+              onChange={this.update("location")}
+            />
+          </label>
+
+          <div className="checkin-out">
+            <label>CHECK-IN</label>
+
+            <label>CHECK-OUT</label>
+          </div>
+
+          <div className="checkin-out">
+            <SingleDatePicker
+              date={this.state.startDate} // momentPropTypes.momentObj or null
+              onDateChange={startDate => this.setState({ startDate })} // PropTypes.func.isRequired
+              focused={this.state.focused1} // PropTypes.bool
+              onFocusChange={({ focused: focused1 }) =>
+                this.setState({ focused1 })
+              } // PropTypes.func.isRequired
+              id="sDate" // PropTypes.string.isRequired,
+              numberOfMonths={1}
+              placeholder={"mm/dd/yyyy"}
+              readOnly={true}
+            />
+
+            <SingleDatePicker
+              date={this.state.endDate} // momentPropTypes.momentObj or null
+              onDateChange={endDate => this.setState({ endDate })} // PropTypes.func.isRequired
+              focused={this.state.focused2} // PropTypes.bool
+              onFocusChange={({ focused: focused2 }) =>
+                this.setState({ focused2 })
+              } // PropTypes.func.isRequired
+              id="eDate" // PropTypes.string.isRequired,
+              numberOfMonths={1}
+              placeholder={"mm/dd/yyyy"}
+              readOnly={true}
+            />
+          </div>
+
+          <label className="where-guests">
+            GUESTS
+            <input
+              type="number"
+              min="1"
+              placeholder="Guests"
+              onChange={this.update("num_guests")}
+            />
+          </label>
+
+          <button
+            className="front-submit"
+            type="button"
+            onClick={this.handleSubmit}
+          >
+            Search
+          </button>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default withRouter(
+  connect(
+    null,
+    mdp
+  )(FrontForm)
+);

@@ -34,15 +34,17 @@ class Api::BookingsController < ApplicationController
     end
 
     def destroy
-        booking = Booking.find(booking_params)
-        booking.destroy
+        @booking = Booking.find(params[:id])
+        @booking.destroy
+        render :show
     end
 
     def index
-        @bookings = Bookings.all
+        params[:user_id] ? @bookings = Booking.where(user_id: params[:user_id].to_i) : Booking.all
+        # @bookings = Bookings.all
     end
 
     def booking_params
-        params.require(:booking).permit(:num_guests, :start_date, :end_date)
+        params.require(:booking).permit(:user_id, :num_guests, :start_date, :end_date, :spot_id)
     end
 end

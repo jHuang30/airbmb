@@ -1,1 +1,1 @@
-json.extract! booking, :num_guests, :start_date, :end_date, :id
+json.extract! booking, :num_guests, :start_date, :end_date, :id, :spot_id

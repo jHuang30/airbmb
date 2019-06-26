@@ -1,5 +1,6 @@
 import React from 'react';
 import SpotDetail from './spot_detail'
+// import {}
 
 
 
@@ -24,7 +25,6 @@ class SpotShow extends React.Component {
         if(!spot){
             return <div>Loading...</div>
         }
-
 
         return (
             <div>

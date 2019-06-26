@@ -3,11 +3,11 @@ export default class MarkerManager {
     constructor(map){
         this.map = map;
         this.markers = {};
+        this.removeMarker = this.removeMarker.bind(this);
 
     }
 
     updateMarkers(spots) {
-        debugger
         const spotsObj = {};
         if(spots.length === 1){
             spots.forEach(spot => {
@@ -18,42 +18,12 @@ export default class MarkerManager {
                 spotsObj[spot.id] = spot
             });
         }
-
         
-        spots.forEach(spot => {
-            if (spots.length === 1){
-                this.createMarkerFromSpot(spot)
-
-            }else {
-                this.createMarkerFromSpot(spot)
-            }
-        })
-        debugger
-        let existingMarkerIds = Object.keys(this.markers)
-        let currentSpotsIds = Object.keys(spotsObj)
-        debugger
-        // const xx = existingMarkerIds.filter(spotId => { 
-        //         debugger
-        //         !spotsObj[parseInt(spotId)]
-        //     })  
-        const xx = []
-        currentSpotsIds = currentSpotsIds.map( idString => parseInt(idString))
-        existingMarkerIds = existingMarkerIds.map( idStirng => parseInt(idStirng))
-        existingMarkerIds.forEach(id => {
-            debugger
-            if (!currentSpotsIds.includes(id)){
-                xx.push(id)
-            }
-        })
-            debugger
-            xx.forEach(spotId => {
-                debugger
-                this.removeMarker(this.markers[spotId])
-            })
+        spots.filter(spot => !this.markers[spot.id]).forEach(newSpot => this.createMarkerFromSpot(newSpot));
+        Object.keys(this.markers).filter(spotId => !spotsObj[spotId]).forEach(spotId => this.removeMarker(this.markers[spotId]))
     }
 
     createMarkerFromSpot(spot) {
-
         const lat = spot.lat;
         const long = spot.long
         const position = new google.maps.LatLng(lat, long);
@@ -71,7 +41,6 @@ export default class MarkerManager {
     }
 
     removeMarker(marker) {
-        debugger
         this.markers[marker.spotId].setMap(null);
         delete this.markers[marker.spotId];
     }

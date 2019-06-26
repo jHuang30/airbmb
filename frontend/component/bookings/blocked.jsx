@@ -20,7 +20,7 @@ class Blocked extends React.Component{
     render() {
         return (
             <div className='blocked-modal'>
-                <p>dates invalid, contain existing revervations, please select again</p>
+                <p>Opps, your selection contain existing reservations, please select other dates</p>
                 <button type='button' onClick={this.handleClick}>close</button>
             </div>
         )

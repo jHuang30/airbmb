@@ -36,7 +36,6 @@ export const logout = () => dispatch => (
 //     user
 // });
 const receiveCurrentUser = user => {
-    debugger
     return {
     type: RECEIVE_CURRENT_USER,
     user

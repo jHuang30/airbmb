@@ -1,0 +1,63 @@
+.booking-container {
+  position: relative;
+}
+.my-booking {
+  font-family: "Montserrat", sans-serif;
+  font-size: 28px;
+  position: absolute;
+  left: 10%;
+  top: -50px;
+  font-weight: 600;
+}
+
+.my-booking i {
+  color: #00a699;
+  margin-right: 20px;
+}
+
+.booking-detail {
+  display: flex;
+  width: 82%;
+  padding: 20px;
+  margin: 100px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(228, 228, 228);
+  border-radius: 4px;
+}
+
+.booking-detail img {
+  height: 400px;
+  width: 40%;
+  margin-right: 10%;
+}
+
+.booking-info {
+  padding: 20px;
+  font-size: 20px;
+}
+
+.booking-info p {
+  margin-top: 25px;
+}
+
+.booking-info button {
+  margin-top: 25px;
+  margin-right: 50px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  background: #00a699;
+}
+
+.go-back {
+  position: absolute;
+  left: 78%;
+  top: -50px;
+  font-weight: 600;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+}
