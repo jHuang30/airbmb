@@ -4,19 +4,15 @@
 //   REMOVE_REVIEW
 // } from "../action/reveiw_actions";
 import { RECEIVE_SPOT } from "../action/spot_action";
+import { RECEIVE_REVIEW } from "../action/reveiw_actions";
 
 const reviewsReducer = (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_SPOT:
-      // const ids = Object.keys(action.reviews);
-      // const reviewArrays = [];
-      // ids.forEach(id => {
-      //   id = parseInt(id);
-      //   const info = action.reviews[id];
-      //   reviewArrays.push(info);
-      // });
       return Object.assign({}, action.reviews);
+    case RECEIVE_REVIEW:
+      return Object.assign({}, state, { [action.review.id]: action.review });
     default:
       return state;
   }

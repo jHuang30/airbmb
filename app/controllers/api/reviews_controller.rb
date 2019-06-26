@@ -8,7 +8,7 @@ class Api::ReviewsController < ApplicationController
         @review.spot_id = params[:spot_id]
 
         if @review.save
-            render :index
+            render :show
         else
             render json: @review.errors.full_messages, status: 422
         end
