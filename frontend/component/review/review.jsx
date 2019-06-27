@@ -2,10 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import { closeModal } from "../../action/modal_actions";
 import { createReview } from "../../action/reveiw_actions";
+import { withRouter } from "react-router-dom";
 
-const msp = state => {
+const msp = (state, ownProps) => {
+  const pathname = ownProps.location.pathname;
   return {
-    spotId: parseInt(Object.keys(getState().entities.spots)[0])
+    spotId: parseInt(pathname[pathname.length - 1])
   };
 };
 
@@ -47,7 +49,7 @@ class Review extends React.Component {
     for (i = 0; i < this.stars.length; i++) {
       if (star === this.stars[i]) {
         for (j = 0; j <= i; j++) {
-          this.stars[j].style.color = "orange";
+          this.stars[j].style.color = "#006c70";
         }
       }
     }
@@ -69,7 +71,7 @@ class Review extends React.Component {
     }
     for (let i = 0; i < this.stars.length + 1; i++) {
       if (star === i) {
-        for (let j = 0; j < i; j++) this.stars[j].style.color = "orange";
+        for (let j = 0; j < i; j++) this.stars[j].style.color = "#006c70";
       }
     }
     this.setState({ rating: star });
@@ -134,7 +136,9 @@ class Review extends React.Component {
   }
 }
 
-export default connect(
-  msp,
-  mdp
-)(Review);
+export default withRouter(
+  connect(
+    msp,
+    mdp
+  )(Review)
+);
