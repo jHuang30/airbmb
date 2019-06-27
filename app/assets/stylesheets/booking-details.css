@@ -61,3 +61,15 @@
   font-size: 15px;
   cursor: pointer;
 }
+
+.contact{
+  position: absolute;
+  left: 65%;
+  top: -50px;
+  font-weight: 600;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+}

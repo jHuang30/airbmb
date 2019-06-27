@@ -58,6 +58,12 @@ class IndexNavbar extends React.Component {
       <div className="idx-navbar">
         <button
           className="idx-navbut"
+          onClick={() => this.props.openModal("about")}
+        >
+          Contact Info
+        </button>
+        <button
+          className="idx-navbut"
           onClick={() => this.props.history.push("/myAccount")}
         >
           My Account

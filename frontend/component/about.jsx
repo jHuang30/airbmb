@@ -16,20 +16,18 @@ class About extends React.Component{
     }
     render(){
         return (
-            <form className="about-form">
-                <p className="close-button" onClick={this.props.closeModal}>&times;</p>
-                    
-                <a href="mailto:jacihuang30@gmai.com">
-                    Email
-                </a>
+          <form className="about-form">
+            <p className="close-button" onClick={this.props.closeModal}>
+              &times;
+            </p>
 
-                <a href="https://github.com/jHuang30">
-                    GitHub
-                </a>
-
-               
-            </form>
-        )
+            <a href="mailto:jacihuang30@gmai.com">Email</a>
+            <a href="https://github.com/jHuang30">GitHub</a>
+            <a href="https://www.linkedin.com/in/jieying-huang/">
+              LinkedIn
+            </a>
+          </form>
+        );
     }   
 }
 

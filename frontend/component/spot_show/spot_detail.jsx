@@ -84,7 +84,13 @@ class SpotDetail extends React.Component {
 
     if (this.props.reviews.length !== 0) {
       this.props.reviews.forEach((review, idx) => {
-        allReviews.push(<p key={idx}>{review.body}</p>);
+        allReviews.push(
+          <p key={idx}>
+            <i class="far fa-comment-dots" />
+            &nbsp;&nbsp;
+            {review.body}
+          </p>
+        );
       });
     }
     return (

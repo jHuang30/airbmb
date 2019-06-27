@@ -36,7 +36,6 @@ export default class MarkerManager {
     });
     this.markers[spot.id] = marker;
     marker.addListener("click", () => {
-      console.log("hi");
     });
   }
 

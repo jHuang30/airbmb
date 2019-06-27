@@ -4,6 +4,7 @@ import { fetchBookings } from "../../action/booking_action";
 import { fetchSpots } from "../../action/spot_action";
 import BookingDetail from "./booking_detail";
 import { withRouter } from "react-router-dom";
+import { openModal } from "../../action/modal_actions";
 
 const msp = ({ entities: { users, bookings, spots }, session }) => {
   return {
@@ -16,7 +17,8 @@ const msp = ({ entities: { users, bookings, spots }, session }) => {
 const mdp = dispatch => {
   return {
     fetchBookings: (filter, value) => dispatch(fetchBookings(filter, value)),
-    fetchSpots: () => dispatch(fetchSpots())
+    fetchSpots: () => dispatch(fetchSpots()),
+    openModal: modal => dispatch(openModal(modal))
   };
 };
 
@@ -32,8 +34,7 @@ class Account extends React.Component {
 
   componentDidMount() {
     this.props.fetchBookings("user_id", this.props.currentUser.id);
-
-    // this.props.fetchSpots();
+    this.props.fetchSpots();
   }
 
   render() {
@@ -56,7 +57,6 @@ class Account extends React.Component {
         );
       });
     }
-
     return (
       <div className="booking-container">
         <p className="my-booking">
@@ -65,6 +65,15 @@ class Account extends React.Component {
           </span>
           My Bookings
         </p>
+
+        <button
+          type="button"
+          className="contact"
+          onClick={() => this.props.openModal("about")}
+        >
+          Contact Info
+        </button>
+
         <button type="button" className="go-back" onClick={this.handleClick}>
           Go back to all spots
         </button>

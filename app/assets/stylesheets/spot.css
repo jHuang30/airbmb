@@ -293,6 +293,10 @@ img {
   padding: 10px;
 }
 
+.show-all-reviews i {
+  color: #006c70
+}
+
 .review-container {
   margin-top: 18px;
   display: flex;

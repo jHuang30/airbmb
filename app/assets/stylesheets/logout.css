@@ -1,4 +1,4 @@
-.logout-button {
+.logout-info-button {
     float: right;
     background: transparent;
     color: white;
@@ -8,10 +8,10 @@
     font-size: 14px;
 }
 
-.logout-button:focus{
+.logout-info-button:focus{
     outline: none !important;
 }
 
-.logout-button:hover{
+.logout-info-button:hover{
     border-bottom: 1px solid white;
 }
