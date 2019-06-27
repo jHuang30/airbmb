@@ -6,7 +6,8 @@ import { updateFilter } from "../../action/filter_actions";
 
 const msp = state => {
   return {
-    spots: Object.values(state.entities.spots)
+    spots: Object.values(state.entities.spots),
+    filter: state.ui.filter
   };
 };
 
@@ -44,10 +45,6 @@ class SpotMap extends React.Component {
     if (spot) {
       this.MarkerManager.updateMarkers([spot]);
     } else {
-      // this.props.fetchSpots().then(payload => {
-      //     const spots = Object.values(payload.spots)
-      //     this.MarkerManager.updateMarkers(spots)
-      // })
       this.MarkerManager.updateMarkers(this.props.spots);
     }
   }
@@ -59,14 +56,23 @@ class SpotMap extends React.Component {
         this.map.setZoom(5);
       }
     } else {
-      this.MarkerManager.updateMarkers(this.props.spots);
-
-      // const myLat = this.props.spots[0].lat;
-      // const myLong = this.props.spots[0].long;
-      // if (prevProps.spots.length !== 0 && (prevProps.spots[0].lat !== myLat || prevProps.spots[0].long !== myLong)){
-      //     this.map.setCenter({lat:myLat, lng:myLong})
-      // this.map.setZoom(5)
-      // }
+      let allSpots = this.props.spots;
+      let filterLocation = [];
+      if (this.props.filter.location) {
+        this.props.filter.location.split(" ").forEach(word => {
+          filterLocation.push(word.charAt(0).toUpperCase() + word.slice(1));
+        });
+        filterLocation = filterLocation.join(" ");
+        allSpots = allSpots.filter(spot => {
+          return spot.location === filterLocation;
+        });
+      }
+      if (this.props.filter.num_guests) {
+        allSpots = allSpots.filter(spot => {
+          return spot.num_guests >= this.props.filter.num_guests;
+        });
+      }
+      this.MarkerManager.updateMarkers(allSpots);
     }
   }
 

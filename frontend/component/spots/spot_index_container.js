@@ -1,21 +1,25 @@
-import { connect } from 'react-redux';
-import SpotIndex from './spot_index';
-import { fetchSpots } from '../../action/spot_action';
-import { updateFilter } from '../../action/filter_actions'
+import { connect } from "react-redux";
+import SpotIndex from "./spot_index";
+import { fetchSpots } from "../../action/spot_action";
+import { updateFilter } from "../../action/filter_actions";
 
 const msp = state => {
-    return {
-        spots: Object.values(state.entities.spots),
-        bounds: state.ui.filter.bounds,
-        location: state.ui.filter.location
-    }
-}
+  return {
+    spots: Object.values(state.entities.spots),
+    bounds: state.ui.filter.bounds,
+    location: state.ui.filter.location,
+    filter: state.ui.filter
+  };
+};
 
 const mdp = dispatch => {
-    return {
-        fetchSpots: filter => dispatch(fetchSpots(filter)),
-        updateFilter: (filter, value) => dispatch(updateFilter(filter,value))
-    }
-}
+  return {
+    fetchSpots: filter => dispatch(fetchSpots(filter)),
+    updateFilter: (filter, value) => dispatch(updateFilter(filter, value))
+  };
+};
 
-export default connect(msp, mdp)(SpotIndex)
+export default connect(
+  msp,
+  mdp
+)(SpotIndex);

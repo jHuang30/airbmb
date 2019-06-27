@@ -11,44 +11,104 @@ class SpotIndex extends React.Component {
     this.state = { mapStatus: true };
   }
 
-  // componentDidMount(){
-  //     this.props.fetchSpots();
-  // }
+  componentDidMount() {
+    debugger
+    this.props.fetchSpots();
+  }
 
   handleClick() {
     this.setState({ mapStatus: !this.state.mapStatus });
   }
 
   render() {
-    let spots = [];
-    let lo = [];
+    debugger
+    // let spots = [];
+    // let lo = [];
+    // const { northEast, southWest } = this.props.bounds;
+
+    // if (this.props.location) {
+    //   this.props.location.split(" ").forEach(word => {
+    //     lo.push(word.charAt(0).toUpperCase() + word.slice(1));
+    //   });
+    // }
+    // lo = lo.join(" ");
+    // if (this.props.location && this.props.bounds) {
+    //   this.props.spots.forEach(spot => {
+    //     if (spot.location === lo && ) {
+    //       spots.push(spot);
+    //     }
+    //   });
+    // } else if (this.props.location) {
+    //   this.props.spots.forEach(spot => {
+    //     if (spot.location === lo) {
+    //       spots.push(spot);
+    //     }
+    //   });
+    // } else if (this.props.bounds) {
+    //   spots = this.props.spots;
+    // } else {
+    //   spots = this.props.spots;
+    // }
+    // ----------------------------
+    // const filteredSpots = [];
+    // spots.forEach( spot => {
+    //   const { northEast, southWest } = this.props.bounds;
+
+    //   if ( spot.lat <= northEast.lat &&
+    //        spot.lat >= southWest.lat &&
+    //        spot.lng <= northEast.lng &&
+    //        spot.lng >= southWest.lng
+    //     ) {
+    //       filteredSpots.push(spot);
+    //     }
+    // });
+
+    // ----------------
+    let spots = this.props.spots;
+    let location = [];
     if (this.props.location) {
+      debugger
       this.props.location.split(" ").forEach(word => {
-        lo.push(word.charAt(0).toUpperCase() + word.slice(1));
+        location.push(word.charAt(0).toUpperCase() + word.slice(1));
+      });
+      location = location.join(" ");
+      debugger;
+      spots = spots.filter(spot => {
+        return spot.location === location;
       });
     }
-    lo = lo.join(" ");
-    if (this.props.location && this.props.bounds) {
-      this.props.spots.forEach(spot => {
-        if (spot.location === lo) {
-          spots.push(spot);
-        }
+    debugger;
+
+    if (this.props.bounds.northEast) {
+      const { northEast, southWest } = this.props.bounds;
+      debugger;
+      spots = spots.filter(spot => {
+        debugger;
+        return (
+          spot.lat <= northEast.lat &&
+          spot.lat >= southWest.lat &&
+          spot.long <= northEast.lng &&
+          spot.long >= southWest.lng
+        );
       });
-    } else if (this.props.location) {
-      this.props.spots.forEach(spot => {
-        if (spot.location === lo) {
-          spots.push(spot);
-        }
+    }
+    debugger;
+    let allSpots = null;
+
+    if (this.props.filter.num_guests === undefined) {
+      allSpots = spots.map((spot, idx) => {
+        return <SpotIndexItem key={idx} spot={spot} />;
       });
-    } else if (this.props.bounds) {
-      spots = this.props.spots;
     } else {
-      spots = this.props.spots;
+      allSpots = spots.map((spot, idx) => {
+        if (this.props.filter.num_guests <= spot.num_guests) {
+          return <SpotIndexItem key={idx} spot={spot} />;
+        } else {
+          return null;
+        }
+      });
     }
 
-    let allSpots = spots.map((spot, idx) => {
-      return <SpotIndexItem key={idx} spot={spot} />;
-    });
     return (
       <div>
         <IndexNavbar />

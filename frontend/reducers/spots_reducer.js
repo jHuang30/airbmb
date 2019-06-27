@@ -4,8 +4,8 @@ const spotsReducer = (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_ALL_SPOTS:
-      // return Object.assign({}, state, action.spots)
-      return action.spots;
+      return Object.assign({}, state, action.spots);
+    // return action.spots;
     case RECEIVE_SPOT:
       return Object.assign({}, state, { [action.spot.id]: action.spot });
     default:

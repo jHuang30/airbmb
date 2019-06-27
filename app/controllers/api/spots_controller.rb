@@ -21,39 +21,42 @@ class Api::SpotsController < ApplicationController
     end
 
     def index
-        if spot_params[:location] && spot_params[:num_guests]
-            cap_location = spot_params[:location].split.map{|word| word.capitalize}.join(" ")
-            minNum = spot_params[:num_guests].to_i
-            @spots = Spot.where(location: cap_location).where('num_guests > ?', minNum)
-            if bounds
-                bound_spots = Spot.in_bounds(bounds)
-                @spots = @spots.select{|spot| bound_spots.include?(spot)}
-            end
+        # if spot_params[:location] && spot_params[:num_guests]
+        #     cap_location = spot_params[:location].split.map{|word| word.capitalize}.join(" ")
+        #     minNum = spot_params[:num_guests].to_i
+        #     @spots = Spot.where(location: cap_location).where('num_guests > ?', minNum)
+        #     if bounds
+        #         bound_spots = Spot.in_bounds(bounds)
+        #         @spots = @spots.select{|spot| bound_spots.include?(spot)}
+        #     end
 
-        elsif spot_params[:location]
-            cap_location = spot_params[:location].split.map{|word| word.capitalize}.join(" ")
-            @spots = Spot.where(location: cap_location)
-            # if bounds
-                # bound_spots = Spot.in_bounds(bounds)
-                # @spots = @spots.select{|spot| bound_spots.include?(spot)}
-            # end
+        # elsif spot_params[:location]
+        #     cap_location = spot_params[:location].split.map{|word| word.capitalize}.join(" ")
+        #     @spots = Spot.where(location: cap_location)
+        #     # if bounds
+        #         # bound_spots = Spot.in_bounds(bounds)
+        #         # @spots = @spots.select{|spot| bound_spots.include?(spot)}
+        #     # end
 
-        elsif spot_params[:num_guests]
-            minNum = spot_params[:num_guests].to_i
-            @spots = Spot.where('num_guests > ?', minNum)
-            if bounds
-                bound_spots = Spot.in_bounds(bounds)
-                @spots = @spots.select{|spot| bound_spots.include?(spot)}
-            end
+        # elsif spot_params[:num_guests]
+        #     minNum = spot_params[:num_guests].to_i
+        #     @spots = Spot.where('num_guests > ?', minNum)
+        #     if bounds
+        #         bound_spots = Spot.in_bounds(bounds)
+        #         @spots = @spots.select{|spot| bound_spots.include?(spot)}
+        #     end
 
-        elsif bounds
+        # elsif bounds
+        #     @spots = Spot.in_bounds(bounds)
+
+        # else
+        #     @spots = Spot.all
+        # end
+        if  bounds
             @spots = Spot.in_bounds(bounds)
-
-        else
+        else 
             @spots = Spot.all
         end
-
-        # @spots = Spot.in_bounds(bounds) if bounds
     end
 
     def update

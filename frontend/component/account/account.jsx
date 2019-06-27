@@ -33,7 +33,7 @@ class Account extends React.Component {
   componentDidMount() {
     this.props.fetchBookings("user_id", this.props.currentUser.id);
 
-    this.props.fetchSpots();
+    // this.props.fetchSpots();
   }
 
   render() {

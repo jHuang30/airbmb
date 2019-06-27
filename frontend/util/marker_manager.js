@@ -12,7 +12,7 @@ export default class MarkerManager {
         spotsObj[spot.id] = spot;
       });
     } else {
-      spots.forEach(spot => { 
+      spots.forEach(spot => {
         spotsObj[spot.id] = spot;
       });
     }
