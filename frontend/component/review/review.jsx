@@ -7,7 +7,7 @@ import { withRouter } from "react-router-dom";
 const msp = (state, ownProps) => {
   const pathname = ownProps.location.pathname;
   return {
-    spotId: parseInt(pathname[pathname.length - 1])
+    spotId: parseInt(pathname.split("/")[2])
   };
 };
 
