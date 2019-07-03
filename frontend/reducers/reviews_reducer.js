@@ -4,7 +4,7 @@
 //   REMOVE_REVIEW
 // } from "../action/reveiw_actions";
 import { RECEIVE_SPOT } from "../action/spot_action";
-import { RECEIVE_REVIEW } from "../action/reveiw_actions";
+import { RECEIVE_REVIEW, REMOVE_REVIEW, RECEIVE_REVIEW_USER } from "../action/reveiw_actions";
 
 const reviewsReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -13,6 +13,12 @@ const reviewsReducer = (state = {}, action) => {
       return Object.assign({}, action.reviews);
     case RECEIVE_REVIEW:
       return Object.assign({}, state, { [action.review.id]: action.review });
+    case REMOVE_REVIEW:
+      const newState = Object.assign({}, state);
+      delete newState[action.reviewId];
+      return newState;
+    case RECEIVE_REVIEW_USER:
+      return Object.assign({}, state, {[action.review.id]: action.review} )
     default:
       return state;
   }

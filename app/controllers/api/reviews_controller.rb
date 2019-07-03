@@ -8,7 +8,8 @@ class Api::ReviewsController < ApplicationController
         @review.spot_id = params[:spot_id]
 
         if @review.save
-            render :show
+            @user = @review.user
+            render :create
         else
             render json: @review.errors.full_messages, status: 422
         end
@@ -30,6 +31,8 @@ class Api::ReviewsController < ApplicationController
     def destroy
         @review = Review.find(params[:id])
         @review.destroy
+
+        render :show
     end
 
     def review_params

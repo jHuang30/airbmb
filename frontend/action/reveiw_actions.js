@@ -1,50 +1,57 @@
-import * as ReviewAPIUtil from '../util/review.api.util';
+import * as ReviewAPIUtil from "../util/review.api.util";
 
-export const RECEIVE_ALL_REVIEWS = 'RECEIVE_ALL_REVIEWS';
-export const RECEIVE_REVIEW = 'RECEIVE_REVIEW';
-export const REMOVE_REVIEW = 'REMOVE_REVIEW';
+export const RECEIVE_ALL_REVIEWS = "RECEIVE_ALL_REVIEWS";
+export const RECEIVE_REVIEW = "RECEIVE_REVIEW";
+export const REMOVE_REVIEW = "REMOVE_REVIEW";
+export const RECEIVE_REVIEW_USER = "RECEIVE_REVIEW_USER";
 
 const receiveAllReviews = reviews => ({
-    type: RECEIVE_ALL_REVIEWS,
-    reviews
-})
+  type: RECEIVE_ALL_REVIEWS,
+  reviews
+});
 
 const receiveReview = review => ({
-    type: RECEIVE_REVIEW,
-    review
-})
+  type: RECEIVE_REVIEW,
+  review
+});
 
-const removeReview = reviewId => ({
-    type: REMOVE_REVIEW,
-    reviewId
-})
+const receiveReviewAndUser = payload => ({
+  type: RECEIVE_REVIEW_USER,
+  review: payload.review,
+  user: payload.user
+});
+
+const removeReview = review => ({
+  type: REMOVE_REVIEW,
+  reviewId: review.id
+});
 
 export const fetchReviews = spotId => dispatch => {
-    return (
-        ReviewAPIUtil.fetchReviews(spotId).then(reviews => dispatch(receiveAllReviews(reviews)))
-    )
-}
+  return ReviewAPIUtil.fetchReviews(spotId).then(reviews =>
+    dispatch(receiveAllReviews(reviews))
+  );
+};
 
 export const fetchReview = (id, spotId) => dispatch => {
-    return (
-        ReviewAPIUtil.fetchReview(id, spotId).then(review => dispatch(receiveReview(review)))
-    )
-}
+  return ReviewAPIUtil.fetchReview(id, spotId).then(review =>
+    dispatch(receiveReview(review))
+  );
+};
 
 export const createReview = (review, spotId) => dispatch => {
-    return (
-        ReviewAPIUtil.createReview(review, spotId).then(review => dispatch(receiveReview(review)))
-    )
-}
+  return ReviewAPIUtil.createReview(review, spotId).then(payload =>
+    dispatch(receiveReviewAndUser(payload))
+  );
+};
 
 export const updateReview = (review, spotId) => dispatch => {
-    return (
-        ReviewAPIUtil.updateReview(review, spotId).then(review => dispatch(receiveReview(review)))
-    )
-}
+  return ReviewAPIUtil.updateReview(review, spotId).then(review =>
+    dispatch(receiveReview(review))
+  );
+};
 
 export const deleteReview = (reviewId, spotId) => dispatch => {
-    return (
-        ReviewAPIUtil.deleteReview(reviewId, spotId).then(review => dispatch(removeReview(review)))
-    )
-}
+  return ReviewAPIUtil.deleteReview(reviewId, spotId).then(review =>
+    dispatch(removeReview(review))
+  );
+};

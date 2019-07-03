@@ -1,10 +1,10 @@
 import React from "react";
 import { deleteBooking } from "../../action/booking_action";
-// import { createReview } from "../../action/reveiw_actions";
 import { connect } from "react-redux";
 import { openModal } from "../../action/modal_actions";
 import moment from "moment";
 import { withRouter } from "react-router-dom";
+import { fetchSpots } from "../../action/spot_action";
 
 const msp = state => {
   return {};
@@ -13,16 +13,20 @@ const msp = state => {
 const mdp = dispatch => {
   return {
     deleteBooking: bookingId => dispatch(deleteBooking(bookingId)),
-    openModal: modal => dispatch(openModal(modal))
+    openModal: modal => dispatch(openModal(modal)),
+    fetchSpots: () => dispatch(fetchSpots())
   };
 };
 
 class BookingDetail extends React.Component {
   constructor(props) {
-    props;
     super(props);
     this.handleCancel = this.handleCancel.bind(this);
     this.handleReview = this.handleReview.bind(this);
+  }
+
+  componentDidMount() {
+    // this.props.fetchSpots();
   }
 
   handleCancel(bookingId) {

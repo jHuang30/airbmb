@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { fetchSpot } from "../../action/spot_action";
+import { fetchSpot, fetchSpots } from "../../action/spot_action";
 import SpotShow from "./spot_show";
 import { selectSpot } from "../../reducers/selectors";
 // import { fetchBookings } from "../../action/booking_action";
@@ -15,7 +15,8 @@ const msp = (state, ownProps) => {
 
 const mdp = dispatch => {
   return {
-    fetchSpot: id => dispatch(fetchSpot(id))
+    fetchSpot: id => dispatch(fetchSpot(id)),
+    fetchSpots: () => dispatch(fetchSpots())
   };
 };
 

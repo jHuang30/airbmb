@@ -14,7 +14,8 @@ const msp = (state, ownProps) => {
 const mdp = dispatch => {
   return {
     closeModal: () => dispatch(closeModal()),
-    createReview: (review, spotId) => dispatch(createReview(review, spotId))
+    createReview: (review, spotId) => dispatch(createReview(review, spotId)),
+    
   };
 };
 

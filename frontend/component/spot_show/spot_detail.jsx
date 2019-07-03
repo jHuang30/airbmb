@@ -1,22 +1,27 @@
 import React from "react";
-import SpotShow from "./spot_show";
 import IndexNavbar from "../navbar/index_nav";
 import { openModal } from "../../action/modal_actions";
 import DatePicker from "../calendar/show_calendar";
 import BookingContainer from "../bookings/create_booking_container";
 import SpotMap from "../spot_map/spot_map";
 import { connect } from "react-redux";
-import { createReview } from "../../action/reveiw_actions";
+import { deleteReview, updateReview } from "../../action/reveiw_actions";
+import { withRouter } from "react-router-dom";
 
 const msp = state => {
+  debugger;
   return {
-    reviews: Object.values(state.entities.reviews)
+    reviews: Object.values(state.entities.reviews),
+    reviewIds: Object.values(state.entities.users)[0].review_ids
   };
 };
 
 const mdp = dispatch => {
   return {
-    openModal: modal => dispatch(openModal(modal))
+    openModal: modal => dispatch(openModal(modal)),
+    deleteReview: (reviewId, spotId) =>
+      dispatch(deleteReview(reviewId, spotId)),
+    updateReview: (review, spotId) => dispatch(updateReview(review, spotId))
   };
 };
 
@@ -24,10 +29,20 @@ class SpotDetail extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
   }
 
   handleSubmit() {
     this.props.openModal("review");
+  }
+
+  handleUpdate() {
+    this.props.openModal("review");
+  }
+
+  handleDelete(reviewId, spotId) {
+    this.props.deleteReview(reviewId, spotId);
   }
 
   render() {
@@ -82,14 +97,30 @@ class SpotDetail extends React.Component {
       (spot.num_bathrooms > 1 ? " bathrooms" : " bathroom");
     let allReviews = [];
 
+    const reviewIds = this.props.reviewIds;
+
+    const spotId = parseInt(this.props.match.params.spotId);
     if (this.props.reviews.length !== 0) {
       this.props.reviews.forEach((review, idx) => {
+        debugger;
+        let reviewButton = null;
+        if (reviewIds.includes(review.id)) {
+          reviewButton = (
+            <p className="review-buttons">
+              <button onClick={this.handleUpdate}>Update</button>
+              <button onClick={() => this.handleDelete(review.id, spotId)}>
+                Delete
+              </button>
+            </p>
+          );
+        }
         allReviews.push(
-          <p key={idx}>
-            <i class="far fa-comment-dots" />
+          <div className="review-section" key={idx}>
+            <i className="far fa-comment-dots" />
             &nbsp;&nbsp;
             {review.body}
-          </p>
+            {reviewButton}
+          </div>
         );
       });
     }
@@ -172,10 +203,7 @@ class SpotDetail extends React.Component {
             <DatePicker />
             <div className="review-container">
               <div className="review-show">Reviews</div>
-              <button
-                className="create-review-button"
-                onClick={this.handleSubmit}
-              >
+              <button className="review-button" onClick={this.handleSubmit}>
                 Write Review
               </button>
             </div>
@@ -191,7 +219,9 @@ class SpotDetail extends React.Component {
   }
 }
 
-export default connect(
-  msp,
-  mdp
-)(SpotDetail);
+export default withRouter(
+  connect(
+    msp,
+    mdp
+  )(SpotDetail)
+);
