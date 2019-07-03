@@ -9,7 +9,6 @@ import { deleteReview, updateReview } from "../../action/reveiw_actions";
 import { withRouter } from "react-router-dom";
 
 const msp = state => {
-  debugger;
   return {
     reviews: Object.values(state.entities.reviews),
     reviewIds: Object.values(state.entities.users)[0].review_ids
@@ -102,7 +101,6 @@ class SpotDetail extends React.Component {
     const spotId = parseInt(this.props.match.params.spotId);
     if (this.props.reviews.length !== 0) {
       this.props.reviews.forEach((review, idx) => {
-        debugger;
         let reviewButton = null;
         if (reviewIds.includes(review.id)) {
           reviewButton = (

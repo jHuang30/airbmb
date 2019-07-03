@@ -16,7 +16,11 @@ class Api::ReviewsController < ApplicationController
     end
 
     def index
-        @reviews = Review.where(spot_id: params[:spot_id])
+        if params[:spot_id] != 'undefined'
+            @reviews = Review.where(spot_id: params[:spot_id])
+        else
+            @reviews = Review.all
+        end
     end
 
     def update

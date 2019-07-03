@@ -3,7 +3,6 @@ import SpotDetail from "./spot_detail";
 
 class SpotShow extends React.Component {
   constructor(props) {
-    debugger
     super(props);
   }
 

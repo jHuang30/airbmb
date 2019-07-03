@@ -4,6 +4,7 @@ import IndexNavbar from "../navbar/index_nav";
 import { AuthRoute, ProtectedRoute } from "../../util/route_util";
 import SpotMap from "../spot_map/spot_map";
 
+
 class SpotIndex extends React.Component {
   constructor(props) {
     super(props);
@@ -12,7 +13,9 @@ class SpotIndex extends React.Component {
   }
 
   componentDidMount() {
+    debugger
     this.props.fetchSpots();
+    this.props.fetchReviews();
   }
 
   handleClick() {
@@ -59,7 +62,6 @@ class SpotIndex extends React.Component {
         }
       });
     }
-
     return (
       <div>
         <IndexNavbar />
