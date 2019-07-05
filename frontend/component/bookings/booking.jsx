@@ -1,277 +1,216 @@
-import React from 'react';
-import 'react-dates/initialize';
-import { DateRangePicker, isSameDay } from 'react-dates';
-import moment from 'moment';
-import { withRouter } from 'react-router-dom';
+import React from "react";
+import "react-dates/initialize";
+import { DateRangePicker, isSameDay } from "react-dates";
+import moment from "moment";
+import { withRouter } from "react-router-dom";
+import Dropdown from "./dropdown";
 
 class BookingForm extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = this.props.booking
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.calculateDays = this.calculateDays.bind(this);
-        this.handleClear = this.handleClear.bind(this);
-        this.isBlocked = this.isBlocked.bind(this);
-        this.isInvalid = this.isInvalid.bind(this);
+  constructor(props) {
+    super(props);
+    this.rating = 0;
+    this.state = this.props.booking;
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.calculateDays = this.calculateDays.bind(this);
+    this.handleClear = this.handleClear.bind(this);
+    this.isBlocked = this.isBlocked.bind(this);
+    this.isInvalid = this.isInvalid.bind(this);
+  }
+
+  componentDidMount() {
+    const { reviewIds } = this.props;
+    const allReviews = this.props.reviews.filter(review => {
+      return reviewIds.includes(review.id);
+    });
+    allReviews.forEach(review => {
+      this.rating += review.rating;
+    });
+    this.rating = Math.round(this.rating / reviewIds.length);
+  }
+
+  handleSubmit(e) {
+    const start = moment(this.state.startDate).format("L");
+    const end = moment(this.state.endDate).format("L");
+
+    e.preventDefault();
+    if (this.isInvalid(start, end, this.props.blockedDates)) {
+      this.props.openModal("blocked");
+    } else if (this.props.user) {
+      if (this.state.startDate && this.state.endDate) {
+        // this.props.action({start_date: start, end_date: end, num_guests: this.state.numGuest}, spotId).then(
+        //     (action) => {
+        //     this.props.history.push(`${this.props.history.location.pathname}/${action.booking.id}`)}
+        // )
+        this.props.storeBooking({
+          start_date: start,
+          end_date: end,
+          num_guests: this.state.numGuest,
+          rating: this.rating
+        });
+        this.props.history.push(
+          `${this.props.history.location.pathname}/confirmation`
+        );
+      }
+    } else {
+      this.props.openModal("login");
     }
+  }
 
-
-    handleSubmit(e){
-
-        const start = moment(this.state.startDate).format('L')
-        const end = moment(this.state.endDate).format('L')
-
-        e.preventDefault();
-        if (this.isInvalid(start, end, this.props.blockedDates)){
-            this.props.openModal('blocked')
-        }else if (this.props.user){
-            if (this.state.startDate && this.state.endDate){
-                // this.props.action({start_date: start, end_date: end, num_guests: this.state.numGuest}, spotId).then(
-                //     (action) => {
-                //     this.props.history.push(`${this.props.history.location.pathname}/${action.booking.id}`)}
-                // )
-                this.props.storeBooking({ start_date: start, end_date: end, num_guests: this.state.numGuest})
-                this.props.history.push(`${this.props.history.location.pathname}/confirmation`)
-            }
-        }else {
-            this.props.openModal('login')
+  isInvalid(start, end, dates) {
+    if (start && end) {
+      start = moment(start);
+      end = moment(end);
+      while (start <= end) {
+        for (let i = 0; i < dates.length; i++) {
+          if (dates[i]._i === start.format("YYYY-MM-DD")) {
+            return true;
+          }
         }
-
+        start = start.add(1, "days");
+      }
     }
+    return false;
+  }
 
-    isInvalid(start, end, dates){
+  isBlocked(day1) {
+    return this.props.blockedDates.some(day2 => {
+      return isSameDay(day1, day2);
+    });
+  }
 
-        if (start && end){
-            start = moment(start);
-            end = moment(end);
-            while(start <= end){
-                for (let i = 0; i < dates.length; i++) {
-            
-                    if ((dates[i]._i) === start.format('YYYY-MM-DD')){
-                
-                        return true
-                    }
-                }
-                start = start.add(1, 'days');
-            }
-        }
-        return false;
+  update(field) {
+    return e => {
+      this.setState({ [field]: e.target.value });
+    };
+  }
+
+  calculateDays(start, end) {
+    if ((start, end)) {
+      return Math.round(end.diff(start) / 86400000);
     }
-    
-    isBlocked(day1){
-        return this.props.blockedDates.some(day2 => {
-            return isSameDay(day1, day2)
-        })
-    }
+  }
 
-    
-    update(field){
-        return(e) => {
-            this.setState({[field]: e.target.value})
-            // let start = this.props.startDate
-            // const end = this.props.endDate
-            // if (end && start){
-            //     while(start <= end){
-            //      
-            //         if (this.props.blockedDates.includes(start)){
-            //             this.props.openModal('blocked')
-            //             this.setState({startDate: null, endDate: null})
-            //         }
-            //         start = start.add(1, 'days')
-            //     }
-            // }
-        }
-    }
-    
-    calculateDays(start, end){
-        if (start, end){
-            return Math.floor(end.diff(start) / 86400000);
-        }
-    }
-    
-    handleClear() {
-        this.setState({startDate: null, endDate: null})
-    }
-    
-    
-    render(){
-        
-        const formClass = (this.state.startDate && this.state.endDate) ? 'longer-form' : 'shorter-form'
-        
-        
-        const nights = this.state.startDate && this.state.endDate ? this.calculateDays(this.state.startDate, this.state.endDate) : null;
-        const text_night = nights > 1 ? "nights" : "night"
-        const price = this.props.spot.price;
-        const roomFee = nights * price;
-        const serviceFee = 16 * nights;
-        const otherFee = 17*nights;
-        const totalFee = roomFee + serviceFee + otherFee;
-        
+  handleClear() {
+    this.setState({ startDate: null, endDate: null });
+  }
 
-        
-        const displayFees = (this.state.startDate && this.state.endDate) ? (
-            <div className='fees'>
-                <div className="fee">
-                    <div>
-                        ${price} x {nights} {text_night}
-                    </div>
-                    <div>
-                        ${roomFee}
-                    </div>
-                </div>
+  render() {
+    const formClass =
+      this.state.startDate && this.state.endDate
+        ? "longer-form"
+        : "shorter-form";
 
-                <div className='fee'>
-                       <div>
-                           Service fees 
-                       </div> 
-                       <div>
-                           ${serviceFee}
-                       </div>
-                </div>
+    const nights =
+      this.state.startDate && this.state.endDate
+        ? this.calculateDays(this.state.startDate, this.state.endDate)
+        : null;
+    const text_night = nights > 1 ? "nights" : "night";
+    const price = this.props.spot.price;
+    const roomFee = nights * price;
+    const serviceFee = 16 * nights;
+    const otherFee = 17 * nights;
+    const totalFee = roomFee + serviceFee + otherFee;
 
-                <div className='fee'>
-                    <div>
-                        Occupancy taxes and fees
-                    </div>
-                    <div>
-                        ${otherFee}
-                    </div>
-                </div>
-
-                <div className='fee no-under-border'>
-                    <div>
-                        Total
-                    </div>
-                    <div>
-                        ${totalFee}
-                    </div>
-                </div>
-                <button className='clear-date' onClick={this.handleClear}>Clear Date</button>
+    const displayFees =
+      this.state.startDate && this.state.endDate ? (
+        <div className="fees">
+          <div className="fee">
+            <div>
+              ${price} x {nights} {text_night}
             </div>
-        ) : null;
+            <div>${roomFee}</div>
+          </div>
 
+          <div className="fee">
+            <div>Service fees</div>
+            <div>${serviceFee}</div>
+          </div>
 
-        const rating = 4;
-        const stars = [];
-        let i = 0
-        while (i < rating) {
-            stars.push(<i key={i} className="fas fa-star"></i>);
-            i++;
-        }
-        while (stars.length < 5) {
-            stars.push(<i key={stars.length} className="far fa-star"></i>);
-        }
-        
-        const options = [];
+          <div className="fee">
+            <div>Occupancy taxes and fees</div>
+            <div>${otherFee}</div>
+          </div>
 
-        if (this.props.spot.num_guests){
-        const maxGuests = this.props.spot.num_guests;
+          <div className="fee no-under-border">
+            <div>Total</div>
+            <div>${totalFee}</div>
+          </div>
+          <button className="clear-date" onClick={this.handleClear}>
+            Clear Date
+          </button>
+        </div>
+      ) : null;
 
-        for (let i = 0; i < maxGuests; i++) {
-            options.push(<option key={i} value={i+1}>{i+1}</option>)
-        }};
-
-
-        return (
-            <div className={formClass}>
-                <div className='order-form-price'>
-                    <span className='form-price'>$ {this.props.spot.price} </span>
-                    <span className='per-night'>per night</span>
-                    <p className='rating-star'>{stars}</p>
-                </div>
-
-                <div className='form-date'>
-                    Dates
-                 </div>
-
-                <DateRangePicker
-                    startDate={this.state.startDate} 
-                    startDateId="your_unique_start_date_id" 
-                    endDate={this.state.endDate} 
-                    endDateId="your_unique_end_date_id" 
-                    startDatePlaceholderText="Check In"
-                    endDatePlaceholderText="Check Out" 
-                    onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} 
-                    focusedInput={this.state.focusedInput} 
-                    onFocusChange={focusedInput => this.setState({ focusedInput })} 
-                    numberOfMonths={1}
-                    isDayBlocked={this.isBlocked}
-                />
-
-
-                <div className='form-date'>
-                    Guest
-                </div>
-
-                <form className='guest-num'>
-                    <select onChange={this.update('numGuest')}>
-                        {/* <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option> */}
-                        {options}
-                    </select>
-                    
-                </form>
-
-                {displayFees}
-
-                <button type='button' className='form-button' onClick={this.handleSubmit}>Book</button>
-                <p className='per-night won-charge'>You won’t be charged yet</p>
-{/* 
-
-                <div class="dropdown">
-                    <button onclick="myFunction()" class="dropbtn">
-                        <div id="guest" class="input">1 Guest</div>
-                        <svg class="slider" height="16px" width="20px">
-                            <path id="sv" d="m16.29 4.3a1 1 0 1 1 1.41 1.42l-8 8a1 1 0 0 1 -1.41 0l-8-8a1 1 0 1 1 1.41-1.42l7.29 7.29z" />
-                        </svg>
-                    </button>
-                    <div id="myDropdown" class="dropdown-content">
-                        <div id="home1" class="home">
-                            <div class="Children">
-                                <span class="c1">Adults</span>
-                                <br/>
-                                    <span class="children2"></span>
-                            </div>
-                            <div class="buttonbox">
-                                <button class="add" onclick='countdown("adultnum")' >-</button>
-                                <div id="adultnum" class="num">1</div>
-                                <button class="add" onclick='countup("adultnum")'>+</button>
-                            </div>
-                        </div>
-                         <div class="home">
-                            <div class="Children">
-                                <span class="c1">Children     </span>
-                                <br/>
-                                    <span class="children2"> Ages 2-12</span>
-                            </div>
-                            <div class="buttonbox">
-                                <button class="add" onclick="countdown('Childrennum')">-</button>
-                                <div id="Childrennum" class="num">0</div>
-                                <button class="add" onclick="countup('Childrennum')">+</button>
-                            </div>
-                        </div>
-                            <div class="home">
-                                <div class="Children">
-                                    <span class="c1">Infants</span>
-                                    <br/>
-                                        <span class="children2">Under 2</span>
-                                </div>
-                                <div class="buttonbox">
-                                    <button class="add" onclick="countdown('Infantnum')">-</button>
-                                    <div id="Infantnum" class="num">0</div>
-                                    <button class="add" onclick="countup('Infantnum')">+</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div> */}
-
-
-            </div>
-        )
+    const stars = [];
+    let i = 0;
+    while (i < this.rating) {
+      stars.push(<i key={i} className="fas fa-star" />);
+      i++;
+    }
+    while (stars.length < 5) {
+      stars.push(<i key={stars.length} className="far fa-star" />);
     }
 
+    const options = [];
+
+    if (this.props.spot.num_guests) {
+      const maxGuests = this.props.spot.num_guests;
+
+      for (let i = 0; i < maxGuests; i++) {
+        options.push(
+          <option key={i} value={i + 1}>
+            {i + 1}
+          </option>
+        );
+      }
+    }
+
+    return (
+      <div className={formClass}>
+        <div className="order-form-price">
+          <span className="form-price">$ {this.props.spot.price} </span>
+          <span className="per-night">per night</span>
+          <p className="rating-star">{stars}</p>
+        </div>
+
+        <div className="form-date">Dates</div>
+
+        <DateRangePicker
+          startDate={this.state.startDate}
+          startDateId="your_unique_start_date_id"
+          endDate={this.state.endDate}
+          endDateId="your_unique_end_date_id"
+          startDatePlaceholderText="Check In"
+          endDatePlaceholderText="Check Out"
+          onDatesChange={({ startDate, endDate }) =>
+            this.setState({ startDate, endDate })
+          }
+          focusedInput={this.state.focusedInput}
+          onFocusChange={focusedInput => this.setState({ focusedInput })}
+          numberOfMonths={1}
+          isDayBlocked={this.isBlocked}
+        />
+
+        <div className="form-date">Guest</div>
+
+        <form className="guest-num">
+          <select onChange={this.update("numGuest")}>{options}</select>
+          {/* <Dropdown /> */}
+        </form>
+
+        {displayFees}
+
+        <button
+          type="button"
+          className="form-button"
+          onClick={this.handleSubmit}
+        >
+          Book
+        </button>
+        <p className="per-night won-charge">You won’t be charged yet</p>
+      </div>
+    );
+  }
 }
 
-export default withRouter(BookingForm)
+export default withRouter(BookingForm);

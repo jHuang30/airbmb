@@ -7,25 +7,34 @@ import About from "../../component/about";
 import Amenities from "../spot_show/amenities";
 import ConfirmedBooking from "../bookings/confirmed_booking";
 import Blocked from "../bookings/blocked";
-import Review from '../review/review';
-import NoReview from '../review/no_review';
-
-
+import CreateReview from "../review/create_review_container";
+import NoReview from "../review/no_review";
+import UpdateReview from "../review/edit_review_container";
 
 function Modal(props) {
   const { closeModal } = props;
+  let review;
+  let spotId;
+
   let amenities;
   let modal;
   if (props.modal && typeof props.modal === "object") {
     modal = props.modal.modal;
-    amenities = props.modal.amenities;
+    if (props.modal.amenities) {
+      amenities = props.modal.amenities;
+    } else if (props.modal.review) {
+      review = props.modal.review;
+      spotId = props.modal.spotId;
+    }
   } else {
     modal = props.modal;
   }
   if (!modal) {
     return null;
   }
+
   let component;
+  debugger;
   switch (modal) {
     case "login":
       component = <LoginFormContainer />;
@@ -46,7 +55,10 @@ function Modal(props) {
       component = <Blocked />;
       break;
     case "review":
-      component = <Review />;
+      component = <CreateReview />;
+      break;
+    case "updateReview":
+      component = <UpdateReview review={review} spotId={spotId} />;
       break;
     case "cannotReview":
       component = <NoReview />;

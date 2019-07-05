@@ -23,7 +23,9 @@ const msp = (state, ownProps) => {
     booking: { startDate: null, endDate: null, numGuest: 1 },
     formType: "Create Booking",
     user: state.session.id,
-    blockedDates
+    blockedDates,
+    reviewIds: ownProps.spot.review_ids,
+    reviews: Object.values(state.entities.reviews)
   };
 };
 

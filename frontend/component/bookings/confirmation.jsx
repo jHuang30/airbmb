@@ -78,7 +78,7 @@ class Confirmation extends React.Component {
     const otherFee = 17 * nights;
     const totalFee = roomFee + serviceFee + otherFee;
 
-    const rating = 4;
+    const rating = booking.rating;
     const stars = [];
     let i = 0;
     while (i < rating) {

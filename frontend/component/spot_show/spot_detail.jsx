@@ -17,7 +17,7 @@ const msp = state => {
 
 const mdp = dispatch => {
   return {
-    openModal: modal => dispatch(openModal(modal)),
+    openModal: (modal, info) => dispatch(openModal(modal, info)),
     deleteReview: (reviewId, spotId) =>
       dispatch(deleteReview(reviewId, spotId)),
     updateReview: (review, spotId) => dispatch(updateReview(review, spotId))
@@ -33,11 +33,14 @@ class SpotDetail extends React.Component {
   }
 
   handleSubmit() {
+    debugger
     this.props.openModal("review");
   }
 
-  handleUpdate() {
-    this.props.openModal("review");
+  handleUpdate(review, spotId) {
+    this.props.openModal("updateReview", {
+      info: { review: review, spotId: spotId }
+    });
   }
 
   handleDelete(reviewId, spotId) {
@@ -105,7 +108,9 @@ class SpotDetail extends React.Component {
         if (reviewIds.includes(review.id)) {
           reviewButton = (
             <p className="review-buttons">
-              <button onClick={this.handleUpdate}>Update</button>
+              <button onClick={() => this.handleUpdate(review, spotId)}>
+                Update
+              </button>
               <button onClick={() => this.handleDelete(review.id, spotId)}>
                 Delete
               </button>

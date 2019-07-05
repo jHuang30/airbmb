@@ -8,12 +8,10 @@ const msp = state => {
   };
 };
 
-
 class SpotIndexItem extends React.Component {
   constructor(props) {
     super(props);
   }
-
 
   render() {
     const { spot } = this.props;
@@ -26,7 +24,7 @@ class SpotIndexItem extends React.Component {
       allRatings += review.rating;
     });
 
-    const average_rating = allRatings / reviewIds.length;
+    const average_rating = Math.round(allRatings / reviewIds.length);
 
     const stars = [];
     let i = 0;
