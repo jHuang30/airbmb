@@ -12,7 +12,8 @@ class Api::BookingsController < ApplicationController
 
 
         if @booking.save
-            render :show
+            @user = @booking.user
+            render :create
         else
             render json: @booking.errors.full_messages, status: 422
         end

@@ -11,9 +11,9 @@ const bookingsReducer = (state = {}, action) => {
     case RECEIVE_ALL_BOOKINGS:
       return action.filter;
     case RECEIVE_BOOKING:
-      return Object.assign({}, { [action.filter.id]: action.filter });
+      return Object.assign({}, state, { [action.booking.id]: action.booking });
     case RECEIVE_SPOT:
-      return Object.assign({},action.bookings);
+      return Object.assign({}, action.bookings);
     case REMOVE_BOOKING:
       const newState = Object.assign({}, state);
       delete newState[action.bookingId.id];

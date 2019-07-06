@@ -44,7 +44,6 @@ class Confirmation extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-
     this.props
       .createBooking(this.props.bookingInfo, this.props.spot.id)
       .then(success => {

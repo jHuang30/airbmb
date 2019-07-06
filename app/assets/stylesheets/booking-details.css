@@ -62,7 +62,7 @@
   cursor: pointer;
 }
 
-.contact{
+.contact {
   position: absolute;
   left: 65%;
   top: -50px;
@@ -72,4 +72,29 @@
   border-radius: 5px;
   font-size: 15px;
   cursor: pointer;
+}
+
+.no-booking-account .contact {
+  position: absolute;
+  left: 60%;
+  top: 7%;
+}
+
+.no-booking-account .go-back {
+  position: absolute;
+  left: 75%;
+  top: 7%;
+}
+
+.no-booking-account p {
+  position: absolute;
+  left: 28%;
+  top: 35%;
+  font-size: 35px;
+  
+}
+
+.no-booking-account i {
+  margin-right: 25px;
+  color: #00a699;
 }

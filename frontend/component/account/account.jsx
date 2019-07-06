@@ -57,29 +57,55 @@ class Account extends React.Component {
         );
       });
     }
-    return (
-      <div className="booking-container">
-        <p className="my-booking">
-          <span>
-            <i className="far fa-calendar-check" />
-          </span>
-          My Bookings
-        </p>
 
-        <button
-          type="button"
-          className="contact"
-          onClick={() => this.props.openModal("about")}
-        >
-          Contact Info
-        </button>
+    const bookingShow =
+      bookingDetails.length === 0 ? (
+        <div className="no-booking-account">
+          <div>
+            <button
+              type="button"
+              className="contact"
+              onClick={() => this.props.openModal("about")}
+            >
+              Contact Info
+            </button>
+            <button
+              type="button"
+              className="go-back"
+              onClick={this.handleClick}
+            >
+              Go back to all spots
+            </button>
+            <p>
+              <i class="far fa-frown-open"></i>
+              You have no bookings yet. 
+            </p>
+          </div>
+        </div>
+      ) : (
+        <div className="booking-container">
+          <p className="my-booking">
+            <span>
+              <i className="far fa-calendar-check" />
+            </span>
+            My Bookings
+          </p>
 
-        <button type="button" className="go-back" onClick={this.handleClick}>
-          Go back to all spots
-        </button>
-        <div className="user-booking-page">{bookingDetails}</div>
-      </div>
-    );
+          <button
+            type="button"
+            className="contact"
+            onClick={() => this.props.openModal("about")}
+          >
+            Contact Info
+          </button>
+
+          <button type="button" className="go-back" onClick={this.handleClick}>
+            Go back to all spots
+          </button>
+          <div className="user-booking-page">{bookingDetails}</div>
+        </div>
+      );
+    return <div>{bookingShow}</div>;
   }
 }
 

@@ -34,7 +34,6 @@ function Modal(props) {
   }
 
   let component;
-  debugger;
   switch (modal) {
     case "login":
       component = <LoginFormContainer />;

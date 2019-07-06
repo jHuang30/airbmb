@@ -4,7 +4,7 @@ const modalReducer = (state = null, action) => {
   debugger;
   switch (action.type) {
     case OPEN_MODAL:
-      if (action.amenities) {
+      if (action.ames) {
         return { modal: action.modal, amenities: action.ames };
       } else if (action.review) {
         return {

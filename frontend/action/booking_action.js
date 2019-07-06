@@ -11,11 +11,12 @@ const receiveAllBookings = (filter, value) => ({
   value
 });
 
-const receiveBooking = (filter, value) => {
+
+const receiveBooking = payload => {
   return {
     type: RECEIVE_BOOKING,
-    filter,
-    value
+    booking: payload.booking,
+    user: payload.user
   };
 };
 
@@ -41,8 +42,8 @@ export const fetchBooking = id => dispatch =>
   );
 
 export const createBooking = (booking, spotId) => dispatch => {
-  return BookingAPIUtil.createBooking(booking, spotId).then(booking =>
-    dispatch(receiveBooking(booking))
+  return BookingAPIUtil.createBooking(booking, spotId).then(payload =>
+    dispatch(receiveBooking(payload))
   );
 };
 

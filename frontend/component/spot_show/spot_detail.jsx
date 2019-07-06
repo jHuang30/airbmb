@@ -36,7 +36,6 @@ class SpotDetail extends React.Component {
   }
 
   handleSubmit() {
-    debugger;
     this.props.openModal("review");
   }
 

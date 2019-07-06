@@ -1,5 +1,6 @@
 import { RECEIVE_CURRENT_USER } from "../action/session_actions";
 import { RECEIVE_REVIEW_USER } from "../action/reveiw_actions";
+import { RECEIVE_BOOKING } from "../action/booking_action";
 
 const usersReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -8,6 +9,8 @@ const usersReducer = (state = {}, action) => {
     case RECEIVE_CURRENT_USER:
       return Object.assign({}, { [action.user.id]: action.user });
     case RECEIVE_REVIEW_USER:
+      return Object.assign({}, { [action.user.id]: action.user });
+    case RECEIVE_BOOKING:
       return Object.assign({}, { [action.user.id]: action.user });
     default:
       return state;
