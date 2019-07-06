@@ -1,170 +1,167 @@
-.whole-container{
-    max-width: 1080px;
-    padding: 5% 10%;
-    display: flex;
-    color: #484848;
+.whole-container {
+  max-width: 1080px;
+  padding: 5% 10%;
+  display: flex;
+  color: #484848;
 }
 
 .review-text {
-    font-weight: 800;
-    font-size: 25px;
-    margin-bottom: 25px;
+  font-weight: 800;
+  font-size: 25px;
+  margin-bottom: 25px;
 }
 
 .left-container {
-    width: 58.3333%;
-    float: left;
+  width: 58.3333%;
+  float: left;
 }
 
-.rare-find{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 80%;
-    padding: 12px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgb(228, 228, 228);
-    border-radius: 4px;
-    text-align: center;
+.rare-find {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 80%;
+  padding: 12px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(228, 228, 228);
+  border-radius: 4px;
+  text-align: center;
 }
 
-.rare-find img{
-    padding: 0 20px;
-    height: 40px; 
-    width: 36px;
-    border-style: none;
+.rare-find img {
+  padding: 0 20px;
+  height: 40px;
+  width: 36px;
+  border-style: none;
 }
 
-.keep-in-mind{
-    font-size: 20px;
-    padding:35px 0 0 0;
-    font-weight: 600;
-    color: #484848;
+.keep-in-mind {
+  font-size: 20px;
+  padding: 35px 0 0 0;
+  font-weight: 600;
+  color: #484848;
 }
 
 .icon-text {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .some-rules {
-    padding: 25px 0;
+  padding: 25px 0;
 }
 
-.icon-text{
-    padding: 20px 0;
+.icon-text {
+  padding: 20px 0;
 }
 
 .rule-pic {
-    width:20px;
-    height: 20px;
-    border: 1px solid black;
-    margin-right: 20px;
-    display: flex;
-    justify-content: center;
-    justify-items: center;
-    align-content: center;
-    align-items: center;
-    color: #d93900;
+  width: 20px;
+  height: 20px;
+  border: 1px solid black;
+  margin-right: 20px;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+  align-items: center;
+  color: #d93900;
 }
 
-.confirm-button{
-    border: none;
-    background: #008489;
-    color: white;
-    width:  200px;
-    height: 50px;
-    font-size: 18px;
-    border-radius: 5px;
+.confirm-button {
+  border: none;
+  background: #008489;
+  color: white;
+  width: 200px;
+  height: 50px;
+  font-size: 18px;
+  border-radius: 5px;
 }
 
-.right-container{
-    width:41%;
-    height: 75vh;
-    border: 1px solid rgb(228, 228, 228);
+.right-container {
+  width: 41%;
+  height: 75vh;
+  border: 1px solid rgb(228, 228, 228);
 }
 
 .item-inside-pic {
-    display:flex;
-    align-content: space-between;
-    align-items: center
+  display: flex;
+  align-content: space-between;
+  align-items: center;
 }
 
-.pic-holder{
-    height: 100%;
-    width: 100%;
+.pic-holder {
+  height: 100%;
+  width: 100%;
 }
 .item-inside-pic img {
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 85%;
 }
 
 .item-inside {
-    padding: 10%;
-    height: 100%;
+  padding: 10%;
+  height: 100%;
 }
 .final {
-    border-bottom: 1px solid rgb(228, 228, 228);
-    display: flex;
-    align-items: center;
+  border-bottom: 1px solid rgb(228, 228, 228);
+  display: flex;
+  align-items: center;
 }
 .final-desc {
-    height: 16%;
+  height: 16%;
 }
 
 .final-date {
-    height: 14%;
+  height: 14%;
 }
 
 .final-fee-detail {
-    height: 25%;
+  height: 25%;
 }
 
 .final-fee-total {
-    height: 15%;
+  height: 15%;
 }
 
-
-.final-date i{
-    padding-right: 10px;
-    padding-top: 15px;
+.final-date i {
+  padding-right: 10px;
+  padding-top: 15px;
 }
 
-.date-holder{
-    display: flex;
-    flex-direction: column;
+.date-holder {
+  display: flex;
+  flex-direction: column;
 }
 
-.final-fee-con{
-    width: 100%
+.final-fee-con {
+  width: 100%;
 }
 
 .final-fee {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin: 15px 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
 }
 
-.final-fee-total .final-fee{
-    font-weight: 600;
-
+.final-fee-total .final-fee {
+  font-weight: 600;
 }
 
 .final-info {
-    height: 20%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .final-info i {
-    color: orange;
+  color: orange;
 }
 
 .final-date #arrow {
-    margin-left: 15px;
+  margin-left: 15px;
 }

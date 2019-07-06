@@ -77,8 +77,8 @@ class Account extends React.Component {
               Go back to all spots
             </button>
             <p>
-              <i class="far fa-frown-open"></i>
-              You have no bookings yet. 
+              <i className="far fa-frown-open" />
+              You have no bookings yet.
             </p>
           </div>
         </div>
