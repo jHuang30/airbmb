@@ -9,9 +9,12 @@ import { deleteReview, updateReview } from "../../action/reveiw_actions";
 import { withRouter } from "react-router-dom";
 
 const msp = state => {
+  const reviewIds = state.session.id
+    ? Object.values(state.entities.users)[0].review_ids
+    : [];
   return {
     reviews: Object.values(state.entities.reviews),
-    reviewIds: Object.values(state.entities.users)[0].review_ids
+    reviewIds
   };
 };
 
@@ -33,7 +36,7 @@ class SpotDetail extends React.Component {
   }
 
   handleSubmit() {
-    debugger
+    debugger;
     this.props.openModal("review");
   }
 

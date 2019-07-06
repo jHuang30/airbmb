@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 const msp = state => {
+  debugger;
   return {
     reviews: Object.values(state.entities.reviews)
   };
