@@ -37,10 +37,6 @@ class BookingForm extends React.Component {
       this.props.openModal("blocked");
     } else if (this.props.user) {
       if (this.state.startDate && this.state.endDate) {
-        // this.props.action({start_date: start, end_date: end, num_guests: this.state.numGuest}, spotId).then(
-        //     (action) => {
-        //     this.props.history.push(`${this.props.history.location.pathname}/${action.booking.id}`)}
-        // )
         this.props.storeBooking({
           start_date: start,
           end_date: end,

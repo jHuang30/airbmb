@@ -60,11 +60,9 @@ class Review extends React.Component {
   render() {
     let styles = Array(5).fill({ color: "lightgrey" });
     const currentStars = this.props.review.rating;
-    debugger;
     for (let i = 0; i < currentStars; i++) {
       styles[i] = { color: "#006c70" };
     }
-    debugger;
     return (
       <form className="review-form" onSubmit={this.handleSubmit}>
         <p className="close-button" onClick={this.props.closeModal}>

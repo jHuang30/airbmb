@@ -72,11 +72,13 @@ class SpotMap extends React.Component {
           return spot.num_guests >= this.props.filter.num_guests;
         });
       }
+
       this.MarkerManager.updateMarkers(allSpots);
     }
   }
 
   registerListeners() {
+    debugger;
     google.maps.event.addListener(this.map, "idle", () => {
       const { north, south, east, west } = this.map.getBounds().toJSON();
       const bounds = {

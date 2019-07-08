@@ -20,8 +20,6 @@ const msp = (state, ownProps) => {
 
 const mdp = dispatch => {
   return {
-    // updateBooking: booking => dispatch(updateBooking(booking)),
-    // deleteBooking: bookingId => dispatch(deleteBooking(bookingId)),
     fetchSpot: id => dispatch(fetchSpot(id)),
     createBooking: (booking, spotId) =>
       dispatch(createBooking(booking, spotId)),
@@ -53,8 +51,6 @@ class Confirmation extends React.Component {
 
   componentDidMount() {
     const spotId = parseInt(this.props.match.params.spotId);
-    // const bookingId = parseInt(this.props.match.params.bookingId);
-    // this.props.fetchBooking(bookingId);
 
     this.props.fetchSpot(spotId);
   }
