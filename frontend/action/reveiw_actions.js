@@ -18,7 +18,8 @@ const receiveReview = review => ({
 const receiveReviewAndUser = payload => ({
   type: RECEIVE_REVIEW_USER,
   review: payload.review,
-  user: payload.user
+  user: payload.user,
+  booking: payload.booking
 });
 
 const removeReview = review => ({
@@ -38,8 +39,8 @@ export const fetchReview = (id, spotId) => dispatch => {
   );
 };
 
-export const createReview = (review, spotId) => dispatch => {
-  return ReviewAPIUtil.createReview(review, spotId).then(payload =>
+export const createReview = (review, spotId, bookingId) => dispatch => {
+  return ReviewAPIUtil.createReview(review, spotId, bookingId).then(payload =>
     dispatch(receiveReviewAndUser(payload))
   );
 };

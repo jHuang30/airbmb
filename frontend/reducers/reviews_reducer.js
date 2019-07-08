@@ -1,8 +1,3 @@
-// import {
-//   RECEIVE_ALL_REVIEWS,
-//   RECEIVE_REVIEW,
-//   REMOVE_REVIEW
-// } from "../action/reveiw_actions";
 import { RECEIVE_SPOT } from "../action/spot_action";
 import {
   RECEIVE_REVIEW,

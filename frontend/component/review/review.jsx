@@ -21,7 +21,7 @@ class Review extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props
-      .action(this.state, this.props.spotId)
+      .action(this.state, this.props.spotId, this.props.bookingId)
       .then(this.props.closeModal());
   }
 
@@ -58,41 +58,53 @@ class Review extends React.Component {
   }
 
   render() {
+    let styles = Array(5).fill({ color: "lightgrey" });
+    const currentStars = this.props.review.rating;
+    debugger;
+    for (let i = 0; i < currentStars; i++) {
+      styles[i] = { color: "#006c70" };
+    }
+    debugger;
     return (
       <form className="review-form" onSubmit={this.handleSubmit}>
         <p className="close-button" onClick={this.props.closeModal}>
           &times;
         </p>
         <p className="review-form-stars">
-          <span
+          <i
             onMouseOver={() => this.getStar(1)}
             onMouseOut={() => this.cancelStar(1)}
             onClick={() => this.selectStar(1)}
-            className="fa fa-star checked"
+            className="fa fa-star"
+            style={styles[0]}
           />
-          <span
+          <i
             onMouseOver={() => this.getStar(2)}
             onMouseOut={() => this.cancelStar(2)}
             onClick={() => this.selectStar(2)}
             className="fa fa-star"
+            style={styles[1]}
           />
-          <span
+          <i
             onMouseOver={() => this.getStar(3)}
             onMouseOut={() => this.cancelStar(3)}
             onClick={() => this.selectStar(3)}
             className="fa fa-star"
+            style={styles[2]}
           />
-          <span
+          <i
             onMouseOver={() => this.getStar(4)}
             onMouseOut={() => this.cancelStar(4)}
             onClick={() => this.selectStar(4)}
             className="fa fa-star"
+            style={styles[3]}
           />
-          <span
+          <i
             onMouseOver={() => this.getStar(5)}
             onMouseOut={() => this.cancelStar(5)}
             onClick={() => this.selectStar(5)}
             className="fa fa-star"
+            style={styles[4]}
           />
         </p>
 

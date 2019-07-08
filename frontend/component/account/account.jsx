@@ -5,6 +5,7 @@ import { fetchSpots } from "../../action/spot_action";
 import BookingDetail from "./booking_detail";
 import { withRouter } from "react-router-dom";
 import { openModal } from "../../action/modal_actions";
+import { fetchReviews } from "../../action/reveiw_actions";
 
 const msp = ({ entities: { users, bookings, spots }, session }) => {
   return {
@@ -18,7 +19,8 @@ const mdp = dispatch => {
   return {
     fetchBookings: (filter, value) => dispatch(fetchBookings(filter, value)),
     fetchSpots: () => dispatch(fetchSpots()),
-    openModal: modal => dispatch(openModal(modal))
+    openModal: modal => dispatch(openModal(modal)),
+    fetchReviews: () => dispatch(fetchReviews())
   };
 };
 
@@ -35,6 +37,7 @@ class Account extends React.Component {
   componentDidMount() {
     this.props.fetchBookings("user_id", this.props.currentUser.id);
     this.props.fetchSpots();
+    this.props.fetchReviews();
   }
 
   render() {

@@ -1,7 +1,6 @@
 import { OPEN_MODAL, CLOSE_MODAL } from "../action/modal_actions";
 
 const modalReducer = (state = null, action) => {
-  debugger;
   switch (action.type) {
     case OPEN_MODAL:
       if (action.ames) {
@@ -11,6 +10,11 @@ const modalReducer = (state = null, action) => {
           modal: action.modal,
           review: action.review,
           spotId: action.spotId
+        };
+      } else if (action.bookingId) {
+        return {
+          modal: action.modal,
+          bookingId: action.bookingId
         };
       } else {
         return {

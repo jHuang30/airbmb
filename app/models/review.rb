@@ -6,4 +6,7 @@ class Review < ApplicationRecord
 
     belongs_to :spot,
         class_name: 'Spot'
+        
+    belongs_to :booking,
+        class_name: 'Booking'
 end

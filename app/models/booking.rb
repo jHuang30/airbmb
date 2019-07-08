@@ -6,4 +6,7 @@ class Booking < ApplicationRecord
 
     belongs_to :spot,
         class_name: 'Spot'
+
+    has_many :reviews,
+        class_name: 'Review'
 end

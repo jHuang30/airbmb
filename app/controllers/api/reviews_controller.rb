@@ -4,9 +4,11 @@ class Api::ReviewsController < ApplicationController
         @review = Review.new(review_params)
         @review.user_id = current_user.id
         @review.spot_id = params[:spot_id]
+        @review.booking_id = params[:bookingId]
 
         if @review.save
             @user = @review.user
+            @booking = @review.booking
             render :create
         else
             render json: @review.errors.full_messages, status: 422

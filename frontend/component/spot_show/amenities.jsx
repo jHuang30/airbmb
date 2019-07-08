@@ -43,7 +43,6 @@ class Amenities extends React.Component {
     };
 
     const allAmenities = [];
-    debugger;
     if (this.props.ames) {
       Object.values(this.props.ames).map((ame, idx) => {
         allAmenities.push(

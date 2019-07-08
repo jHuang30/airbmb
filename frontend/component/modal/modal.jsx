@@ -15,7 +15,7 @@ function Modal(props) {
   const { closeModal } = props;
   let review;
   let spotId;
-
+  let bookingId;
   let amenities;
   let modal;
   if (props.modal && typeof props.modal === "object") {
@@ -25,6 +25,8 @@ function Modal(props) {
     } else if (props.modal.review) {
       review = props.modal.review;
       spotId = props.modal.spotId;
+    } else if (props.modal.bookingId) {
+      bookingId = props.modal.bookingId;
     }
   } else {
     modal = props.modal;
@@ -54,7 +56,7 @@ function Modal(props) {
       component = <Blocked />;
       break;
     case "review":
-      component = <CreateReview />;
+      component = <CreateReview bookingId={bookingId} />;
       break;
     case "updateReview":
       component = <UpdateReview review={review} spotId={spotId} />;

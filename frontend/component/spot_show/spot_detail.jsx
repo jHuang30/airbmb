@@ -30,14 +30,14 @@ const mdp = dispatch => {
 class SpotDetail extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
   }
 
-  handleSubmit() {
-    this.props.openModal("review");
-  }
+  // handleSubmit() {
+  //   this.props.openModal("review");
+  // }
 
   handleUpdate(review, spotId) {
     this.props.openModal("updateReview", {
@@ -123,7 +123,7 @@ class SpotDetail extends React.Component {
           <div className="review-section" key={idx}>
             <i className="far fa-comment-dots" />
             &nbsp;&nbsp;
-            {review.body}
+            <span id="review-body">{review.body}</span>
             {reviewButton}
           </div>
         );
@@ -206,12 +206,12 @@ class SpotDetail extends React.Component {
             <div className="avail">Availability:</div>
 
             <DatePicker />
-            <div className="review-container">
+            {/* <div className="review-container"> */}
               <div className="review-show">Reviews</div>
-              <button className="review-button" onClick={this.handleSubmit}>
+              {/* <button className="review-button" onClick={this.handleSubmit}>
                 Write Review
-              </button>
-            </div>
+              </button> */}
+            {/* </div> */}
             <div className="show-all-reviews">{allReviews}</div>
 
             <SpotMap spot={spot} />

@@ -4,17 +4,17 @@ import { connect } from "react-redux";
 import { openModal } from "../../action/modal_actions";
 import moment from "moment";
 import { withRouter } from "react-router-dom";
-import { fetchSpots } from "../../action/spot_action";
 
 const msp = state => {
-  return {};
+  return {
+    reviews: state.entities.reviews
+  };
 };
 
 const mdp = dispatch => {
   return {
     deleteBooking: bookingId => dispatch(deleteBooking(bookingId)),
-    openModal: modal => dispatch(openModal(modal)),
-    fetchSpots: () => dispatch(fetchSpots())
+    openModal: (modal, bookingId) => dispatch(openModal(modal, bookingId))
   };
 };
 
@@ -23,23 +23,30 @@ class BookingDetail extends React.Component {
     super(props);
     this.handleCancel = this.handleCancel.bind(this);
     this.handleReview = this.handleReview.bind(this);
-  }
-
-  componentDidMount() {
-    // this.props.fetchSpots();
+    this.writeOrUpdate = "Write Review";
   }
 
   handleCancel(bookingId) {
     this.props.deleteBooking(bookingId);
   }
 
-  handleReview() {
+  handleReview(bookingId, spotId, review) {
+
     const endDate = this.props.booking.end_date;
     const validToReview = moment(endDate).isBefore(moment());
 
     if (validToReview) {
       this.props.history.push(`/spots/${this.props.spot.id}`);
-      this.props.openModal("review");
+      if (this.writeOrUpdate === "Write Review") {
+        this.props.openModal("review", { bookingId: bookingId });
+      } else {
+        this.props.openModal("updateReview", {
+          info: {
+            review: review,
+            spotId: spotId
+          }
+        });
+      }
     } else {
       this.props.openModal("cannotReview");
     }
@@ -48,6 +55,12 @@ class BookingDetail extends React.Component {
   render() {
     const spot = this.props.spot;
     const booking = this.props.booking;
+    let review;
+    if (booking.review_ids) {
+      this.writeOrUpdate =
+        booking.review_ids.length > 0 ? "Update Review" : "Write Review";
+      review = this.props.reviews[booking.review_ids[0]];
+    }
     return (
       <div className="booking-detail">
         <img src={spot.photoUrls[0]} alt="booking_detail" />
@@ -67,9 +80,9 @@ class BookingDetail extends React.Component {
           <button
             className="review"
             type="button"
-            onClick={() => this.handleReview()}
+            onClick={() => this.handleReview(booking.id, spot.id, review)}
           >
-            Write Review
+            {this.writeOrUpdate}
           </button>
         </div>
       </div>

@@ -9,14 +9,15 @@ const msp = (state, ownProps) => {
   const review = { rating: 0, body: "" };
   return {
     spotId: parseInt(pathname.split("/")[2]),
-    review
+    review,
+    bookingId: ownProps.bookingId
   };
 };
 
 const mdp = dispatch => {
   return {
     closeModal: () => dispatch(closeModal()),
-    action: (review, spotId) => dispatch(createReview(review, spotId)),
+    action: (review, spotId, bookingId) => dispatch(createReview(review,spotId,bookingId)),
     openModal: modal => dispatch(openModal(modal))
   };
 };

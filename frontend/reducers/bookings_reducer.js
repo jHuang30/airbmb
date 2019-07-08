@@ -4,6 +4,7 @@ import {
   REMOVE_BOOKING
 } from "../action/booking_action";
 import { RECEIVE_SPOT } from "../action/spot_action";
+import { RECEIVE_REVIEW_USER, REMOVE_REVIEW } from "../action/reveiw_actions";
 
 const bookingsReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -18,6 +19,12 @@ const bookingsReducer = (state = {}, action) => {
       const newState = Object.assign({}, state);
       delete newState[action.bookingId.id];
       return newState;
+    // case REMOVE_REVIEW:
+    //   const newState2 = Object.assign({},state);
+
+    //   return
+    case RECEIVE_REVIEW_USER:
+      return Object.assign({}, state, { [action.booking.id]: action.booking });
     default:
       return state;
   }

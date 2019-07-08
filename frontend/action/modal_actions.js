@@ -18,6 +18,13 @@ export const openModal = (modal, props = {}) => {
       review,
       spotId
     };
+  } else if (props.bookingId) {
+    const bookingId = props.bookingId;
+    return {
+      type: OPEN_MODAL,
+      modal,
+      bookingId
+    };
   } else {
     return {
       type: OPEN_MODAL,
