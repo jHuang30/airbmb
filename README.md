@@ -1,58 +1,61 @@
-
 # Airbmb
 
-Airbmb is a full stack Airbnb clone application built up in 10 days. 
-
+Airbmb is a full stack Airbnb clone application built up in 10 days.
 
 ## Technologies
 
 ### Backend:
 
-* ruby 
-* rails
-* Postgresql
-* AWS
+- ruby
+- rails
+- Postgresql
+- AWS
 
 ### Frontend
 
-* JavaScript
-* React
-* Redux
+- JavaScript
+- React
+- Redux
 
 ### APIs
 
-* React Dates
-* Google Map API
-* Moment.js 
-
+- React Dates
+- Google Map API
+- Moment.js
 
 ## Key features:
 
-* User authentication with BCrypt - including signin, login, signout. User will be able to swap between sign up and sign modal. Search form for desired dates and location. 
+- User authentication with BCrypt - including signin, login, signout. User will be able to swap between sign up and sign modal. Search form for desired dates and location.
 
 ![](https://github.com/jHuang30/airbmb/blob/master/app/assets/images/auth.gif)
 
-***
+---
 
-* Show pages shows the listings of the pages with brief information.
-* User will be able to search from this page too. 
+- Show pages shows the listings of the pages with brief information.
+- User will be able to search from this page too.
 
 ![](https://github.com/jHuang30/airbmb/blob/master/app/assets/images/index.png)
 
-***
+---
 
-* Show page shows the detailed information on a specific spot.
-* React-date implemented - user will be able to pick a date on calendar. 
-* Picutre stands out when hover over.
+- Show page shows the detailed information on a specific spot.
+- React-date implemented - user will be able to pick a date on calendar.
+- Picutre stands out when hover over.
 
 ![](https://github.com/jHuang30/airbmb/blob/master/app/assets/images/show.gif)
 
+---
 
-***
+- Google Map API updates based on user search
+- Filtering spots when moving map around.
 
-* Review pages show all the detailed booking information.
-* After user's confirmation, send info to the backend and blocked on the calendar.
-![](app/assets/images/review.png)
+![](app/assets/images/search.gif)
+
+---
+
+- Review pages show all the detailed booking information.
+- After user's confirmation, send info to the backend and blocked on the calendar.
+  ![](app/assets/images/review.png)
 
 ```
   isInvalid(start, end, dates) {
@@ -76,6 +79,6 @@ Airbmb is a full stack Airbnb clone application built up in 10 days.
       return isSameDay(day1, day2);
     });
   }
-  ```
-***
+```
 
+---
