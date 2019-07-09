@@ -19,7 +19,6 @@ export const clearFilter = () => {
 
 export const updateFilter = (filter, value) => (dispatch, getState) => {
   dispatch(changeFilter(filter, value));
-  debugger;
   return fetchSpots(getState().ui.filter)(dispatch);
 };
 

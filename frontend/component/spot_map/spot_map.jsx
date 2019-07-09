@@ -50,7 +50,6 @@ class SpotMap extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    debugger;
     if (this.props.spot) {
       if (prevProps.spot.id !== this.props.spot.id) {
         this.MarkerManager.updateMarkers([this.props.spot]);
@@ -73,7 +72,6 @@ class SpotMap extends React.Component {
           return spot.num_guests >= this.props.filter.num_guests;
         });
       }
-      debugger;
       if (
         this.props.filter.location &&
         this.props.filter.location !== prevProps.filter.location
