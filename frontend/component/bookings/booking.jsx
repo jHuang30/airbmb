@@ -185,7 +185,6 @@ class BookingForm extends React.Component {
           onFocusChange={focusedInput => this.setState({ focusedInput })}
           numberOfMonths={1}
           isDayBlocked={this.isBlocked}
-          isOutsideRange={() => false}
         />
 
         <div className="form-date">Guest</div>
