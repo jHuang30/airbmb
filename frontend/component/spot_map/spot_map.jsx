@@ -1,7 +1,7 @@
 import React from "react";
 import MarkerManager from "../../util/marker_manager";
 import { connect } from "react-redux";
-import { fetchSpots } from "../../action/spot_action";
+// import { fetchSpots } from "../../action/spot_action";
 import { updateFilter } from "../../action/filter_actions";
 
 const msp = state => {
@@ -12,7 +12,7 @@ const msp = state => {
 };
 
 const mdp = dispatch => ({
-  fetchSpots: () => dispatch(fetchSpots()),
+  // fetchSpots: () => dispatch(fetchSpots()),
   updateFilter: (filter, value) => dispatch(updateFilter(filter, value))
 });
 
@@ -50,6 +50,7 @@ class SpotMap extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    debugger;
     if (this.props.spot) {
       if (prevProps.spot.id !== this.props.spot.id) {
         this.MarkerManager.updateMarkers([this.props.spot]);
@@ -72,13 +73,21 @@ class SpotMap extends React.Component {
           return spot.num_guests >= this.props.filter.num_guests;
         });
       }
-
+      debugger;
+      if (
+        this.props.filter.location &&
+        this.props.filter.location !== prevProps.filter.location
+      ) {
+        const lat = allSpots[0].lat;
+        const long = allSpots[0].long;
+        this.map.setCenter({ lat: lat, lng: long });
+        this.map.setZoom(5);
+      }
       this.MarkerManager.updateMarkers(allSpots);
     }
   }
 
   registerListeners() {
-    debugger;
     google.maps.event.addListener(this.map, "idle", () => {
       const { north, south, east, west } = this.map.getBounds().toJSON();
       const bounds = {

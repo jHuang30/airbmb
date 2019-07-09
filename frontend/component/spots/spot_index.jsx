@@ -4,7 +4,6 @@ import IndexNavbar from "../navbar/index_nav";
 import { AuthRoute, ProtectedRoute } from "../../util/route_util";
 import SpotMap from "../spot_map/spot_map";
 
-
 class SpotIndex extends React.Component {
   constructor(props) {
     super(props);
@@ -60,6 +59,17 @@ class SpotIndex extends React.Component {
           return null;
         }
       });
+    }
+    if (allSpots.length === 0) {
+      allSpots = (
+        <div className="no-spots-show">
+          Nothing matches your search <i className="far fa-sad-tear" />
+          <p>
+            You can search New York, Los Angeles, Santa Monica, Aptos. (Those
+            are the only spots in database :P)
+          </p>
+        </div>
+      );
     }
     return (
       <div>

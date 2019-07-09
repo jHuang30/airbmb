@@ -36,7 +36,7 @@ class IndexNavbar extends React.Component {
       this.props
         .updateFilter("location", e.target.value)
         .then(this.props.history.push("/spots"));
-    //   this.convertAddress(e.target.value);
+      // this.convertAddress(e.target.value);
     }
   }
 
