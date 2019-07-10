@@ -32,7 +32,6 @@ const mdp = dispatch => {
 
 class SpotDetail extends React.Component {
   constructor(props) {
-    debugger
     super(props);
     // this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -56,21 +55,34 @@ class SpotDetail extends React.Component {
 
   componentDidMount() {
     this.props.reviews.forEach(review => {
-      if (this.props.spot.review_ids.includes(review.id)){
+      if (this.props.spot.review_ids.includes(review.id)) {
         this.rating +=
-        review.accuracy +
-        review.checkin +
-        review.cleanliness +
-        review.communication +
-        review.location +
-        review.value;
+          review.accuracy +
+          review.checkin +
+          review.cleanliness +
+          review.communication +
+          review.location +
+          review.value;
       }
     });
-    this.rating = Math.round(this.rating / (this.props.spot.review_ids.length * 6));
+    this.rating = Math.round(
+      this.rating / (this.props.spot.review_ids.length * 6)
+    );
   }
   render() {
     const { spot } = this.props;
 
+    let aveAccu, aveClean, aveCom, aveCheck, aveVal, aveLoc;
+    aveAccu = aveClean = aveCom = aveCheck = aveVal = aveLoc = 0;
+
+    this.props.reviews.forEach(review => {
+      aveAccu += review.accuracy;
+      aveClean += review.cleanliness;
+      aveCom += review.communication;
+      aveCheck += review.checkin;
+      aveVal += review.value;
+      aveLoc += review.location;
+    });
 
     const stars = [];
     let i = 0;
@@ -113,11 +125,10 @@ class SpotDetail extends React.Component {
       });
     }
     const reviewText = this.props.reviews.length > 1 ? "Reviews" : "Review";
-    debugger
     return (
       <div>
         <IndexNavbar />
-        <SpotPic spot={spot }/>
+        <SpotPic spot={spot} />
         <div className="des-form-container">
           <div className="des-container">
             <SpotInfo spot={spot} />
@@ -130,13 +141,14 @@ class SpotDetail extends React.Component {
               {this.props.reviews.length}&nbsp;{reviewText}&nbsp;
               <span className="rating-star">{stars}</span>
             </div>
+
             {/* <button className="review-button" onClick={this.handleSubmit}>
                 Write Review
               </button> */}
             {/* </div> */}
             <div className="show-all-reviews">{allReviews}</div>
 
-            {/* <SpotMap spot={spot} /> */}
+            <SpotMap spot={spot} />
           </div>
 
           <BookingContainer spot={spot} rating={this.rating} />
@@ -152,5 +164,3 @@ export default withRouter(
     mdp
   )(SpotDetail)
 );
-
-

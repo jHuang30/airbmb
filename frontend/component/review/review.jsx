@@ -217,22 +217,30 @@ class Review extends React.Component {
         <p className="close-button" onClick={this.props.closeModal}>
           &times;
         </p>
-        <div className="review-form-stars"><span className='text'>Accuracy:</span><span>{stars1}</span></div>
+        <div className="review-form-stars">
+          <span className="text">Accuracy:</span>
+          <span>{stars1}</span>
+        </div>
         <div className="review-form-stars" style={{ top: "15%" }}>
-          <span className='text'>Communication:</span><span>{stars2}</span>
+          <span className="text">Communication:</span>
+          <span>{stars2}</span>
         </div>
         <div className="review-form-stars" style={{ top: "20%" }}>
-          <span className='text'>Cleanliness:</span><span>{stars3}</span>
+          <span className="text">Cleanliness:</span>
+          <span>{stars3}</span>
         </div>
         <div className="review-form-stars" style={{ top: "25%" }}>
-          <span className='text'>Location:</span><span>{stars4}</span>
+          <span className="text">Location:</span>
+          <span>{stars4}</span>
         </div>
         <div className="review-form-stars" style={{ top: "30%" }}>
-          <span className='text'>Check-in:</span><span>{stars5}</span>
+          <span className="text">Check-in:</span>
+          <span>{stars5}</span>
         </div>
         <div className="review-form-stars" style={{ top: "35%" }}>
-          <span className='text'>Value:</span><span>{stars6}</span>
-        </div> 
+          <span className="text">Value:</span>
+          <span>{stars6}</span>
+        </div>
         <textarea
           className="review-body"
           cols="30"
