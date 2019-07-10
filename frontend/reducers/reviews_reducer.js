@@ -3,7 +3,7 @@ import {
   RECEIVE_REVIEW,
   REMOVE_REVIEW,
   RECEIVE_REVIEW_USER,
-  RECEIVE_ALL_REVIEWS
+  RECEIVE_ALL_REVIEWS,
 } from "../action/reveiw_actions";
 
 const reviewsReducer = (state = {}, action) => {

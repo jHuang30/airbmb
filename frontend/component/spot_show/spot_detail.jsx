@@ -7,6 +7,9 @@ import SpotMap from "../spot_map/spot_map";
 import { connect } from "react-redux";
 import { deleteReview, updateReview } from "../../action/reveiw_actions";
 import { withRouter } from "react-router-dom";
+import SpotPic from "./spot_pic";
+import SpotInfo from "./spot_info";
+import SpotAmes from "./spot_ames";
 
 const msp = state => {
   const reviewIds = state.session.id
@@ -29,10 +32,12 @@ const mdp = dispatch => {
 
 class SpotDetail extends React.Component {
   constructor(props) {
+    debugger
     super(props);
     // this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
+    this.rating = 0;
   }
 
   // handleSubmit() {
@@ -49,56 +54,34 @@ class SpotDetail extends React.Component {
     this.props.deleteReview(reviewId, spotId);
   }
 
+  componentDidMount() {
+    this.props.reviews.forEach(review => {
+      if (this.props.spot.review_ids.includes(review.id)){
+        this.rating +=
+        review.accuracy +
+        review.checkin +
+        review.cleanliness +
+        review.communication +
+        review.location +
+        review.value;
+      }
+    });
+    this.rating = Math.round(this.rating / (this.props.spot.review_ids.length * 6));
+  }
   render() {
     const { spot } = this.props;
 
-    const amenitiesNums = [];
 
-    if (spot.amenities) {
-      Object.keys(spot.amenities).map(num => {
-        amenitiesNums.push(parseInt(num));
-      });
+    const stars = [];
+    let i = 0;
+    while (i < this.rating) {
+      stars.push(<i key={i} className="fas fa-star" />);
+      i++;
+    }
+    while (stars.length < 5) {
+      stars.push(<i key={stars.length} className="far fa-star" />);
     }
 
-    const symbol = sym => {
-      switch (sym) {
-        case "kitchen":
-          return <i className="fas fa-utensils" />;
-        case "wifi":
-          return <i className="fas fa-wifi" />;
-        case "elevator":
-          return <i className="fas fa-dungeon" />;
-        case "cable_tv":
-          return <i className="fas fa-tv" />;
-        case "iron":
-          return <i className="fas fa-location-arrow" />;
-        case "washer":
-          return <i className="fas fa-dumpster" />;
-        case "shampoo":
-          return <i className="fas fa-wine-bottle" />;
-        default:
-          return null;
-      }
-    };
-
-    const allAmenities = [];
-    amenitiesNums.map((num, idx) => {
-      allAmenities.push(
-        <span className="each-ame" key={idx}>
-          {symbol(spot.amenities[num].sym)} &nbsp; &nbsp;{" "}
-          {spot.amenities[num].name}
-        </span>
-      );
-    });
-
-    const bedrooms =
-      spot.num_bedrooms + (spot.num_bedrooms > 1 ? " bedrooms" : " bedroom");
-    const guests =
-      spot.num_guests + (spot.num_guests > 1 ? " guests" : " guest");
-    const beds = spot.num_beds + (spot.num_beds > 1 ? " beds" : " bed");
-    const bathrooms =
-      spot.num_bathrooms +
-      (spot.num_bathrooms > 1 ? " bathrooms" : " bathroom");
     let allReviews = [];
 
     const reviewIds = this.props.reviewIds;
@@ -129,95 +112,34 @@ class SpotDetail extends React.Component {
         );
       });
     }
+    const reviewText = this.props.reviews.length > 1 ? "Reviews" : "Review";
+    debugger
     return (
       <div>
         <IndexNavbar />
-        <div className="spot-detail">
-          <div className="row">
-            <div className="columna">
-              <img src={spot.photoUrls[0]} />
-            </div>
-
-            <div className="columnb">
-              <div className="column1">
-                <img src={spot.photoUrls[1]} />
-              </div>
-
-              <div className="column1">
-                <img src={spot.photoUrls[2]} />
-              </div>
-            </div>
-
-            <div className="columnb">
-              <div className="column1">
-                <img src={spot.photoUrls[3]} />
-              </div>
-
-              <div className="column1">
-                <img src={spot.photoUrls[4]} />
-              </div>
-            </div>
-          </div>
-        </div>
-
+        <SpotPic spot={spot }/>
         <div className="des-form-container">
           <div className="des-container">
-            <div className="spot-title">{spot.title}</div>
-
-            <div className="spot-location">{spot.location}</div>
-
-            <div className="spot-type">
-              <i className="fas fa-house-damage" />
-              {spot.spotType}
-            </div>
-
-            <div className="spot-info">
-              <span>{guests}</span>
-              <span>{bedrooms}</span>
-              <span>{beds}</span>
-              <span>{bathrooms}</span>
-            </div>
-
-            <div className="spot-des">
-              <p>{spot.description}</p>
-            </div>
-
-            <div className="spot-ame">
-              Amenities:
-              <div className="ame-container">
-                <div className="ame2">
-                  {allAmenities[0]}
-                  {allAmenities[1]}
-                </div>
-
-                <div className="ame2">
-                  {allAmenities[2]}
-                  {allAmenities[3]}
-                </div>
-              </div>
-              <button
-                className="showall"
-                onClick={() => dispatch(openModal("amenities", spot))}
-              >
-                Show all {allAmenities.length} amenities
-              </button>
-            </div>
-
+            <SpotInfo spot={spot} />
+            <SpotAmes spot={spot} />
             <div className="avail">Availability:</div>
 
             <DatePicker />
             {/* <div className="review-container"> */}
-              <div className="review-show">Reviews</div>
-              {/* <button className="review-button" onClick={this.handleSubmit}>
+            <div className="review-show">
+              {this.props.reviews.length}&nbsp;{reviewText}&nbsp;
+              <span className="rating-star">{stars}</span>
+            </div>
+            {/* <button className="review-button" onClick={this.handleSubmit}>
                 Write Review
               </button> */}
             {/* </div> */}
             <div className="show-all-reviews">{allReviews}</div>
 
-            <SpotMap spot={spot} />
+            {/* <SpotMap spot={spot} /> */}
           </div>
 
-          <BookingContainer spot={spot} />
+          <BookingContainer spot={spot} rating={this.rating} />
         </div>
       </div>
     );
@@ -230,3 +152,5 @@ export default withRouter(
     mdp
   )(SpotDetail)
 );
+
+

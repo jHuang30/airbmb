@@ -185,15 +185,30 @@ img {
   /* border:solid 1px red; */
 }
 
-.des-container .avail,
-.review-show {
+.des-container .avail{
   padding-top: 20px;
   color: #484848;
   font-size: 16px;
   font-weight: 600;
   font-family: "Montserrat", sans-serif;
-  border-bottom: 1px solid #e2dddd;
+  /* border-bottom: 1px solid #e2dddd; */
   padding-bottom: 20px;
+}
+
+.des-container .review-show {
+  padding-top: 20px;
+  color: #484848;
+  font-size: 23px;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+  border-bottom: 1px solid #e2dddd;
+  border-top: 1px solid #e2dddd;
+  padding-bottom: 20px;
+}
+
+.des-container .review-show .rating-star {
+  font-size: 18px;
+  padding-left: 15px;
 }
 
 /* .form-container div.order-form-price{ */

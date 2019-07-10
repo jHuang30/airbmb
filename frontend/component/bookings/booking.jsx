@@ -8,24 +8,12 @@ import Dropdown from "./dropdown";
 class BookingForm extends React.Component {
   constructor(props) {
     super(props);
-    this.rating = 0;
     this.state = this.props.booking;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.calculateDays = this.calculateDays.bind(this);
     this.handleClear = this.handleClear.bind(this);
     this.isBlocked = this.isBlocked.bind(this);
     this.isInvalid = this.isInvalid.bind(this);
-  }
-
-  componentDidMount() {
-    const { reviewIds } = this.props;
-    const allReviews = this.props.reviews.filter(review => {
-      return reviewIds.includes(review.id);
-    });
-    allReviews.forEach(review => {
-      this.rating += review.rating;
-    });
-    this.rating = Math.round(this.rating / reviewIds.length);
   }
 
   handleSubmit(e) {
@@ -41,7 +29,7 @@ class BookingForm extends React.Component {
           start_date: start,
           end_date: end,
           num_guests: this.state.numGuest,
-          rating: this.rating
+          rating: this.props.rating
         });
         this.props.history.push(
           `${this.props.history.location.pathname}/confirmation`
@@ -139,7 +127,7 @@ class BookingForm extends React.Component {
 
     const stars = [];
     let i = 0;
-    while (i < this.rating) {
+    while (i < this.props.rating) {
       stars.push(<i key={i} className="fas fa-star" />);
       i++;
     }
@@ -160,7 +148,6 @@ class BookingForm extends React.Component {
         );
       }
     }
-
     return (
       <div className={formClass}>
         <div className="order-form-price">
@@ -185,6 +172,7 @@ class BookingForm extends React.Component {
           onFocusChange={focusedInput => this.setState({ focusedInput })}
           numberOfMonths={1}
           isDayBlocked={this.isBlocked}
+          isOutsideRange={() => false}
         />
 
         <div className="form-date">Guest</div>

@@ -31,7 +31,6 @@ class BookingDetail extends React.Component {
   }
 
   handleReview(bookingId, spotId, review) {
-
     const endDate = this.props.booking.end_date;
     const validToReview = moment(endDate).isBefore(moment());
 

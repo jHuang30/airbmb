@@ -85,7 +85,6 @@ class LoginForm extends React.Component {
               onChange={this.update("email")}
             />
             <i id="far" className="far fa-envelope" />
-            {/* <p>{this.renderErrors("Email")}</p> */}
           </label>
 
           <br />
@@ -99,7 +98,6 @@ class LoginForm extends React.Component {
               onChange={this.update("password")}
             />
             <i id="far" className="fas fa-lock" />
-            {/* <p>{this.renderErrors("Password")}</p> */}
           </label>
 
           <br />

@@ -1,5 +1,5 @@
 class Review < ApplicationRecord 
-    validates :spot_id, :user_id, :body, :rating,  presence: true
+    validates :spot_id, :user_id, :body, :accuracy, :communication, :cleanliness, :location, :checkin, :value,  presence: true
 
     belongs_to :user,
         class_name: 'User'

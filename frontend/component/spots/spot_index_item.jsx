@@ -21,10 +21,16 @@ class SpotIndexItem extends React.Component {
       return reviewIds.includes(review.id);
     });
     matchReviews.forEach(review => {
-      allRatings += review.rating;
+      allRatings +=
+        review.accuracy +
+        review.checkin +
+        review.cleanliness +
+        review.communication +
+        review.location +
+        review.value;
     });
 
-    const average_rating = Math.round(allRatings / reviewIds.length);
+    const average_rating = Math.round(allRatings / (reviewIds.length * 6));
 
     const stars = [];
     let i = 0;

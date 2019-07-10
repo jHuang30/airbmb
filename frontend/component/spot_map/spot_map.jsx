@@ -73,6 +73,7 @@ class SpotMap extends React.Component {
         });
       }
       if (
+        allSpots.length !== 0 &&
         this.props.filter.location &&
         this.props.filter.location !== prevProps.filter.location
       ) {

@@ -186,14 +186,21 @@
 .review-form-stars {
   position: absolute;
   top: 10%;
-  left: 20%;
-  font-size: 48px;
+  left: 18%;
+  font-size: 22px;
   color: lightgrey;
+  display: flex;
+  justify-content: space-between;
+  width: 64%
+}
+
+.review-form-stars .text {
+  color: black
 }
 
 .review-body {
   position: absolute;
-  top: 23%;
+  top: 42%;
   left: 14%;
   font-size: 20px;
   border-radius: 5px;
