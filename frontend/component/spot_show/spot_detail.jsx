@@ -10,6 +10,7 @@ import { withRouter } from "react-router-dom";
 import SpotPic from "./spot_pic";
 import SpotInfo from "./spot_info";
 import SpotAmes from "./spot_ames";
+import SpotReviews from "./spot_reviews";
 
 const msp = state => {
   const reviewIds = state.session.id
@@ -71,18 +72,6 @@ class SpotDetail extends React.Component {
   }
   render() {
     const { spot } = this.props;
-
-    let aveAccu, aveClean, aveCom, aveCheck, aveVal, aveLoc;
-    aveAccu = aveClean = aveCom = aveCheck = aveVal = aveLoc = 0;
-
-    this.props.reviews.forEach(review => {
-      aveAccu += review.accuracy;
-      aveClean += review.cleanliness;
-      aveCom += review.communication;
-      aveCheck += review.checkin;
-      aveVal += review.value;
-      aveLoc += review.location;
-    });
 
     const stars = [];
     let i = 0;
@@ -146,6 +135,8 @@ class SpotDetail extends React.Component {
                 Write Review
               </button> */}
             {/* </div> */}
+            <SpotReviews reviews={this.props.reviews} />
+
             <div className="show-all-reviews">{allReviews}</div>
 
             <SpotMap spot={spot} />

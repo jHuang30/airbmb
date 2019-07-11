@@ -185,7 +185,7 @@ img {
   /* border:solid 1px red; */
 }
 
-.des-container .avail{
+.des-container .avail {
   padding-top: 20px;
   color: #484848;
   font-size: 16px;
@@ -310,8 +310,12 @@ img {
 
 #review-body {
   display: inline-block;
-  width: 500px;
+  width: 600px;
   word-wrap: break-word;
+}
+
+.show-all-reviews {
+  margin-top: 40px;
 }
 
 .show-all-reviews i {
@@ -334,4 +338,21 @@ img {
 .review-buttons button {
   margin-top: 10px;
   margin-right: 10px;
+}
+
+.option-stars {
+  display: inline-block;
+  width: 50%;
+  margin-top: 25px;
+  text-align: center;
+}
+
+.option-stars .flex {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 36px;
+}
+
+.option-stars .stars {
+  color: #006c70;
 }
