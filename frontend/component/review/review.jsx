@@ -215,7 +215,7 @@ class Review extends React.Component {
     return (
       <form className="review-form" onSubmit={this.handleSubmit}>
         <p className="close-button" onClick={this.props.closeModal}>
-          &times;
+          &times;   
         </p>
         <div className="review-form-stars">
           <span className="text">Accuracy:</span>
