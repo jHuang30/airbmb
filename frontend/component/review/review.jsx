@@ -5,11 +5,8 @@ class Review extends React.Component {
     super(props);
     this.state = props.review;
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.getStar = this.getStar.bind(this);
-    // this.cancelStar = this.cancelStar.bind(this);
     this.selectStar = this.selectStar.bind(this);
     this.stars = document.getElementsByClassName("fa fa-star");
-    // this.checked = false;
   }
 
   update(field) {
@@ -37,35 +34,14 @@ class Review extends React.Component {
       .then(() => this.props.closeModal());
   }
 
-  // getStar(nums, star) {
-  //   for (let i = 0; i < this.stars.length + 1; i++) {
-  //     if (star === i) {
-  //       for (let j = nums; j < i; j++) {
-  //         this.stars[j].style.color = "#006c70";
-  //       }
-  //     }
-  //   }
-  // }
-
-  // cancelStar(nums) {
-  //   if (!this.checked) {
-  //     for (let i = nums; i < this.stars.length; i++) {
-  //       this.stars[i].style.color = "lightgrey";
-  //     }
-  //   }
-  // }
-
   selectStar(item, start_point, end_point, star) {
-    if (!this.checked) {
-      this.checked = true;
-    } else {
-      this.checked = false;
-    }
     for (let i = start_point; i < end_point; i++) {
+      debugger;
       this.stars[i].style.color = "lightgrey";
     }
     for (let i = start_point; i < this.stars.length + 1; i++) {
-      if (star === i) {
+      debugger;
+      if (star == i) {
         for (let j = start_point; j < i; j++) {
           this.stars[j].style.color = "#006c70";
         }
@@ -75,172 +51,66 @@ class Review extends React.Component {
   }
 
   render() {
-    const ratingItem = [
-      "accuracy",
-      "communication",
-      "cleanliness",
-      "location",
-      "check-in",
-      "value"
+    const stars = [];
+    const ratingItemx = [
+      { accuracy: ["accuracy", 0, 5] },
+      { communication: ["communication", 5, 10] },
+      { cleanliness: ["cleanliness", 10, 15] },
+      { location: ["location", 15, 20] },
+      { checkin: ["checkin", 20, 25] },
+      { value: ["value", 25, 30] }
     ];
+    const reviewx = this.props.review;
+    let off = 10;
 
-    let styles1 = Array(5).fill({ color: "lightgrey" });
-    const accuracyRating = this.props.review.accuracy;
-    for (let i = 0; i < accuracyRating; i++) {
-      styles1[i] = { color: "#006c70" };
-    }
+    ratingItemx.forEach((item, idx) => {
+      const option = Object.keys(item)[0];
+      const optionValues = Object.values(item)[0];
+      let style = Array(5).fill({ color: "lightgrey" });
+      const itemRating = reviewx[option];
 
-    const stars1 = [];
-    const accu = "accuracy";
-    for (let j = 0; j < 5; j++) {
-      stars1.push(
-        <i
-          // onMouseOver={() => this.getStar(0, j + 1)}
-          // onMouseOut={() => this.cancelStar(0, j + 1)}
-          onClick={() => this.selectStar(accu, 0, 5, j + 1)}
-          className="fa fa-star"
-          style={styles1[j]}
-          key={j}
-        />
+      for (let i = 0; i < itemRating; i++) {
+        style[i] = { color: "#066c70" };
+      }
+
+      const starsSection = [];
+
+      for (let j = 0; j < 5; j++) {
+        starsSection.push(
+          <i
+            onClick={() =>
+              this.selectStar(
+                optionValues[0],
+                optionValues[1],
+                optionValues[2],
+                optionValues[1] + j + 1
+              )
+            }
+            className="fa fa-star"
+            style={style[j]}
+            key={j}
+          />
+        );
+      }
+
+      stars.push(
+        <div key={idx} className="review-form-stars" style={{ top: `${off}%` }}>
+          <span className="text">{optionValues[0]}:</span>
+          <span>{starsSection}</span>
+        </div>
       );
-    }
-
-    let styles2 = Array(5).fill({ color: "lightgrey" });
-    const communicationRating = this.props.review.communication;
-    for (let i = 0; i < communicationRating; i++) {
-      styles2[i] = { color: "#006c70" };
-    }
-
-    const stars2 = [];
-    const com = "communication";
-    for (let j = 0; j < 5; j++) {
-      stars2.push(
-        <i
-          // onMouseOver={() => this.getStar(5, j + 1 + 5)}
-          // onMouseOut={() => this.cancelStar(5, j + 1 + 5)}
-          onClick={() => this.selectStar(com, 5, 10, j + 1 + 5)}
-          className="fa fa-star"
-          style={styles2[j]}
-          key={j}
-        />
-      );
-    }
-
-    let styles3 = Array(5).fill({ color: "lightgrey" });
-    const cleanlinessRating = this.props.review.cleanliness;
-    for (let i = 0; i < cleanlinessRating; i++) {
-      styles3[i] = { color: "#006c70" };
-    }
-
-    const stars3 = [];
-    const clean = "cleanliness";
-    for (let j = 0; j < 5; j++) {
-      stars3.push(
-        <i
-          // onMouseOver={() => this.getStar(10, j + 1 + 10)}
-          // onMouseOut={() => this.cancelStar(10, j + 1 + 10)}
-          onClick={() => this.selectStar(clean, 10, 15, j + 1 + 10)}
-          className="fa fa-star"
-          style={styles3[j]}
-          key={j}
-        />
-      );
-    }
-
-    let styles4 = Array(5).fill({ color: "lightgrey" });
-    const locationRating = this.props.review.location;
-    for (let i = 0; i < locationRating; i++) {
-      styles4[i] = { color: "#006c70" };
-    }
-
-    const stars4 = [];
-    const loca = "location";
-    for (let j = 0; j < 5; j++) {
-      stars4.push(
-        <i
-          // onMouseOver={() => this.getStar(15, j + 1 + 15)}
-          // onMouseOut={() => this.cancelStar(15, j + 1 + 15)}
-          onClick={() => this.selectStar(loca, 15, 20, j + 1 + 15)}
-          className="fa fa-star"
-          style={styles4[j]}
-          key={j}
-        />
-      );
-    }
-
-    let styles5 = Array(5).fill({ color: "lightgrey" });
-    const checkinRating = this.props.review.checkin;
-    for (let i = 0; i < checkinRating; i++) {
-      styles5[i] = { color: "#006c70" };
-    }
-
-    const stars5 = [];
-    const check = "checkin";
-    for (let j = 0; j < 5; j++) {
-      stars5.push(
-        <i
-          // onMouseOver={() => this.getStar(20, j + 1 + 20)}
-          // onMouseOut={() => this.cancelStar(20, j + 1 + 20)}
-          onClick={() => this.selectStar(check, 20, 25, j + 1 + 20)}
-          className="fa fa-star"
-          style={styles5[j]}
-          key={j}
-        />
-      );
-    }
-
-    let styles6 = Array(5).fill({ color: "lightgrey" });
-    const valueRating = this.props.review.value;
-    for (let i = 0; i < valueRating; i++) {
-      styles6[i] = { color: "#006c70" };
-    }
-
-    const stars6 = [];
-    const val = "value";
-    for (let j = 0; j < 5; j++) {
-      stars6.push(
-        <i
-          // onMouseOver={() => this.getStar(25, j + 1 + 25)}
-          // onMouseOut={() => this.cancelStar(25, j + 1 + 25)}
-          onClick={() => this.selectStar(val, 25, 30, j + 1 + 25)}
-          className="fa fa-star"
-          style={styles6[j]}
-          key={j}
-        />
-      );
-    }
+      off += 5;
+    });
 
     const errors = this.renderErrors();
 
     return (
       <form className="review-form" onSubmit={this.handleSubmit}>
         <p className="close-button" onClick={this.props.closeModal}>
-          &times;   
+          &times;
         </p>
-        <div className="review-form-stars">
-          <span className="text">Accuracy:</span>
-          <span>{stars1}</span>
-        </div>
-        <div className="review-form-stars" style={{ top: "15%" }}>
-          <span className="text">Communication:</span>
-          <span>{stars2}</span>
-        </div>
-        <div className="review-form-stars" style={{ top: "20%" }}>
-          <span className="text">Cleanliness:</span>
-          <span>{stars3}</span>
-        </div>
-        <div className="review-form-stars" style={{ top: "25%" }}>
-          <span className="text">Location:</span>
-          <span>{stars4}</span>
-        </div>
-        <div className="review-form-stars" style={{ top: "30%" }}>
-          <span className="text">Check-in:</span>
-          <span>{stars5}</span>
-        </div>
-        <div className="review-form-stars" style={{ top: "35%" }}>
-          <span className="text">Value:</span>
-          <span>{stars6}</span>
-        </div>
+
+        <div>{stars}</div>
         <textarea
           className="review-body"
           cols="30"
