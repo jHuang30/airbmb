@@ -83,6 +83,7 @@ class SpotReviews extends React.Component {
 
     const starsxx = [];
     let i = 0;
+    debugger;
     while (i < this.props.rating) {
       starsxx.push(<i key={i} className="fas fa-star" />);
       i++;

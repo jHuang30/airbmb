@@ -125,8 +125,6 @@ class SpotDetail extends React.Component {
               spot={spot}
             />
 
-            <div className="show-all-reviews">{allReviews}</div>
-
             <SpotMap spot={spot} />
           </div>
 
