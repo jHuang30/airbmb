@@ -73,16 +73,6 @@ class SpotDetail extends React.Component {
   render() {
     const { spot } = this.props;
 
-    const stars = [];
-    let i = 0;
-    while (i < this.rating) {
-      stars.push(<i key={i} className="fas fa-star" />);
-      i++;
-    }
-    while (stars.length < 5) {
-      stars.push(<i key={stars.length} className="far fa-star" />);
-    }
-
     let allReviews = [];
 
     const reviewIds = this.props.reviewIds;
@@ -113,7 +103,6 @@ class SpotDetail extends React.Component {
         );
       });
     }
-    const reviewText = this.props.reviews.length > 1 ? "Reviews" : "Review";
     return (
       <div>
         <IndexNavbar />
@@ -125,17 +114,16 @@ class SpotDetail extends React.Component {
             <div className="avail">Availability:</div>
 
             <DatePicker />
-            {/* <div className="review-container"> */}
-            <div className="review-show">
-              {this.props.reviews.length}&nbsp;{reviewText}&nbsp;
-              <span className="rating-star">{stars}</span>
-            </div>
 
             {/* <button className="review-button" onClick={this.handleSubmit}>
                 Write Review
               </button> */}
             {/* </div> */}
-            <SpotReviews reviews={this.props.reviews} />
+            <SpotReviews
+              reviews={this.props.reviews}
+              rating={this.rating}
+              spot={spot}
+            />
 
             <div className="show-all-reviews">{allReviews}</div>
 

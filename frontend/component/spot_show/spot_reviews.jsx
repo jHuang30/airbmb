@@ -1,4 +1,12 @@
 import React from "react";
+import { fetchSpot } from "../../action/spot_action";
+import { connect } from "react-redux";
+
+const mdp = dispatch => {
+  return {
+    fetchSpot: spotId => dispatch(fetchSpot(spotId))
+  };
+};
 
 class SpotReviews extends React.Component {
   constructor(props) {
@@ -72,8 +80,32 @@ class SpotReviews extends React.Component {
         </span>
       );
     });
-    return <div className="detailed-reviews">{allReviews}</div>;
+
+    const starsxx = [];
+    let i = 0;
+    while (i < this.props.rating) {
+      starsxx.push(<i key={i} className="fas fa-star" />);
+      i++;
+    }
+    while (starsxx.length < 5) {
+      starsxx.push(<i key={starsxx.length} className="far fa-star" />);
+    }
+
+    const reviewText = this.props.reviews.length > 1 ? "Reviews" : "Review";
+    debugger;
+    return (
+      <div>
+        <div className="review-show">
+          {this.props.reviews.length}&nbsp;{reviewText}&nbsp;
+          <span className="rating-star">{starsxx}</span>
+        </div>
+        <div className="detailed-reviews">{allReviews}</div>
+      </div>
+    );
   }
 }
 
-export default SpotReviews;
+export default connect(
+  null,
+  mdp
+)(SpotReviews);

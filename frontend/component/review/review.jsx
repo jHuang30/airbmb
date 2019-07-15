@@ -36,11 +36,9 @@ class Review extends React.Component {
 
   selectStar(item, start_point, end_point, star) {
     for (let i = start_point; i < end_point; i++) {
-      debugger;
       this.stars[i].style.color = "lightgrey";
     }
     for (let i = start_point; i < this.stars.length + 1; i++) {
-      debugger;
       if (star == i) {
         for (let j = start_point; j < i; j++) {
           this.stars[j].style.color = "#006c70";
