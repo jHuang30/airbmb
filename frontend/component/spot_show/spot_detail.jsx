@@ -12,13 +12,29 @@ import SpotInfo from "./spot_info";
 import SpotAmes from "./spot_ames";
 import SpotReviews from "./spot_reviews";
 
-const msp = state => {
+const msp = (state, ownProps) => {
   const reviewIds = state.session.id
     ? Object.values(state.entities.users)[0].review_ids
     : [];
+
+  const reviews = Object.values(state.entities.reviews);
+  let rating = 0;
+  reviews.forEach(review => {
+    if (ownProps.spot.review_ids.includes(review.id)) {
+      rating +=
+        review.accuracy +
+        review.checkin +
+        review.cleanliness +
+        review.communication +
+        review.location +
+        review.value;
+    }
+  });
+  rating = Math.round(rating / (ownProps.spot.review_ids.length * 6));
   return {
     reviews: Object.values(state.entities.reviews),
-    reviewIds
+    reviewIds,
+    rating
   };
 };
 
@@ -37,7 +53,7 @@ class SpotDetail extends React.Component {
     // this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
-    this.rating = 0;
+    // this.rating = 0;
   }
 
   // handleSubmit() {
@@ -54,22 +70,6 @@ class SpotDetail extends React.Component {
     this.props.deleteReview(reviewId, spotId);
   }
 
-  componentDidMount() {
-    this.props.reviews.forEach(review => {
-      if (this.props.spot.review_ids.includes(review.id)) {
-        this.rating +=
-          review.accuracy +
-          review.checkin +
-          review.cleanliness +
-          review.communication +
-          review.location +
-          review.value;
-      }
-    });
-    this.rating = Math.round(
-      this.rating / (this.props.spot.review_ids.length * 6)
-    );
-  }
   render() {
     const { spot } = this.props;
 
@@ -121,14 +121,16 @@ class SpotDetail extends React.Component {
             {/* </div> */}
             <SpotReviews
               reviews={this.props.reviews}
-              rating={this.rating}
+              rating={this.props.rating}
               spot={spot}
             />
+
+            <div className="show-all-reviews">{allReviews}</div>
 
             <SpotMap spot={spot} />
           </div>
 
-          <BookingContainer spot={spot} rating={this.rating} />
+          <BookingContainer spot={spot} rating={this.props.rating} />
         </div>
       </div>
     );

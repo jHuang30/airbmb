@@ -33,7 +33,7 @@ class SpotReviews extends React.Component {
       "Cleanliness",
       "Value"
     ];
-    const allReviews = [];
+    const detailedReviews = [];
 
     text.forEach((item, idx) => {
       let reviewScore;
@@ -71,7 +71,7 @@ class SpotReviews extends React.Component {
         stars.push(<i key={stars.length} className="far fa-star" />);
       }
 
-      allReviews.push(
+      detailedReviews.push(
         <span className="option-stars" key={idx}>
           <span className="flex">
             <span className="options">{item}:</span>
@@ -83,7 +83,6 @@ class SpotReviews extends React.Component {
 
     const starsxx = [];
     let i = 0;
-    debugger;
     while (i < this.props.rating) {
       starsxx.push(<i key={i} className="fas fa-star" />);
       i++;
@@ -93,14 +92,13 @@ class SpotReviews extends React.Component {
     }
 
     const reviewText = this.props.reviews.length > 1 ? "Reviews" : "Review";
-    debugger;
     return (
       <div>
         <div className="review-show">
           {this.props.reviews.length}&nbsp;{reviewText}&nbsp;
           <span className="rating-star">{starsxx}</span>
         </div>
-        <div className="detailed-reviews">{allReviews}</div>
+        <div className="detailed-reviews">{detailedReviews}</div>
       </div>
     );
   }
