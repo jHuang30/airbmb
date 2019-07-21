@@ -1,7 +1,6 @@
 import React from "react";
 import MarkerManager from "../../util/marker_manager";
 import { connect } from "react-redux";
-// import { fetchSpots } from "../../action/spot_action";
 import { updateFilter } from "../../action/filter_actions";
 
 const msp = state => {
@@ -12,7 +11,6 @@ const msp = state => {
 };
 
 const mdp = dispatch => ({
-  // fetchSpots: () => dispatch(fetchSpots()),
   updateFilter: (filter, value) => dispatch(updateFilter(filter, value))
 });
 

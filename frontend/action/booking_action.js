@@ -11,7 +11,6 @@ const receiveAllBookings = (filter, value) => ({
   value
 });
 
-
 const receiveBooking = payload => {
   return {
     type: RECEIVE_BOOKING,
