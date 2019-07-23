@@ -36,7 +36,6 @@ class IndexNavbar extends React.Component {
       this.props
         .updateFilter("location", e.target.value)
         .then(this.props.history.push("/spots"));
-      // this.convertAddress(e.target.value);
     }
   }
 
@@ -44,7 +43,6 @@ class IndexNavbar extends React.Component {
     let geometry;
     const geocoder = new google.maps.Geocoder();
     geocoder.geocode({ address: address }, (result, status) => {
-      // formatted = result[0].formatted_address;
       geometry = result[0].geometry;
       const lat = geometry.location.lat();
       const long = geometry.location.lng();
