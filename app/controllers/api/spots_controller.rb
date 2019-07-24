@@ -12,7 +12,7 @@ class Api::SpotsController < ApplicationController
 
 
     def show
-        @spot = Spot.includes(:amenities, :bookings, :reviews).find(params[:id])
+        @spot = Spot.with_attached_photos.includes(:amenities, :bookings, :reviews).find(params[:id])
         @amenities = @spot.amenities
         @bookings = @spot.bookings
         @reviews = @spot.reviews  
@@ -21,41 +21,10 @@ class Api::SpotsController < ApplicationController
     end
 
     def index
-        # if spot_params[:location] && spot_params[:num_guests]
-        #     cap_location = spot_params[:location].split.map{|word| word.capitalize}.join(" ")
-        #     minNum = spot_params[:num_guests].to_i
-        #     @spots = Spot.where(location: cap_location).where('num_guests > ?', minNum)
-        #     if bounds
-        #         bound_spots = Spot.in_bounds(bounds)
-        #         @spots = @spots.select{|spot| bound_spots.include?(spot)}
-        #     end
-
-        # elsif spot_params[:location]
-        #     cap_location = spot_params[:location].split.map{|word| word.capitalize}.join(" ")
-        #     @spots = Spot.where(location: cap_location)
-        #     # if bounds
-        #         # bound_spots = Spot.in_bounds(bounds)
-        #         # @spots = @spots.select{|spot| bound_spots.include?(spot)}
-        #     # end
-
-        # elsif spot_params[:num_guests]
-        #     minNum = spot_params[:num_guests].to_i
-        #     @spots = Spot.where('num_guests > ?', minNum)
-        #     if bounds
-        #         bound_spots = Spot.in_bounds(bounds)
-        #         @spots = @spots.select{|spot| bound_spots.include?(spot)}
-        #     end
-
-        # elsif bounds
-        #     @spots = Spot.in_bounds(bounds)
-
-        # else
-        #     @spots = Spot.all
-        # end
         if  bounds
-            @spots = Spot.in_bounds(bounds)
+            @spots = Spot.with_attached_photos.includes(:amenities, :bookings, :reviews).in_bounds(bounds)
         else 
-            @spots = Spot.all
+            @spots = Spot.with_attached_photos.includes(:amenities, :bookings, :reviews).all
         end
     end
 
