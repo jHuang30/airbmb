@@ -11,7 +11,7 @@ const Navbar = ({ currentUser, logout, openModal }) => {
       <button className="logout-info-button" onClick={() => openModal("about")}>
         Contact Info
       </button>
-    </div>
+    </div> 
   ) : (
     <div className="navbar">
       <button className="navbut" onClick={() => openModal("login")}>
