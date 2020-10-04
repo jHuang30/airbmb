@@ -74,16 +74,18 @@ class SpotIndex extends React.Component {
     return (
       <div>
         <IndexNavbar />
-        <h1 className="explore">Explore the world</h1>
+        <div className="switch-container">
+          <h1 className="explore">Explore the world</h1>
+          <div className="switch-button">
+            <input type="checkbox" id="switch" onClick={this.handleClick} />
+            <label className="switch" htmlFor="switch" />
+          </div>
+        </div>
 
         <div className={this.state.mapStatus ? "list-map" : "no-map"}>
           <div className="allSpotContainer">{allSpots}</div>
 
           <div className="index-map">
-            <div className="switch-container">
-              <input type="checkbox" id="switch" onClick={this.handleClick} />
-              <label className="switch" htmlFor="switch" />
-            </div>
             <SpotMap
               className="spot-map"
               spots={allSpots}
