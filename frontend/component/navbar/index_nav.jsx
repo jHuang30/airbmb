@@ -21,7 +21,6 @@ class IndexNavbar extends React.Component {
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
     this.state = { location: null };
-    // this.update = this.update.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.convertAddress = this.convertAddress.bind(this);
   }

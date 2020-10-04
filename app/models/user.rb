@@ -33,7 +33,7 @@ class User < ApplicationRecord
         foreign_key: :user_id,
         class_name: "Booking"
 
-    def self.find_by_credentials(email, password)
+    def self.find_by_credentials(email, password)  
         user = User.find_by(email: email)
         return nil unless user && user.is_password?(password)
         user
@@ -41,11 +41,11 @@ class User < ApplicationRecord
 
     def password=(password)
         @password = password
-        self.password_digest = BCrypt::Password.create(password)
+        self.password_digest = BCrypt::Password.create(password)      
     end
 
     def is_password?(password)
-        BCrypt::Password.new(self.password_digest).is_password?(password)
+        BCrypt::Password.new(self.password_digest).is_password?(p  assword)
     end
 
     def reset_session_token!

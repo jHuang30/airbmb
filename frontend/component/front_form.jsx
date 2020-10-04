@@ -3,13 +3,12 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import "react-dates/initialize";
 import { SingleDatePicker, DayPickerInput } from "react-dates";
-import moment from "moment";
 import { updateFilter, clearFilter } from "../action/filter_actions";
 
-const mdp = dispatch => {
+const mdp = (dispatch) => {
   return {
     updateFilter: (filter, value) => dispatch(updateFilter(filter, value)),
-    clearFilter: () => dispatch(clearFilter())
+    clearFilter: () => dispatch(clearFilter()),
   };
 };
 
@@ -22,7 +21,7 @@ class FrontForm extends React.Component {
       num_guests: null,
       location: null,
       focused1: false,
-      focused2: false
+      focused2: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -48,7 +47,8 @@ class FrontForm extends React.Component {
   }
 
   update(field) {
-    return e => {
+    return (e) => {
+      debugger;
       this.setState({ [field]: e.target.value });
     };
   }
@@ -70,38 +70,44 @@ class FrontForm extends React.Component {
             />
           </label>
 
-          <div className="checkin-out">
+          {/* <div className="checkin-out">
             <label>CHECK-IN</label>
 
             <label>CHECK-OUT</label>
-          </div>
+          </div> */}
 
           <div className="checkin-out">
-            <SingleDatePicker
-              date={this.state.startDate} // momentPropTypes.momentObj or null
-              onDateChange={startDate => this.setState({ startDate })} // PropTypes.func.isRequired
-              focused={this.state.focused1} // PropTypes.bool
-              onFocusChange={({ focused: focused1 }) =>
-                this.setState({ focused1 })
-              } // PropTypes.func.isRequired
-              id="sDate" // PropTypes.string.isRequired,
-              numberOfMonths={1}
-              placeholder={"mm/dd/yyyy"}
-              readOnly={true}
-            />
+            <div className="checkin-out-column">
+              <div className="checkin-out-label">CHECK-IN</div>
+              <SingleDatePicker
+                date={this.state.startDate} // momentPropTypes.momentObj or null
+                onDateChange={(startDate) => this.setState({ startDate })} // PropTypes.func.isRequired
+                focused={this.state.focused1} // PropTypes.bool
+                onFocusChange={({ focused: focused1 }) =>
+                  this.setState({ focused1 })
+                } // PropTypes.func.isRequired
+                id="sDate" // PropTypes.string.isRequired,
+                numberOfMonths={1}
+                placeholder={"mm/dd/yyyy"}
+                readOnly={true}
+              />
+            </div>
 
-            <SingleDatePicker
-              date={this.state.endDate} // momentPropTypes.momentObj or null
-              onDateChange={endDate => this.setState({ endDate })} // PropTypes.func.isRequired
-              focused={this.state.focused2} // PropTypes.bool
-              onFocusChange={({ focused: focused2 }) =>
-                this.setState({ focused2 })
-              } // PropTypes.func.isRequired
-              id="eDate" // PropTypes.string.isRequired,
-              numberOfMonths={1}
-              placeholder={"mm/dd/yyyy"}
-              readOnly={true}
-            />
+            <div className="checkin-out-column">
+              <div className="checkin-out-label">CHECK-OUT </div>
+              <SingleDatePicker
+                date={this.state.endDate} // momentPropTypes.momentObj or null
+                onDateChange={(endDate) => this.setState({ endDate })} // PropTypes.func.isRequired
+                focused={this.state.focused2} // PropTypes.bool
+                onFocusChange={({ focused: focused2 }) =>
+                  this.setState({ focused2 })
+                } // PropTypes.func.isRequired
+                id="eDate" // PropTypes.string.isRequired,
+                numberOfMonths={1}
+                placeholder={"mm/dd/yyyy"}
+                readOnly={true}
+              />
+            </div>
           </div>
 
           <label className="where-guests">
@@ -127,9 +133,4 @@ class FrontForm extends React.Component {
   }
 }
 
-export default withRouter(
-  connect(
-    null,
-    mdp
-  )(FrontForm)
-);
+export default withRouter(connect(null, mdp)(FrontForm));

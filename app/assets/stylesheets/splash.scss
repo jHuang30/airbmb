@@ -1,164 +1,170 @@
 .splash {
-    background-image: image-url("lighthouse-2372461_1920.jpg");
-    height: 100vh;
-    background-size: cover;
-    position: relative;
+  background-image: image-url("lighthouse-2372461_1920.jpg");
+  height: 100vh;
+  background-size: cover;
+  position: relative;
 }
 
-.navbar button{
-    float: right;
-    background: transparent;
-    color: white;
-    border: none;
-    padding: 25px 18px;
-    margin: 10px;
-    font-size: 14px;
-    cursor: pointer;
+.navbar button {
+  float: right;
+  background: transparent;
+  color: white;
+  border: none;
+  padding: 25px 18px;
+  margin: 10px;
+  font-size: 14px;
+  cursor: pointer;
 }
 
-.navbar button:focus{
-    outline: none;
+.navbar button:focus {
+  outline: none;
 }
 
-.navbar button.navbut:hover{
-    border-bottom: 1px solid white;
+.navbar button.navbut:hover {
+  border-bottom: 1px solid white;
 }
 
 .nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-
 .idxnav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #e2dddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e2dddd;
 }
 
 .idxnav-container .search {
-    display: flex;
+  display: flex;
 }
 
 .logo {
-    padding: 10px 18px;
-    margin: 0;
-    font-size: 50px;
-    font-family: 'Dancing Script', cursive;
-    background: linear-gradient(330deg, orange 0%, #e05252 30%, lightblue 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; 
+  padding: 10px 18px;
+  margin: 0;
+  font-size: 50px;
+  font-family: "Dancing Script", cursive;
+  background: linear-gradient(330deg, orange 0%, #e05252 30%, lightblue 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.idxLogo{
-    padding: 18px 10px;
-    margin: 0;
-    font-size: 20px;
-    font-family: 'Dancing Script', cursive;
-    background: linear-gradient(330deg, orange 0%, #e05252 30%, lightblue 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; 
+.idxLogo {
+  padding: 18px 10px;
+  margin: 0;
+  font-size: 20px;
+  font-family: "Dancing Script", cursive;
+  background: linear-gradient(330deg, orange 0%, #e05252 30%, lightblue 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .idxnav-container .logout-info-button {
-    color: black;
-    cursor: pointer;
+  color: black;
+  cursor: pointer;
 }
 
 .idxnav-container input {
-    box-sizing: border-box;
-    width: 458px;
-    height: 47px;
-    padding-left: 54px;
-    margin-top: 4px;
-    margin-left: 10px;
-    font-size: 15px;
-    border: 1px solid #EBEBEB;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    font-weight: 600;
+  box-sizing: border-box;
+  width: 458px;
+  height: 47px;
+  padding-left: 54px;
+  margin-top: 4px;
+  margin-left: 10px;
+  font-size: 15px;
+  border: 1px solid #ebebeb;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
 }
-
 
 .fa-search:before {
-    position: absolute;
-    left: 100px;
-    content: "\f002";
-    top: 25px;
-    font-size: 18px;
+  position: absolute;
+  left: 100px;
+  content: "\f002";
+  top: 25px;
+  font-size: 18px;
 }
 
-
-.front-page-form{
-    position: relative;
-    background: #ffffff;
-    border-radius: 4px;
-    padding: 30px;
-    padding-bottom: 24px;
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
-    font-size: 14px;
-    line-height: 1.43;
-    color: #484848;
-    top: 6%;
-    left: 6%;
-    height: 58%;
-    width: 30%;
+.front-page-form {
+  position: relative;
+  background: #ffffff;
+  border-radius: 4px;
+  padding: 30px;
+  padding-bottom: 24px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+  font-size: 14px;
+  line-height: 1.43;
+  color: #484848;
+  top: 6%;
+  left: 6%;
+  height: 58%;
+  width: 30%;
 }
 
-.hearder-text{
-    font-size: 2em;
-    font-weight: 600;
-    margin-bottom: 10px;
+.hearder-text {
+  font-size: 2em;
+  font-weight: 600;
+  margin-bottom: 10px;
 }
 
-.where-guests{
-    font-size: 12px;
-    font-weight: 600;
-    display: flex;
-    flex-direction: column;
-    height: 100px;
+.where-guests {
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  height: 100px;
 }
 
 .where-guests input {
-    margin-top: 10px;
-    border: 1px solid #EBEBEB;
-    border-radius: 3px;
-    inset: none;
-    height:40%;
-    padding-left: 10px;
-    font-size: 15px
+  margin-top: 10px;
+  border: 1px solid #ebebeb;
+  border-radius: 3px;
+  inset: none;
+  height: 40%;
+  padding-left: 10px;
+  font-size: 15px;
 }
 
-.where-guests, .checkin, .checkout{
-    margin: 5px 0;
+.where-guests,
+.checkin,
+.checkout {
+  margin: 5px 0;
 }
 
-.front-submit{
-    color: white;
-    background: #FF5A5F;
-    position: absolute;
-    right: 7%;
-    bottom: 5%;
-    height: 10%;
-    width: 23%;
-    border-radius: 5px;
-    font-weight: 400;
-    font-size: 15px;
+.front-submit {
+  color: white;
+  background: #ff5a5f;
+  position: absolute;
+  right: 7%;
+  bottom: 5%;
+  height: 10%;
+  width: 23%;
+  border-radius: 5px;
+  font-weight: 400;
+  font-size: 15px;
 }
 
-.checkin-out{
+.checkin-out {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.checkin-out-label {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.SingleDatePickerInput__withBorder {
+    width: 100%;
+}
+
+.checkin-out-column {
     display: flex;
-    justify-content: flex-start;
-    height: 100%;;
-
-}
-
-.checkin-out label {
+    flex-direction: column;
     width: 50%;
-    font-size: 12px;
-    font-weight: 600;
 }
 
 // .checkin-out input {
@@ -167,28 +173,28 @@
 //     font-size: 15px;
 //     margin: 10px 0 18px 0;
 //     border: 1px solid #EBEBEB;
-    
+
 // }
 
-.idx-navbar button{
-    color: black;
-    border: none;
-    padding: 15px 18px;
-    margin: 10px;
-    font-size: 14px;
-    cursor: pointer;
+.idx-navbar button {
+  color: black;
+  border: none;
+  padding: 15px 18px;
+  margin: 10px;
+  font-size: 14px;
+  cursor: pointer;
 }
 
-.idx-navbar button:focus{
-    outline: none;
+.idx-navbar button:focus {
+  outline: none;
 }
 
 .checkin-out div.DateInput {
-    width: 100%
+  width: 100%;
 }
 
 .checkin-out input.DateInput_input_1 {
-    width: 100%;
-    border: none;
-    font-size: 17px;
+  width: 100%;
+  border: none;
+  font-size: 17px;
 }
