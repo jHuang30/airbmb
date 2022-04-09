@@ -8,7 +8,7 @@
     "babel-loader": "^8.0.6",
     "eact": "0.0.1-security",
     "lodash": "^4.17.14",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "react": "^16.8.6",
     "react-dates": "^20.2.1",
     "react-dom": "^16.8.6",
